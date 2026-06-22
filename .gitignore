@@ -1,0 +1,16 @@
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables (SECURITY RISK IF COMMITTED)
+.env
+
+# Optional: Ignore generated data (Uncomment if you don't want to commit generated blogs)
+# data/blogs/
+# data/clustered_keywords.json

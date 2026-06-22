@@ -1,0 +1,81 @@
+{
+  "clusters": [
+    {
+      "hub_topic": "GST Calculation and Compliance",
+      "demand": "High",
+      "intent": "Transactional",
+      "product_fit_rationale": "This cluster fits our supported features list because it involves automated GST calculation, GSTIN auto validation, and real-time GSTIN lookup verification, all of which are supported by our product capabilities such as auto_gst_calculation and gstin_auto_fetch.",
+      "keywords": [
+        "automated GST calculation API for SaaS",
+        "Auto GST calculation software India",
+        "Automating GST compliance for SaaS",
+        "GST compliance automation for Indian businesses",
+        "Smart GST billing for MSME"
+      ]
+    },
+    {
+      "hub_topic": "GSTR-1 Reporting and Export",
+      "demand": "Medium",
+      "intent": "Informational",
+      "product_fit_rationale": "This cluster fits our supported features list because it involves GSTR-1 report export, which is supported by our product capability gstr1_reporting_exports.",
+      "keywords": [
+        "GSTR-1 report export tool",
+        "GST software for SaaS exports"
+      ]
+    },
+    {
+      "hub_topic": "Recurring Invoicing and Billing",
+      "demand": "High",
+      "intent": "Transactional",
+      "product_fit_rationale": "This cluster fits our supported features list because it involves recurring invoice software, bulk CSV invoice billing system, and recurring invoice profiles, all of which are supported by our product capabilities such as recurring_invoice_profiles and bulk_csv_upload.",
+      "keywords": [
+        "recurring invoice software for B2B MSMEs",
+        "bulk CSV invoice billing system",
+        "Recurring invoice profiles for SaaS",
+        "Recurring invoicing API for SaaS companies",
+        "Billing schedule optimization for recurring revenue"
+      ]
+    },
+    {
+      "hub_topic": "GSTIN Validation and Verification",
+      "demand": "Medium",
+      "intent": "Informational",
+      "product_fit_rationale": "This cluster fits our supported features list because it involves GSTIN auto validation, real-time GSTIN lookup verification, and GSTIN validation, all of which are supported by our product capabilities such as gstin_auto_fetch.",
+      "keywords": [
+        "GSTIN auto validation webhook integration",
+        "Real-time GSTIN lookup verification tool",
+        "GSTIN validation for Indian MSMEs",
+        "Troubleshooting GSTIN validation errors"
+      ]
+    },
+    {
+      "hub_topic": "Invoice Generation and Tracking",
+      "demand": "Low",
+      "intent": "Informational",
+      "product_fit_rationale": "This cluster fits our supported features list because it involves automated GST invoice generation and tracking customer payments, which are related to our product capabilities such as auto_gst_calculation and razorpay_payment_integration.",
+      "keywords": [
+        "Automated GST invoice generation for recurring billing",
+        "Create/Generate Invoice/ with multiple template",
+        "Track customer payments"
+      ]
+    }
+  ],
+  "rejected_keywords": [
+    {
+      "original": "e-invoicing schema generator",
+      "reason": "This keyword implies e-invoicing, which is not supported by our product capability (e_invoicing_generation is false)."
+    },
+    {
+      "original": "automatic e-way bill generation software",
+      "reason": "This keyword implies e-way bill generation, which is not supported by our product capability (e_way_bill_generation is false)."
+    },
+    {
+      "original": "international invoice ZUGFeRD compliance formatting",
+      "reason": "This keyword implies international invoice formatting, which is not directly related to our supported product capabilities."
+    },
+    {
+      "original": "Invoice format validation API for e-invoicing",
+      "reason": "This keyword implies e-invoicing, which is not supported by our product capability (e_invoicing_generation is false)."
+    }
+  ]
+}

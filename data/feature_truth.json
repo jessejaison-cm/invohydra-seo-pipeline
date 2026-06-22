@@ -1,0 +1,11 @@
+{
+  "auto_gst_calculation": true,
+  "gstin_auto_fetch": true,
+  "gstr1_reporting_exports": true,
+  "razorpay_payment_integration": true,
+  "lut_export_support": true,
+  "recurring_invoice_profiles": true,
+  "bulk_csv_upload": true,
+  "e_invoicing_generation": false,
+  "e_way_bill_generation": false
+}
