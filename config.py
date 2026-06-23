@@ -51,8 +51,14 @@ TEMPERATURE: float = 0.1                       # Low temp = deterministic extrac
 
 # ── Pipeline Seed Topics (used by Agent 1) ────────────────────────────────
 # Add, remove, or edit topics here to control what Agent 1 searches for.
+# These should be slightly broad so Agent 1 can discover the long-tail variants!
 SEED_TOPICS = [
-    "best GST billing software for Indian MSMEs",          # "best" triggers PAA
-    "how to automate invoicing for SaaS companies India",  # informational
+    "best GST billing software for Indian MSMEs",
+    "how to automate invoicing for SaaS companies India",
     "recurring billing and subscription management India",
+    "how to generate e-way bills automatically from invoices",
+    "bulk GSTIN validation and verification API",
+    "how to reconcile GSTR-1 and GSTR-2B automatically",
+    "multi-currency invoicing software with Indian GST compliance",
+    "real time GST calculation API for Indian marketplaces"
 ]
