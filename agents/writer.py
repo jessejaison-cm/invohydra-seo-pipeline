@@ -9,6 +9,7 @@ import os
 import json
 import re
 import requests
+import time
 from typing import List, Dict, Any
 from config import GROQ_MODEL, TEMPERATURE
 
@@ -239,12 +240,18 @@ def generate_blog_post(cluster: Dict[str, Any]) -> Dict[str, Any]:
             # Using higher temperature (0.6) for creative/natural B2B writing
             section_content = call_llm(section_system, section_user, temperature=0.6)
             written_sections.append(section_content.strip())
+            # Throttle requests to respect Groq rate limits
+            time.sleep(4)
         except Exception as e:
             print(f"⚠️ Failed to write section '{title}': {e}")
             written_sections.append(f"## {title}\n\n*Content generation failed for this section due to an API error.*")
+            time.sleep(2)
 
     # Stitch them together
     markdown_body = f"# {hub_topic}\n\n" + "\n\n".join(written_sections)
+    
+    # Throttle before metadata call
+    time.sleep(3)
     
     # Step 3: Generate SEO Metadata
     print("🏷️ Step 3: Generating SEO Metadata...")
@@ -288,27 +295,45 @@ def generate_blog_post(cluster: Dict[str, Any]) -> Dict[str, Any]:
         "markdown_body": markdown_body
     }
 
-def generate_all_blogs(clusters_path: str, output_dir: str) -> None:
+def generate_all_blogs(clusters_path: str, output_dir: str, limit: int = None) -> None:
     """Iterates through all clusters and generates individual JSON blog post files."""
+    import time
     clusters = load_clusters(clusters_path)
     if not clusters:
         print("⚠️ No clusters found to generate blogs for.")
         return
         
     os.makedirs(output_dir, exist_ok=True)
-    print(f"✍️ Starting competitor-informed blog generation for {len(clusters)} clusters...")
+    print(f"✍️ Starting competitor-informed blog generation (Total clusters: {len(clusters)})...")
+    if limit:
+        print(f"🎯 Limiting generation to {limit} new blog posts per run.")
     
+    generated_count = 0
     for i, cluster in enumerate(clusters, 1):
+        if limit and generated_count >= limit:
+            print(f"🛑 Reached the limit of {limit} blogs. Stopping generation for this run.")
+            break
+
         topic = cluster.get("hub_topic", f"Topic_{i}")
         # Sanitize filename
         filename = re.sub(r'[^a-zA-Z0-9_-]', '_', topic.lower().replace(" ", "_")) + ".json"
         filepath = os.path.join(output_dir, filename)
         
-        print(f"📝 [{i}/{len(clusters)}] Generating blog for: '{topic}'...")
+        if os.path.exists(filepath):
+            print(f"⏩ Skipping '{topic}': Blog post already exists at {filepath}")
+            continue
+            
+        print(f"📝 Generating blog for: '{topic}'...")
         blog_data = generate_blog_post(cluster)
         
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(blog_data, f, indent=2, ensure_ascii=False)
         print(f"💾 Saved blog post to: {filepath}")
+        generated_count += 1
         
-    print("🎉 All blog posts generated successfully.")
+        if limit and generated_count < limit:
+            # Adding a 10s delay between blogs to help with Groq free tier rate limits
+            print("⏳ Waiting 10 seconds before generating the next blog to respect API rate limits...")
+            time.sleep(10)
+        
+    print(f"🎉 Generated {generated_count} new blog posts successfully.")

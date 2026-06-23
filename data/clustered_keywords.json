@@ -1,81 +1,62 @@
 {
   "clusters": [
     {
-      "hub_topic": "GST Calculation and Compliance",
+      "hub_topic": "GST Billing Software for MSME",
       "demand": "High",
       "intent": "Transactional",
-      "product_fit_rationale": "This cluster fits our supported features list because it involves automated GST calculation, GSTIN auto validation, and real-time GSTIN lookup verification, all of which are supported by our product capabilities such as auto_gst_calculation and gstin_auto_fetch.",
+      "product_fit_rationale": "Our auto_gst_calculation and gstin_auto_fetch features support GST billing for MSMEs, making our product a good fit for this cluster.",
       "keywords": [
-        "automated GST calculation API for SaaS",
-        "Auto GST calculation software India",
-        "Automating GST compliance for SaaS",
-        "GST compliance automation for Indian businesses",
-        "Smart GST billing for MSME"
+        "gst billing software for msme",
+        "gst billing software for indian msme",
+        "gst billing software for indian businesses"
       ]
     },
     {
-      "hub_topic": "GSTR-1 Reporting and Export",
+      "hub_topic": "GST Billing Software Comparison",
       "demand": "Medium",
       "intent": "Informational",
-      "product_fit_rationale": "This cluster fits our supported features list because it involves GSTR-1 report export, which is supported by our product capability gstr1_reporting_exports.",
+      "product_fit_rationale": "Our razorpay_payment_integration and recurring_invoice_profiles features can be highlighted in comparisons, making our product a viable option for this cluster.",
       "keywords": [
-        "GSTR-1 report export tool",
-        "GST software for SaaS exports"
+        "best gst billing software india",
+        "best gst billing software comparison"
       ]
     },
     {
-      "hub_topic": "Recurring Invoicing and Billing",
+      "hub_topic": "Free GST Billing Software",
+      "demand": "Medium",
+      "intent": "Informational",
+      "product_fit_rationale": "Our bulk_csv_upload feature can be useful for businesses looking for free GST billing software, making our product a good fit for this cluster.",
+      "keywords": [
+        "free gst billing software online"
+      ]
+    },
+    {
+      "hub_topic": "GST Compliant Billing Software",
       "demand": "High",
       "intent": "Transactional",
-      "product_fit_rationale": "This cluster fits our supported features list because it involves recurring invoice software, bulk CSV invoice billing system, and recurring invoice profiles, all of which are supported by our product capabilities such as recurring_invoice_profiles and bulk_csv_upload.",
+      "product_fit_rationale": "Our gstr1_reporting_exports and lut_export_support features ensure GST compliance, making our product a good fit for this cluster.",
       "keywords": [
-        "recurring invoice software for B2B MSMEs",
-        "bulk CSV invoice billing system",
-        "Recurring invoice profiles for SaaS",
-        "Recurring invoicing API for SaaS companies",
-        "Billing schedule optimization for recurring revenue"
+        "gst compliant billing software india"
       ]
     },
     {
-      "hub_topic": "GSTIN Validation and Verification",
-      "demand": "Medium",
-      "intent": "Informational",
-      "product_fit_rationale": "This cluster fits our supported features list because it involves GSTIN auto validation, real-time GSTIN lookup verification, and GSTIN validation, all of which are supported by our product capabilities such as gstin_auto_fetch.",
+      "hub_topic": "Billing Software for Small Businesses",
+      "demand": "High",
+      "intent": "Transactional",
+      "product_fit_rationale": "Our auto_gst_calculation and gstin_auto_fetch features support billing for small businesses, making our product a good fit for this cluster.",
       "keywords": [
-        "GSTIN auto validation webhook integration",
-        "Real-time GSTIN lookup verification tool",
-        "GSTIN validation for Indian MSMEs",
-        "Troubleshooting GSTIN validation errors"
-      ]
-    },
-    {
-      "hub_topic": "Invoice Generation and Tracking",
-      "demand": "Low",
-      "intent": "Informational",
-      "product_fit_rationale": "This cluster fits our supported features list because it involves automated GST invoice generation and tracking customer payments, which are related to our product capabilities such as auto_gst_calculation and razorpay_payment_integration.",
-      "keywords": [
-        "Automated GST invoice generation for recurring billing",
-        "Create/Generate Invoice/ with multiple template",
-        "Track customer payments"
+        "billing software for small businesses in india"
       ]
     }
   ],
   "rejected_keywords": [
     {
-      "original": "e-invoicing schema generator",
-      "reason": "This keyword implies e-invoicing, which is not supported by our product capability (e_invoicing_generation is false)."
+      "original": "gst and e way bill software",
+      "reason": "This keyword implies e-way bill generation, which is not supported by our product (e_way_bill_generation is false)."
     },
     {
-      "original": "automatic e-way bill generation software",
-      "reason": "This keyword implies e-way bill generation, which is not supported by our product capability (e_way_bill_generation is false)."
-    },
-    {
-      "original": "international invoice ZUGFeRD compliance formatting",
-      "reason": "This keyword implies international invoice formatting, which is not directly related to our supported product capabilities."
-    },
-    {
-      "original": "Invoice format validation API for e-invoicing",
-      "reason": "This keyword implies e-invoicing, which is not supported by our product capability (e_invoicing_generation is false)."
+      "original": "best gst invoicing software india",
+      "reason": "This keyword implies e-invoicing, which is not supported by our product (e_invoicing_generation is false). However, we can support GST billing, which is a related feature."
     }
   ]
 }

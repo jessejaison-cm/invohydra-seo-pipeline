@@ -58,6 +58,27 @@ def _to_informational_query(seed_topic: str) -> str:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
+# HELPER: GOOGLE AUTOCOMPLETE
+# ──────────────────────────────────────────────────────────────────────────────
+
+def get_google_autocomplete(query: str) -> List[str]:
+    """
+    Fetches autocomplete suggestions from Google for the given query.
+    This provides excellent long-tail keywords that real users are typing.
+    """
+    url = f"http://suggestqueries.google.com/complete/search?client=chrome&q={query}"
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+        if len(data) > 1 and isinstance(data[1], list):
+            return data[1]
+    except Exception as e:
+        print(f"⚠️  Google Autocomplete failed: {e}")
+    return []
+
+
+# ──────────────────────────────────────────────────────────────────────────────
 # STEP 1: SEARCH GOOGLE VIA SERPER API
 # ──────────────────────────────────────────────────────────────────────────────
 
@@ -336,6 +357,17 @@ def discover_keywords(seed_topic: str, output_path: str = None) -> List[str]:
 
         except Exception as e:
             print(f"   ⚠️  Secondary search failed: {e}. Continuing with primary results only.")
+
+    # ── Step 1c: Google Autocomplete (Bonus candidates) ────────────────────
+    print(f"\n   🔍  Fetching Google Autocomplete suggestions...")
+    autocomplete_candidates = get_google_autocomplete(seed_topic)
+    if autocomplete_candidates:
+        print(f"   ✅  Autocomplete found {len(autocomplete_candidates)} suggestions.")
+        seen = set(c.lower().strip() for c in candidates)
+        for c in autocomplete_candidates:
+            if c.lower().strip() not in seen:
+                candidates.append(c)
+                seen.add(c.lower().strip())
 
     # ── Step 2: Summary ────────────────────────────────────────────────────
     print(f"\n[2/3] 📊  Total unique candidates across all searches: {len(candidates)}")
