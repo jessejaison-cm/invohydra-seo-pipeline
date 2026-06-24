@@ -1,0 +1,122 @@
+name: InvoHydra SEO Pipeline
+
+on:
+  # ──────────────────────────────────────────────────────────────────────────
+  # Twice-weekly schedule: Monday & Thursday at 3:00 AM IST
+  # IST is UTC+5:30, so 3:00 AM IST = 9:30 PM UTC (previous day)
+  #   Sunday   21:30 UTC → Monday   03:00 IST
+  #   Wednesday 21:30 UTC → Thursday 03:00 IST
+  # ──────────────────────────────────────────────────────────────────────────
+  schedule:
+    - cron: '30 21 * * 0'   # Sunday 9:30 PM UTC = Monday 3:00 AM IST
+    - cron: '30 21 * * 3'   # Wednesday 9:30 PM UTC = Thursday 3:00 AM IST
+
+  # Allow manual trigger for testing (works from any branch)
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: 'Override seed topic (leave empty for auto-rotation)'
+        required: false
+        type: string
+      limit:
+        description: 'Number of blogs to generate per run'
+        required: false
+        default: '2'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  run-seo-pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      # ── 1. Checkout the pipeline repo ──────────────────────────────────
+      - name: Checkout Pipeline Repo
+        uses: actions/checkout@v4
+
+      # ── 2. Set up Python 3.11 ──────────────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # ── 3. Install Python dependencies ─────────────────────────────────
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # ── 4. Create .env file from GitHub Secrets ────────────────────────
+      - name: Configure Environment Variables
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        run: |
+          echo "GROQ_API_KEY=${GROQ_API_KEY}" >> .env
+          echo "SERPER_API_KEY=${SERPER_API_KEY}" >> .env
+          echo "FIRECRAWL_API_KEY=${FIRECRAWL_API_KEY}" >> .env
+
+      # ── 5. Restore pipeline state from previous runs ───────────────────
+      - name: Restore Pipeline State
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/pipeline_state.json
+          key: pipeline-state-${{ github.ref }}
+          restore-keys: |
+            pipeline-state-
+
+      # ── 6. Run the full SEO pipeline ───────────────────────────────────
+      - name: Run SEO Pipeline (All 5 Agents)
+        env:
+          CI: 'true'
+          WEBSITE_REPO: 'InvoHydra/InvoHydra-Landing-Page'
+          WEBSITE_REPO_PAT: ${{ secrets.WEBSITE_REPO_PAT }}
+          PUBLISH_BRANCH: 'blog-automation'
+        run: |
+          TOPIC="${{ github.event.inputs.topic }}"
+          LIMIT="${{ github.event.inputs.limit }}"
+          LIMIT="${LIMIT:-2}"
+
+          if [ -n "$TOPIC" ]; then
+            echo "🎯 Manual topic override: $TOPIC"
+            python main.py --topic "$TOPIC" --limit "$LIMIT"
+          else
+            echo "🔄 Using automatic topic rotation"
+            python main.py --limit "$LIMIT"
+          fi
+
+      # ── 7. Save pipeline state for topic rotation ──────────────────────
+      - name: Save Pipeline State
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            data/pipeline_state.json
+          key: pipeline-state-${{ github.ref }}-${{ github.run_id }}
+
+      # ── 8. Upload generated blogs as backup artifact ───────────────────
+      - name: Archive Generated Blogs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-blogs-${{ github.run_id }}
+          path: data/blogs/
+          retention-days: 30
+
+      # ── 9. Upload pipeline reports for debugging ───────────────────────
+      - name: Archive Pipeline Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-reports-${{ github.run_id }}
+          path: |
+            data/difficulty_report.json
+            data/clustered_keywords.json
+            data/discovered_keywords.json
+          retention-days: 14

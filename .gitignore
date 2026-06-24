@@ -11,6 +11,9 @@ __pycache__/
 # Environment variables (SECURITY RISK IF COMMITTED)
 .env
 
+# Publisher workspace (temporary clone of website repo)
+_publisher_workspace/
+
 # Optional: Ignore generated data (Uncomment if you don't want to commit generated blogs)
 # data/blogs/
 # data/clustered_keywords.json

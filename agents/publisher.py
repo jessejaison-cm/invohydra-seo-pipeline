@@ -1,14 +1,19 @@
 # agents/publisher.py
 """
-Agent 5: The Auto-Publisher (Local Test Mode)
+Agent 5: The Auto-Publisher
 
-Safely pushes generated SEO blogs into a separate local Landing Page repository.
-To avoid breaking the main website codebase, it acts like a Junior Developer:
-1. Navigates to the Landing Page repo.
-2. Checks out a safe, isolated Git branch (`seo-bot-publish`).
-3. Converts the AI JSON blogs into standard MDX files with Frontmatter.
-4. Saves them to the landing page's blog folder.
-5. Commits the changes to the safe branch.
+Pushes generated SEO blogs into the InvoHydra Landing Page repository.
+Works both locally and in GitHub Actions CI/CD.
+
+Flow:
+1. Clones the Landing Page repo (using PAT for auth in CI).
+2. Creates/checks out the 'blog-automation' branch.
+3. Converts AI JSON blogs into structured blog data JSON files.
+4. Commits and pushes changes.
+5. Creates a Pull Request via GitHub API.
+
+Local fallback:
+  When CI=false, uses LOCAL_LANDING_PAGE_REPO path instead of cloning.
 """
 
 import os
@@ -16,6 +21,8 @@ import sys
 import json
 import subprocess
 import shutil
+import urllib.request
+import urllib.error
 
 # Make the project root importable
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -23,129 +30,260 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 _project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOCAL_BLOGS_DIR = os.path.join(_project_root, "data", "blogs")
 
-# User-provided Landing Page Paths
-LANDING_PAGE_REPO = r"C:\Repo\InvoHydra-Landing-Page"
-LANDING_PAGE_BLOG_DIR = r"C:\Repo\InvoHydra-Landing-Page\src\app\blog"
-SAFE_BRANCH_NAME = "seo-bot-publish"
+# ──────────────────────────────────────────────────────────────────────────────
+# CONFIGURATION — Override via environment variables in CI
+# ──────────────────────────────────────────────────────────────────────────────
+WEBSITE_REPO = os.getenv("WEBSITE_REPO", "InvoHydra/InvoHydra-Landing-Page")
+WEBSITE_REPO_PAT = os.getenv("WEBSITE_REPO_PAT", "")
+SAFE_BRANCH_NAME = os.getenv("PUBLISH_BRANCH", "blog-automation")
+TARGET_BLOG_DIR = "src/app/blog/posts"  # Where blog JSON data lands in the website repo
 
-def run_git_command(command: list, cwd: str) -> bool:
+# For local development fallback
+LOCAL_LANDING_PAGE_REPO = os.getenv(
+    "LANDING_PAGE_REPO",
+    r"C:\Repo\InvoHydra-Landing-Page"
+)
+
+IS_CI = os.getenv("CI", "false").lower() == "true"
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# HELPER: GIT COMMAND RUNNER
+# ──────────────────────────────────────────────────────────────────────────────
+
+def run_git_command(command: list, cwd: str, check: bool = False) -> subprocess.CompletedProcess:
     """Runs a git command in the specified directory."""
+    result = subprocess.run(
+        command, cwd=cwd,
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+    )
+    if check and result.returncode != 0:
+        print(f"⚠️ Git command failed: {' '.join(command)}")
+        print(f"   stdout: {result.stdout.strip()}")
+        print(f"   stderr: {result.stderr.strip()}")
+    return result
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# HELPER: CLONE WEBSITE REPO (CI ONLY)
+# ──────────────────────────────────────────────────────────────────────────────
+
+def clone_website_repo(workspace_dir: str) -> str:
+    """Clones the website repo into a temporary workspace directory."""
+    repo_dir = os.path.join(workspace_dir, "landing-page")
+
+    if os.path.exists(repo_dir):
+        shutil.rmtree(repo_dir)
+
+    clone_url = f"https://x-access-token:{WEBSITE_REPO_PAT}@github.com/{WEBSITE_REPO}.git"
+    print(f"📥 Cloning {WEBSITE_REPO} into workspace...")
+
+    result = run_git_command(
+        ["git", "clone", "--depth", "1", clone_url, repo_dir],
+        cwd=workspace_dir, check=True
+    )
+
+    if result.returncode != 0:
+        raise RuntimeError(f"Failed to clone {WEBSITE_REPO}: {result.stderr}")
+
+    print(f"✅ Cloned successfully.")
+    return repo_dir
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# HELPER: CREATE BLOG DATA FILE
+# ──────────────────────────────────────────────────────────────────────────────
+
+def create_blog_data_file(blog_data: dict) -> dict:
+    """
+    Creates a structured blog data object ready for the website.
+    Returns the data dict to be saved as JSON.
+    """
+    from datetime import date
+
+    return {
+        "meta_title": blog_data.get("meta_title", "Untitled Blog"),
+        "meta_description": blog_data.get("meta_description", ""),
+        "url_slug": blog_data.get("url_slug", "untitled"),
+        "markdown_body": blog_data.get("markdown_body", ""),
+        "author": "InvoHydra AI",
+        "date": date.today().isoformat(),
+        "category": "SEO Blog",
+        "readTime": f"{max(1, len(blog_data.get('markdown_body', '').split()) // 200)} Mins Read"
+    }
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# HELPER: CREATE PULL REQUEST VIA GITHUB API
+# ──────────────────────────────────────────────────────────────────────────────
+
+def create_pull_request(repo: str, head_branch: str, base_branch: str = "main") -> bool:
+    """Creates a Pull Request on GitHub using the REST API."""
+    url = f"https://api.github.com/repos/{repo}/pulls"
+
+    data = json.dumps({
+        "title": f"🤖 Auto-publish SEO blogs ({head_branch})",
+        "body": (
+            "## Automated SEO Blog Publication\n\n"
+            "This PR was automatically generated by the InvoHydra SEO Pipeline.\n\n"
+            "**Please review the blog content before merging.**\n\n"
+            "- Generated by: GitHub Actions\n"
+            "- Branch: `" + head_branch + "`\n"
+        ),
+        "head": head_branch,
+        "base": base_branch
+    }).encode("utf-8")
+
+    req = urllib.request.Request(url, data=data, method="POST")
+    req.add_header("Authorization", f"Bearer {WEBSITE_REPO_PAT}")
+    req.add_header("Accept", "application/vnd.github.v3+json")
+    req.add_header("Content-Type", "application/json")
+
     try:
-        result = subprocess.run(
-            command,
-            cwd=cwd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True
-        )
-        if result.returncode != 0:
-            # If there's nothing to commit, git returns an error, which we can ignore
-            if "nothing to commit" not in result.stdout.lower():
-                print(f"⚠️ Git command failed: {' '.join(command)}")
-                print(f"Error: {result.stderr.strip()}")
-            return False
+        response = urllib.request.urlopen(req)
+        pr_data = json.loads(response.read().decode())
+        print(f"🔗 Pull Request created: {pr_data.get('html_url', 'N/A')}")
         return True
-    except Exception as e:
-        print(f"⚠️ Failed to run git command {' '.join(command)}: {e}")
+    except urllib.error.HTTPError as e:
+        error_body = e.read().decode()
+        if "A pull request already exists" in error_body:
+            print("ℹ️  Pull Request already exists — new commits pushed to existing PR.")
+            return True
+        print(f"⚠️ Failed to create PR: {e.code} — {error_body}")
         return False
 
 
-def format_as_mdx(blog_data: dict) -> str:
-    """
-    Converts the raw JSON blog data into a standard MDX file with Frontmatter.
-    This is the standard format for Next.js / Astro blogs.
-    """
-    title = blog_data.get("meta_title", "Untitled Blog").replace('"', "'")
-    description = blog_data.get("meta_description", "").replace('"', "'")
-    body = blog_data.get("markdown_body", "")
-
-    # Create YAML Frontmatter
-    mdx_content = f"""---
-title: "{title}"
-description: "{description}"
-author: "InvoHydra AI"
----
-
-{body}
-"""
-    return mdx_content
-
+# ──────────────────────────────────────────────────────────────────────────────
+# MAIN PUBLISHER FUNCTION
+# ──────────────────────────────────────────────────────────────────────────────
 
 def publish_blogs() -> None:
-    print("\n" + "═"*60)
-    print("  🚀  AGENT 5: AUTO-PUBLISHER (LOCAL MERGE)")
-    print("═"*60)
+    print("\n" + "═" * 60)
+    print("  🚀  AGENT 5: AUTO-PUBLISHER")
+    print("═" * 60)
 
-    # 1. Verification
-    if not os.path.exists(LANDING_PAGE_REPO):
-        print(f"🛑 Error: Cannot find landing page repo at {LANDING_PAGE_REPO}")
-        return
-        
+    # 1. Check for blogs
     if not os.path.exists(LOCAL_BLOGS_DIR):
-        print(f"⚠️ No blogs found in {LOCAL_BLOGS_DIR} to publish.")
+        print(f"⚠️ No blogs directory found at {LOCAL_BLOGS_DIR}")
         return
 
     blog_files = [f for f in os.listdir(LOCAL_BLOGS_DIR) if f.endswith('.json')]
     if not blog_files:
-        print("⚠️ No JSON blog files found. Exiting.")
+        print("⚠️ No JSON blog files found. Exiting publisher.")
         return
 
     print(f"📦 Found {len(blog_files)} blogs ready for publishing.")
-    print(f"🔗 Target Repo: {LANDING_PAGE_REPO}")
 
-    # 2. Safely Checkout Branch
-    print(f"\n🌿 Creating safe isolated branch: '{SAFE_BRANCH_NAME}'...")
-    # Fetch latest (optional) and checkout branch (create if not exists)
-    run_git_command(["git", "checkout", "-B", SAFE_BRANCH_NAME], LANDING_PAGE_REPO)
+    # 2. Get the website repo (clone in CI, use local path otherwise)
+    workspace = None
+    if IS_CI:
+        if not WEBSITE_REPO_PAT:
+            print("🛑 WEBSITE_REPO_PAT not set. Cannot push to website repo in CI.")
+            return
+        workspace = os.path.join(_project_root, "_publisher_workspace")
+        os.makedirs(workspace, exist_ok=True)
+        repo_dir = clone_website_repo(workspace)
+    else:
+        repo_dir = LOCAL_LANDING_PAGE_REPO
+        if not os.path.exists(repo_dir):
+            print(f"🛑 Landing page repo not found at {repo_dir}")
+            print(f"   Set LANDING_PAGE_REPO env var or update LOCAL_LANDING_PAGE_REPO in this file.")
+            return
 
-    # Ensure target directory exists
-    os.makedirs(LANDING_PAGE_BLOG_DIR, exist_ok=True)
+    # 3. Create/checkout the blog-automation branch
+    print(f"\n🌿 Checking out branch: '{SAFE_BRANCH_NAME}'...")
 
-    # 3. Process and Copy Files
+    if IS_CI:
+        # Fetch all remote branches and create our branch from origin/main
+        run_git_command(["git", "fetch", "origin"], cwd=repo_dir)
+        # Try to checkout existing remote branch, or create new one from main
+        result = run_git_command(
+            ["git", "checkout", "-B", SAFE_BRANCH_NAME, "origin/main"],
+            cwd=repo_dir
+        )
+        if result.returncode != 0:
+            run_git_command(["git", "checkout", "-B", SAFE_BRANCH_NAME], cwd=repo_dir)
+    else:
+        run_git_command(["git", "checkout", "-B", SAFE_BRANCH_NAME], cwd=repo_dir)
+
+    # 4. Create target directory for blog data
+    blog_data_dir = os.path.join(repo_dir, TARGET_BLOG_DIR)
+    os.makedirs(blog_data_dir, exist_ok=True)
+
+    # 5. Process each blog — convert pipeline JSON to website-ready JSON
     published_count = 0
     for filename in blog_files:
         filepath = os.path.join(LOCAL_BLOGS_DIR, filename)
         with open(filepath, "r", encoding="utf-8") as f:
             try:
-                blog_data = json.load(f)
+                raw_blog = json.load(f)
             except Exception as e:
                 print(f"   ⚠️ Error reading {filename}: {e}")
                 continue
 
-        slug = blog_data.get("url_slug", filename.replace(".json", ""))
-        mdx_filename = f"{slug}.mdx"
-        mdx_filepath = os.path.join(LANDING_PAGE_BLOG_DIR, mdx_filename)
+        blog_data = create_blog_data_file(raw_blog)
+        slug = blog_data["url_slug"]
+        output_filename = f"{slug}.json"
+        output_path = os.path.join(blog_data_dir, output_filename)
 
-        mdx_content = format_as_mdx(blog_data)
+        with open(output_path, "w", encoding="utf-8") as out_f:
+            json.dump(blog_data, out_f, indent=2, ensure_ascii=False)
 
-        # Write to landing page repo
-        with open(mdx_filepath, "w", encoding="utf-8") as out_f:
-            out_f.write(mdx_content)
-            
-        print(f"   ✅ Copied: {mdx_filename} -> {LANDING_PAGE_BLOG_DIR}")
+        print(f"   ✅ Published: {output_filename}")
         published_count += 1
 
-    # 4. Git Commit
+    # 6. Git commit and push
     if published_count > 0:
-        print("\n💾 Committing changes to the safe branch...")
-        run_git_command(["git", "add", "src/app/blog/"], LANDING_PAGE_REPO)
-        success = run_git_command(
-            ["git", "commit", "-m", f"Auto-publish {published_count} SEO blogs via AI Agent"],
-            LANDING_PAGE_REPO
+        print("\n💾 Committing and pushing changes...")
+
+        # Configure git user for CI
+        if IS_CI:
+            run_git_command(
+                ["git", "config", "user.name", "InvoHydra SEO Bot"],
+                cwd=repo_dir
+            )
+            run_git_command(
+                ["git", "config", "user.email", "seo-bot@invohydra.com"],
+                cwd=repo_dir
+            )
+
+        run_git_command(["git", "add", TARGET_BLOG_DIR], cwd=repo_dir)
+
+        commit_result = run_git_command(
+            ["git", "commit", "-m", f"🤖 Auto-publish {published_count} SEO blogs"],
+            cwd=repo_dir
         )
-        if success:
-            print(f"🎉 Successfully committed {published_count} blogs to branch '{SAFE_BRANCH_NAME}'!")
+
+        if "nothing to commit" in (commit_result.stdout + commit_result.stderr).lower():
+            print("   ↳ No new changes to commit (blogs already up to date).")
+        elif IS_CI:
+            push_result = run_git_command(
+                ["git", "push", "origin", SAFE_BRANCH_NAME, "--force"],
+                cwd=repo_dir
+            )
+            if push_result.returncode == 0:
+                print(f"🎉 Pushed {published_count} blogs to '{SAFE_BRANCH_NAME}' branch!")
+                # Create a PR from blog-automation → main on the website repo
+                create_pull_request(WEBSITE_REPO, SAFE_BRANCH_NAME)
+            else:
+                print(f"🛑 Push failed: {push_result.stderr}")
         else:
-            print("   ↳ (No new changes to commit, branch is already up to date).")
-    
-    print("\n" + "═"*60)
+            print(f"🎉 Committed {published_count} blogs to '{SAFE_BRANCH_NAME}' locally!")
+
+    # Cleanup workspace in CI
+    if IS_CI and workspace and os.path.exists(workspace):
+        shutil.rmtree(workspace, ignore_errors=True)
+
+    print("\n" + "═" * 60)
     print("  ✅  PUBLISHING COMPLETE")
-    print("═"*60)
-    print(f"Next steps:")
-    print(f"1. Open your Landing Page project in VS Code.")
-    print(f"2. Switch to branch '{SAFE_BRANCH_NAME}'.")
-    print(f"3. Run your local server (npm run dev) to test how the blogs look!")
-    print(f"4. If they look good, merge the branch to main.")
+    print("═" * 60)
+    if not IS_CI:
+        print(f"Next steps:")
+        print(f"1. Open your Landing Page project in VS Code.")
+        print(f"2. Switch to branch '{SAFE_BRANCH_NAME}'.")
+        print(f"3. Run your local server (npm run dev) to test how the blogs look!")
+        print(f"4. If they look good, create a PR to merge the branch to main.")
+
 
 if __name__ == "__main__":
     publish_blogs()
