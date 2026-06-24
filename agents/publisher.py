@@ -72,9 +72,9 @@ author: "InvoHydra AI"
 
 
 def publish_blogs() -> None:
-    print("\n" + "═"*60)
+    print("\n" + "="*60)
     print("  🚀  AGENT 5: AUTO-PUBLISHER (LOCAL MERGE)")
-    print("═"*60)
+    print("="*60)
 
     # 1. Verification
     if not os.path.exists(LANDING_PAGE_REPO):
@@ -138,9 +138,9 @@ def publish_blogs() -> None:
         else:
             print("   ↳ (No new changes to commit, branch is already up to date).")
     
-    print("\n" + "═"*60)
+    print("\n" + "="*60)
     print("  ✅  PUBLISHING COMPLETE")
-    print("═"*60)
+    print("="*60)
     print(f"Next steps:")
     print(f"1. Open your Landing Page project in VS Code.")
     print(f"2. Switch to branch '{SAFE_BRANCH_NAME}'.")
