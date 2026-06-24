@@ -1,9 +1,6 @@
 name: InvoHydra SEO Pipeline
 
 on:
-  push:
-    branches:
-      - ci-automation
 
   # ──────────────────────────────────────────────────────────────────────────
   # Twice-weekly schedule: Monday & Thursday at 3:00 AM IST
