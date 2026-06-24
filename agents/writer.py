@@ -289,6 +289,7 @@ def generate_blog_post(cluster: Dict[str, Any]) -> Dict[str, Any]:
         }
         
     return {
+        "target_keyword": hub_topic,
         "meta_title": metadata.get("meta_title", hub_topic),
         "meta_description": metadata.get("meta_description", ""),
         "url_slug": metadata.get("url_slug", ""),
