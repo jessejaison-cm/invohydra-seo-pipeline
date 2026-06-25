@@ -58,11 +58,13 @@ jobs:
           SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
         run: |
           echo "GROQ_API_KEY=${GROQ_API_KEY}" >> .env
           echo "SERPER_API_KEY=${SERPER_API_KEY}" >> .env
           echo "FIRECRAWL_API_KEY=${FIRECRAWL_API_KEY}" >> .env
           echo "GEMINI_API_KEY=${GEMINI_API_KEY}" >> .env
+          echo "UNSPLASH_API_KEY=${UNSPLASH_API_KEY}" >> .env
 
       # ── 5. Restore pipeline state from previous runs ───────────────────
       - name: Restore Pipeline State
