@@ -321,7 +321,24 @@ def main():
     run_agent_3(winnable_keywords)
 
     # ── Phase 4: Blog Generation (Agent 4) ───────────────────────────────
+    # Clean the blogs directory so we only publish what is generated in this specific run
+    if os.path.exists(BLOGS_DIR):
+        import shutil
+        print(f"🧹 Cleaning blogs output directory: {BLOGS_DIR}")
+        for filename in os.listdir(BLOGS_DIR):
+            file_path = os.path.join(BLOGS_DIR, filename)
+            try:
+                if os.path.isfile(file_path) or os.path.islink(file_path):
+                    os.unlink(file_path)
+                elif os.path.isdir(file_path):
+                    shutil.rmtree(file_path)
+            except Exception as e:
+                print(f"⚠️ Failed to delete {file_path}. Reason: {e}")
+    else:
+        os.makedirs(BLOGS_DIR, exist_ok=True)
+
     run_agent_4(limit=args.limit)
+
 
     # ── Phase 4.5: Illustrator (Agent 7) ─────────────────────────────────
     run_agent_4_5()
