@@ -81,6 +81,7 @@ jobs:
           WEBSITE_REPO: 'InvoHydra/InvoHydra-Landing-Page'
           WEBSITE_REPO_PAT: ${{ secrets.WEBSITE_REPO_PAT }}
           PUBLISH_BRANCH: 'blog-automation'
+          PYTHONUNBUFFERED: '1'
         run: |
           TOPIC="${{ github.event.inputs.topic }}"
           LIMIT="${{ github.event.inputs.limit }}"
@@ -88,10 +89,10 @@ jobs:
 
           if [ -n "$TOPIC" ]; then
             echo "🎯 Manual topic override: $TOPIC"
-            python main.py --topic "$TOPIC" --limit "$LIMIT"
+            python -u main.py --topic "$TOPIC" --limit "$LIMIT"
           else
             echo "🔄 Using automatic topic rotation"
-            python main.py --limit "$LIMIT"
+            python -u main.py --limit "$LIMIT"
           fi
 
       # ── 7. Save pipeline state for topic rotation ──────────────────────
