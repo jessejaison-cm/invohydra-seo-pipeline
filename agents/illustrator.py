@@ -38,12 +38,12 @@ def setup_gemini():
 
 import random
 
-def fetch_unsplash_image(query: str) -> str:
+def fetch_unsplash_image(query: str) -> tuple:
     """Uses the Unsplash API to fetch a relevant header image URL randomly from top results."""
     api_key = os.getenv("UNSPLASH_API_KEY")
     if not api_key:
         print("⚠️ UNSPLASH_API_KEY is missing. Header images will be skipped.")
-        return ""
+        return "", ""
         
     # To prevent Unsplash from always returning pictures of "cash" or "money" for billing topics,
     # we append modern, abstract B2B SaaS aesthetic keywords to the search query.
@@ -68,11 +68,12 @@ def fetch_unsplash_image(query: str) -> str:
             
             # Format as clean markdown with a professional caption instead of attribution
             markdown = f"![{alt_text}]({img_url})\n> *{alt_text.capitalize()}*\n\n"
-            return markdown
-        return ""
+            return markdown, img_url
+        return "", ""
     except Exception as e:
         print(f"   ⚠️ Unsplash API Error for query '{query}': {e}")
-        return ""
+        return "", ""
+
 
 def generate_mermaid_chart(blog_title: str, blog_content: str) -> str:
     """Uses Gemini 2.5 Flash to generate a Mermaid.js chart based on the blog text."""
@@ -140,14 +141,23 @@ def illustrate_blogs():
         # 1. Unsplash Header Image
         if "![Header Image]" not in body and "unsplash.com" not in body:
             print(f"📸 [{idx}/{len(blog_files)}] Fetching Unsplash header image for: '{target_keyword}'...")
-            unsplash_markdown = fetch_unsplash_image(target_keyword)
+            unsplash_markdown, img_url = fetch_unsplash_image(target_keyword)
             if unsplash_markdown:
                 # Inject at the very beginning
                 body = unsplash_markdown + body
+                blog_data["image"] = img_url
                 changed = True
-                print(f"   ✅ Successfully added Unsplash image!")
+                print(f"   ✅ Successfully added Unsplash image: {img_url}")
         else:
             print(f"⏩ [{idx}/{len(blog_files)}] Already has header image. Skipping Unsplash.")
+            # If the 'image' field is missing from blog_data, extract the existing Unsplash URL from body
+            if "image" not in blog_data or not blog_data["image"]:
+                import re
+                match = re.search(r'!\[.*?\]\((https?://[^\s)]+unsplash\.com[^\s)]*)\)', body)
+                if match:
+                    blog_data["image"] = match.group(1)
+                    changed = True
+                    print(f"   🔍 Extracted existing Unsplash image URL: {blog_data['image']}")
 
         # 2. Gemini Mermaid Chart (DISABLED for now until frontend supports it)
         # If the Next.js frontend doesn't have remark-mermaid installed, it renders as a code block.
