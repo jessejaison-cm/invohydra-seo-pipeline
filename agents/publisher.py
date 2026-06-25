@@ -79,7 +79,7 @@ def clone_website_repo(workspace_dir: str) -> str:
     print(f"📥 Cloning {WEBSITE_REPO} into workspace...")
 
     result = run_git_command(
-        ["git", "clone", "--depth", "1", clone_url, repo_dir],
+        ["git", "clone", clone_url, repo_dir],
         cwd=workspace_dir, check=True
     )
 
