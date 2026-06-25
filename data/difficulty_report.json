@@ -1,201 +1,44 @@
 {
   "surviving_keywords": [
-    "best gst billing software for indian msme",
-    "free gst billing software for msme",
-    "gst compliant invoicing software india",
-    "gst billing and accounting software india",
-    "gst billing software for retail stores",
-    "gst invoicing and billing software",
-    "e way bill integration with gst billing software",
-    "gst billing software for indian sme",
-    "lifetime free gst billing software",
-    "gst billing software with expense and cash management",
-    "gst billing software for small businesses india",
-    "how to choose gst billing software",
-    "features of gst billing software",
-    "best gst software for indian msme",
-    "gst billing software with automatic tax calculation"
+    "gstin validation in india",
+    "gst verification api india",
+    "gst registration status check",
+    "gst number search tool",
+    "gstin verification online",
+    "bulk gstin search and verification",
+    "how to verify gst number online",
+    "gst number validation online",
+    "gst identification number validation",
+    "gst number search and verification tool",
+    "gstin validation check online",
+    "gst number authenticity verification",
+    "gstin format validation check",
+    "gstin validation for businesses",
+    "gstin verification for tax professionals"
   ],
   "passed": [
-    "best gst billing software for indian msme",
-    "free gst billing software for msme",
-    "gst compliant invoicing software india",
-    "gst billing and accounting software india",
-    "gst billing software for retail stores",
-    "gst invoicing and billing software",
-    "e way bill integration with gst billing software",
-    "gst billing software for indian sme",
-    "lifetime free gst billing software",
-    "gst billing software with expense and cash management"
+    "gstin validation in india",
+    "gst verification api india",
+    "gst registration status check"
   ],
   "maybe": [
-    "gst billing software for small businesses india",
-    "how to choose gst billing software",
-    "features of gst billing software",
-    "best gst software for indian msme",
-    "gst billing software with automatic tax calculation"
+    "gst number search tool",
+    "gstin verification online",
+    "bulk gstin search and verification",
+    "how to verify gst number online",
+    "gst number validation online",
+    "gst identification number validation",
+    "gst number search and verification tool",
+    "gstin validation check online",
+    "gst number authenticity verification",
+    "gstin format validation check",
+    "gstin validation for businesses",
+    "gstin verification for tax professionals"
   ],
   "failed": [],
   "full_report": [
     {
-      "keyword": "best gst billing software for indian msme",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "sleekbill.in",
-        "accountune.com",
-        "tutorial.gst.gov.in",
-        "accoxi.com",
-        "reddit.com"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "gst billing software for small businesses india",
-      "verdict": "MAYBE",
-      "score": 6,
-      "tier1_hits": [
-        "tallysolutions.com",
-        "cleartax.in"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "mybillbook.in",
-        "billingsoftwareindia.in",
-        "khatabilling.com",
-        "vasyerp.com",
-        "gogstbill.com"
-      ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: tallysolutions.com, cleartax.in. Winnable with strong content."
-    },
-    {
-      "keyword": "free gst billing software for msme",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "zoho.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "tutorial.gst.gov.in",
-        "gogstbill.com",
-        "gstn.org.in",
-        "refrens.com",
-        "khatabilling.com"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "gst compliant invoicing software india",
-      "verdict": "PASS",
-      "score": 1,
-      "tier1_hits": [],
-      "tier2_hits": [
-        "profitbooks.net"
-      ],
-      "top_5_domains": [
-        "gogstbill.com",
-        "invoicefree.in",
-        "mybillbook.in",
-        "gstn.org.in",
-        "billingsoftwareindia.in"
-      ],
-      "reason": "Low authority presence (score=1). Winnable with quality content."
-    },
-    {
-      "keyword": "gst billing and accounting software india",
-      "verdict": "PASS",
-      "score": 1,
-      "tier1_hits": [],
-      "tier2_hits": [
-        "profitbooks.net"
-      ],
-      "top_5_domains": [
-        "gogstbill.com",
-        "tutorial.gst.gov.in",
-        "mybillbook.in",
-        "gstn.org.in",
-        "billingsoftwareindia.in"
-      ],
-      "reason": "Low authority presence (score=1). Winnable with quality content."
-    },
-    {
-      "keyword": "how to choose gst billing software",
-      "verdict": "MAYBE",
-      "score": 4,
-      "tier1_hits": [
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [
-        "profitbooks.net"
-      ],
-      "top_5_domains": [
-        "gogstbill.com",
-        "profitbooks.net",
-        "refrens.com",
-        "tutorial.gst.gov.in",
-        "gimbooks.com"
-      ],
-      "reason": "Moderate competition (score=4). Tier 1 domains present: tallysolutions.com | Tier 2 domains present: profitbooks.net. Winnable with strong content."
-    },
-    {
-      "keyword": "features of gst billing software",
-      "verdict": "MAYBE",
-      "score": 6,
-      "tier1_hits": [
-        "tallysolutions.com",
-        "cleartax.in"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "gogstbill.com",
-        "tutorial.gst.gov.in",
-        "swindia.com",
-        "tallysolutions.com",
-        "cleartax.in"
-      ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: tallysolutions.com, cleartax.in. Winnable with strong content."
-    },
-    {
-      "keyword": "gst billing software for retail stores",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "vasyerp.com",
-        "mybillbook.in",
-        "tallysolutions.com",
-        "accountune.com",
-        "amazon.in"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "gst invoicing and billing software",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "zoho.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "gogstbill.com",
-        "tutorial.gst.gov.in",
-        "zoho.com",
-        "play.google.com",
-        "mybillbook.in"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "best gst software for indian msme",
+      "keyword": "gst number search tool",
       "verdict": "MAYBE",
       "score": 6,
       "tier1_hits": [
@@ -205,93 +48,263 @@
       "tier2_hits": [],
       "top_5_domains": [
         "cleartax.in",
-        "blog.saginfotech.com",
-        "optotax.com",
-        "mastergst.com",
-        "webtel.in"
+        "expressgst.com",
+        "mastersindia.co",
+        "tenderkart.in",
+        "tallysolutions.com"
       ],
       "reason": "Moderate competition (score=6). Tier 1 domains present: cleartax.in, tallysolutions.com. Winnable with strong content."
     },
     {
-      "keyword": "gst billing software with automatic tax calculation",
+      "keyword": "gstin verification online",
       "verdict": "MAYBE",
-      "score": 4,
+      "score": 6,
       "tier1_hits": [
+        "cleartax.in",
         "tallysolutions.com"
       ],
-      "tier2_hits": [
-        "profitbooks.net"
-      ],
-      "top_5_domains": [
-        "mybillbook.in",
-        "billingsoftwareindia.in",
-        "gogstbill.com",
-        "play.google.com",
-        "swindia.com"
-      ],
-      "reason": "Moderate competition (score=4). Tier 1 domains present: tallysolutions.com | Tier 2 domains present: profitbooks.net. Winnable with strong content."
-    },
-    {
-      "keyword": "e way bill integration with gst billing software",
-      "verdict": "PASS",
-      "score": 0,
-      "tier1_hits": [],
       "tier2_hits": [],
       "top_5_domains": [
-        "mastergst.com",
-        "mybillbook.in",
-        "docs.ewaybillgst.gov.in",
-        "webtel.in",
-        "gimbooks.com"
+        "cleartax.in",
+        "expressgst.com",
+        "tenderkart.in",
+        "sepfust.com",
+        "selfservice.gstsystem.in"
       ],
-      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+      "reason": "Moderate competition (score=6). Tier 1 domains present: cleartax.in, tallysolutions.com. Winnable with strong content."
     },
     {
-      "keyword": "gst billing software for indian sme",
+      "keyword": "bulk gstin search and verification",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "tallysolutions.com",
+        "cleartax.in"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "my.gstzen.in",
+        "my.gstzen.in",
+        "nikash.in",
+        "mastergst.com",
+        "sepfust.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: tallysolutions.com, cleartax.in. Winnable with strong content."
+    },
+    {
+      "keyword": "gstin validation in india",
       "verdict": "PASS",
       "score": 3,
       "tier1_hits": [
-        "zoho.com"
+        "cleartax.in"
       ],
       "tier2_hits": [],
       "top_5_domains": [
-        "sleekbill.in",
-        "mybillbook.in",
-        "gogstbill.com",
-        "gstn.org.in",
-        "swindia.com"
+        "cleartax.in",
+        "my.gstzen.in",
+        "fonoa.com",
+        "sepfust.com",
+        "razorpay.com"
       ],
       "reason": "Low authority presence (score=3). Winnable with quality content."
     },
     {
-      "keyword": "lifetime free gst billing software",
-      "verdict": "PASS",
-      "score": 0,
-      "tier1_hits": [],
+      "keyword": "how to verify gst number online",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "cleartax.in",
+        "tallysolutions.com"
+      ],
       "tier2_hits": [],
       "top_5_domains": [
-        "gogstbill.com",
-        "billingsoftwareindia.in",
-        "khatabilling.com",
-        "vedbill.com",
-        "catalystk.com"
+        "cleartax.in",
+        "expressgst.com",
+        "tenderkart.in",
+        "selfservice.gstsystem.in",
+        "cashfree.com"
       ],
-      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+      "reason": "Moderate competition (score=6). Tier 1 domains present: cleartax.in, tallysolutions.com. Winnable with strong content."
     },
     {
-      "keyword": "gst billing software with expense and cash management",
+      "keyword": "gst verification api india",
       "verdict": "PASS",
-      "score": 0,
-      "tier1_hits": [],
+      "score": 3,
+      "tier1_hits": [
+        "cleartax.in"
+      ],
       "tier2_hits": [],
       "top_5_domains": [
-        "sleekbill.in",
-        "khatabilling.com",
-        "vyaparapp.in",
-        "gimbooks.com",
-        "gogstbill.com"
+        "developer.gst.gov.in",
+        "github.com",
+        "gstincheck.co.in",
+        "cashfree.com",
+        "microvistatech.com"
       ],
-      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+      "reason": "Low authority presence (score=3). Winnable with quality content."
+    },
+    {
+      "keyword": "gst number validation online",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "cleartax.in",
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "cleartax.in",
+        "expressgst.com",
+        "selfservice.gstsystem.in",
+        "tenderkart.in",
+        "cashfree.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: cleartax.in, tallysolutions.com. Winnable with strong content."
+    },
+    {
+      "keyword": "gst identification number validation",
+      "verdict": "MAYBE",
+      "score": 7,
+      "tier1_hits": [
+        "cleartax.in",
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [
+        "indiafilings.com"
+      ],
+      "top_5_domains": [
+        "cleartax.in",
+        "expressgst.com",
+        "tenderkart.in",
+        "fonoa.com",
+        "razorpay.com"
+      ],
+      "reason": "Moderate competition (score=7). Tier 1 domains present: cleartax.in, tallysolutions.com | Tier 2 domains present: indiafilings.com. Winnable with strong content."
+    },
+    {
+      "keyword": "gst registration status check",
+      "verdict": "PASS",
+      "score": 3,
+      "tier1_hits": [
+        "cleartax.in"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "services.gst.gov.in",
+        "india.gov.in",
+        "legaldev.in",
+        "selfservice.gstsystem.in",
+        "cleartax.in"
+      ],
+      "reason": "Low authority presence (score=3). Winnable with quality content."
+    },
+    {
+      "keyword": "gst number search and verification tool",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "cleartax.in",
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "cleartax.in",
+        "expressgst.com",
+        "mastersindia.co",
+        "tenderkart.in",
+        "cashfree.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: cleartax.in, tallysolutions.com. Winnable with strong content."
+    },
+    {
+      "keyword": "gstin validation check online",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "cleartax.in",
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "cleartax.in",
+        "expressgst.com",
+        "my.gstzen.in",
+        "sepfust.com",
+        "razorpay.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: cleartax.in, tallysolutions.com. Winnable with strong content."
+    },
+    {
+      "keyword": "gst number authenticity verification",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "cleartax.in",
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "cleartax.in",
+        "razorpay.com",
+        "tenderkart.in",
+        "cashfree.com",
+        "selfservice.gstsystem.in"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: cleartax.in, tallysolutions.com. Winnable with strong content."
+    },
+    {
+      "keyword": "gstin format validation check",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "cleartax.in",
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "cleartax.in",
+        "stackoverflow.com",
+        "fonoa.com",
+        "my.gstzen.in",
+        "razorpay.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: cleartax.in, tallysolutions.com. Winnable with strong content."
+    },
+    {
+      "keyword": "gstin validation for businesses",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "cleartax.in",
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "cleartax.in",
+        "my.gstzen.in",
+        "cashfree.com",
+        "fonoa.com",
+        "tallysolutions.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: cleartax.in, tallysolutions.com. Winnable with strong content."
+    },
+    {
+      "keyword": "gstin verification for tax professionals",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "cleartax.in",
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "cleartax.in",
+        "my.gstzen.in",
+        "busy.in",
+        "legalxindia.com",
+        "mastergst.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: cleartax.in, tallysolutions.com. Winnable with strong content."
     }
   ]
 }

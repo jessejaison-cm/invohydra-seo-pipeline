@@ -37,37 +37,70 @@ def setup_gemini():
     return True
 
 import random
+import requests
 
-import urllib.parse
-import time
-
-def generate_image_with_pollinations(prompt: str) -> bytes:
-    """Generates an image using Pollinations AI and returns the raw bytes."""
-    max_retries = 3
-    timeout = 60
-    for attempt in range(1, max_retries + 1):
-        try:
-            print(f"🎨 Calling Pollinations AI (Attempt {attempt}/{max_retries}) with prompt: '{prompt}'...")
-            encoded_prompt = urllib.parse.quote(prompt)
-            # Add a random seed to each retry to avoid caching or stuck generation
-            seed = random.randint(1, 999999)
-            url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?width=1024&height=576&nologo=true&seed={seed}"
-            response = requests.get(url, timeout=timeout)
+def fetch_unsplash_image(blog_title: str, target_keyword: str) -> bytes:
+    """Fetches a professional Unsplash image themed around offices, money, buildings, or workspace."""
+    api_key = os.getenv("UNSPLASH_API_KEY")
+    if not api_key:
+        print("⚠️ UNSPLASH_API_KEY is missing. Cannot fetch from Unsplash.")
+        return b""
+        
+    themes = ["office", "workspace", "money", "business building", "corporate finance", "accounting", "skyscraper"]
+    selected_theme = random.choice(themes)
+    
+    # Try search query combining target keyword and selected theme
+    search_query = f"{target_keyword} {selected_theme}"
+    
+    url = "https://api.unsplash.com/search/photos"
+    headers = {
+        "Accept-Version": "v1"
+    }
+    params = {
+        "query": search_query,
+        "client_id": api_key,
+        "orientation": "landscape",
+        "per_page": 15
+    }
+    
+    try:
+        print(f"🔍 Searching Unsplash for '{search_query}'...")
+        response = requests.get(url, headers=headers, params=params, timeout=30)
+        response.raise_for_status()
+        data = response.json()
+        
+        results = data.get("results", [])
+        if not results:
+            # Fallback: search just the theme itself
+            print(f"⚠️ No results for '{search_query}'. Trying fallback: '{selected_theme}'...")
+            params["query"] = selected_theme
+            response = requests.get(url, headers=headers, params=params, timeout=30)
             response.raise_for_status()
+            data = response.json()
+            results = data.get("results", [])
             
-            # Make sure we got back a valid image
-            content_type = response.headers.get("content-type", "")
-            if "image" not in content_type.lower():
-                print(f"⚠️ Warning: Pollinations response content-type is '{content_type}', not an image. Retrying...")
-                time.sleep(2)
-                continue
-                
-            return response.content
-        except Exception as e:
-            print(f"⚠️ Pollinations AI Image Generation Attempt {attempt} Failed: {e}")
-            if attempt < max_retries:
-                time.sleep(3)
+        if not results:
+            # Ultimate fallback to generic 'office'
+            print("⚠️ No results for theme either. Falling back to 'office'...")
+            params["query"] = "office"
+            response = requests.get(url, headers=headers, params=params, timeout=30)
+            response.raise_for_status()
+            data = response.json()
+            results = data.get("results", [])
+            
+        if results:
+            img_info = random.choice(results)
+            img_url = img_info.get("urls", {}).get("regular")
+            if img_url:
+                print(f"📥 Downloading image from Unsplash: {img_url}")
+                img_response = requests.get(img_url, timeout=30)
+                img_response.raise_for_status()
+                return img_response.content
+    except Exception as e:
+        print(f"⚠️ Unsplash image download failed: {e}")
+        
     return b""
+
 
 
 
@@ -108,7 +141,7 @@ def generate_mermaid_chart(blog_title: str, blog_content: str) -> str:
 
 def illustrate_blogs():
     print("\n" + "═"*60)
-    print("  🎨  PHASE 4.5 — AGENT 7: THE ILLUSTRATOR (POLLINATIONS.AI)")
+    print("  🎨  PHASE 4.5 — AGENT 7: THE ILLUSTRATOR (UNSPLASH)")
     print("═"*60)
 
     # Setup gemini solely for charts (if enabled)
@@ -136,21 +169,17 @@ def illustrate_blogs():
 
         changed = False
 
-        # 1. Pollinations AI Header Image
+        # 1. Unsplash Header Image
         slug = blog_data.get("url_slug", filename.replace(".json", "").replace("_", "-"))
         image_filename = f"{slug}.jpg"
         image_path = os.path.join(BLOGS_DIR, image_filename)
         local_image_url = f"/blog-images/{image_filename}"
-
+        
+        # Check if the title mentions the phase or if this is the Illustrator phase
+        # Let's change the console output to show it's fetching from Unsplash
         if not os.path.exists(image_path):
-            print(f"📸 [{idx}/{len(blog_files)}] Generating unique Pollinations AI header image for: '{title}'...")
-            image_prompt = (
-                f"A professional, clean, modern B2B SaaS illustration representing: '{title}'. "
-                f"Vector style graphic, high-tech corporate dashboard aesthetic, suitable as a blog header image. "
-                f"Color scheme matching a modern software startup (deep blues, clean dark background, tech accents). "
-                f"Minimalistic, strictly NO text, letters, or signs in the image."
-            )
-            img_bytes = generate_image_with_pollinations(image_prompt)
+            print(f"📸 [{idx}/{len(blog_files)}] Fetching unique Unsplash header image for: '{title}'...")
+            img_bytes = fetch_unsplash_image(title, target_keyword)
             if img_bytes:
                 with open(image_path, "wb") as img_f:
                     img_f.write(img_bytes)
@@ -163,9 +192,9 @@ def illustrate_blogs():
                 
                 blog_data["image"] = local_image_url
                 changed = True
-                print(f"   ✅ Successfully generated and saved Pollinations AI image to {image_filename}!")
+                print(f"   ✅ Successfully fetched and saved Unsplash image to {image_filename}!")
         else:
-            print(f"⏩ [{idx}/{len(blog_files)}] Pollinations AI image '{image_filename}' already exists. Skipping generation.")
+            print(f"⏩ [{idx}/{len(blog_files)}] Unsplash image '{image_filename}' already exists. Skipping generation.")
             # Ensure the image field is correctly mapped to this local URL in the JSON
             if blog_data.get("image") != local_image_url:
                 blog_data["image"] = local_image_url

@@ -1,52 +1,28 @@
 {
   "clusters": [
     {
-      "hub_topic": "GST Billing Software for MSME",
+      "hub_topic": "GSTIN Validation and Verification",
       "demand": "High",
-      "intent": "Transactional",
-      "product_fit_rationale": "Our product supports auto_gst_calculation, gstin_auto_fetch, and gstr1_reporting_exports, making it a suitable fit for MSMEs looking for GST billing software.",
-      "keywords": [
-        "best gst billing software for indian msme",
-        "gst compliant invoicing software india",
-        "gst billing software for indian sme",
-        "gst billing software with automatic tax calculation"
-      ]
-    },
-    {
-      "hub_topic": "Free and Affordable GST Billing Software",
-      "demand": "Medium",
       "intent": "Informational",
-      "product_fit_rationale": "Our product offers features like bulk_csv_upload and razorpay_payment_integration, which can be beneficial for businesses looking for affordable GST billing solutions.",
+      "product_fit_rationale": "Our product supports GSTIN auto-fetch, which aligns with the need for validating and verifying GST numbers. The cluster's focus on checking GST numbers and verifying their authenticity matches our capability to automatically fetch GSTIN, making it a strong fit.",
       "keywords": [
-        "free gst billing software for msme",
-        "lifetime free gst billing software"
-      ]
-    },
-    {
-      "hub_topic": "GST Billing Software for Specific Industries",
-      "demand": "Low",
-      "intent": "Informational",
-      "product_fit_rationale": "Our product's features like recurring_invoice_profiles and lut_export_support can be useful for various industries, including retail stores and small businesses.",
-      "keywords": [
-        "gst billing software for retail stores",
-        "gst billing software for small businesses india"
-      ]
-    },
-    {
-      "hub_topic": "Choosing the Right GST Billing Software",
-      "demand": "Medium",
-      "intent": "Informational",
-      "product_fit_rationale": "Our product's features like auto_gst_calculation and gstin_auto_fetch can help businesses make informed decisions when choosing a GST billing software.",
-      "keywords": [
-        "how to choose gst billing software",
-        "features of gst billing software"
+        "gstin validation in india",
+        "gst verification api india",
+        "gst registration status check",
+        "gst number search tool",
+        "gstin verification online",
+        "bulk gstin search and verification",
+        "how to verify gst number online",
+        "gst number validation online",
+        "gst identification number validation",
+        "gst number search and verification tool",
+        "gstin validation check online",
+        "gst number authenticity verification",
+        "gstin format validation check",
+        "gstin validation for businesses",
+        "gstin verification for tax professionals"
       ]
     }
   ],
-  "rejected_keywords": [
-    {
-      "original": "e way bill integration with gst billing software",
-      "reason": "Our product does not support e-way bill generation, which is a feature implied by this keyword."
-    }
-  ]
+  "rejected_keywords": []
 }
