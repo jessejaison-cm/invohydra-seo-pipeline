@@ -194,15 +194,32 @@ def publish_blogs() -> None:
     print(f"\n🌿 Checking out branch: '{SAFE_BRANCH_NAME}'...")
 
     if IS_CI:
-        # Fetch all remote branches and create our branch from origin/main
+        # Fetch all remote branches
         run_git_command(["git", "fetch", "origin"], cwd=repo_dir)
-        # Try to checkout existing remote branch, or create new one from main
+        # Try to checkout existing remote branch
         result = run_git_command(
-            ["git", "checkout", "-B", SAFE_BRANCH_NAME, "origin/main"],
+            ["git", "checkout", "-B", SAFE_BRANCH_NAME, f"origin/{SAFE_BRANCH_NAME}"],
             cwd=repo_dir
         )
-        if result.returncode != 0:
-            run_git_command(["git", "checkout", "-B", SAFE_BRANCH_NAME], cwd=repo_dir)
+        if result.returncode == 0:
+            print(f"✅ Checked out existing remote branch '{SAFE_BRANCH_NAME}'. Syncing with main...")
+            # Merge origin/main to stay up-to-date
+            merge_result = run_git_command(
+                ["git", "merge", "origin/main", "-m", "Sync with origin/main", "--allow-unrelated-histories"],
+                cwd=repo_dir
+            )
+            if merge_result.returncode != 0:
+                print("⚠️ Merge from main failed (possibly due to conflicts). Proceeding with existing branch content.")
+                # Abort the merge to keep the workspace clean
+                run_git_command(["git", "merge", "--abort"], cwd=repo_dir)
+        else:
+            print(f"ℹ️ Branch '{SAFE_BRANCH_NAME}' does not exist on remote. Creating from main...")
+            result = run_git_command(
+                ["git", "checkout", "-B", SAFE_BRANCH_NAME, "origin/main"],
+                cwd=repo_dir
+            )
+            if result.returncode != 0:
+                run_git_command(["git", "checkout", "-B", SAFE_BRANCH_NAME], cwd=repo_dir)
     else:
         run_git_command(["git", "checkout", "-B", SAFE_BRANCH_NAME], cwd=repo_dir)
 
