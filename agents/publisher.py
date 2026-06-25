@@ -248,15 +248,23 @@ def publish_blogs() -> None:
         with open(output_path, "w", encoding="utf-8") as out_f:
             json.dump(blog_data, out_f, indent=2, ensure_ascii=False)
 
-        # Check if there is a corresponding Gemini-generated image file and copy it
-        image_name = filename.replace(".json", ".jpg")
+        # Check if there is a corresponding generated image file and copy it
+        image_name = f"{slug}.jpg"
         image_path = os.path.join(LOCAL_BLOGS_DIR, image_name)
+        # Fallback if the image was saved with underscores
+        if not os.path.exists(image_path):
+            fallback_image_name = filename.replace(".json", ".jpg")
+            fallback_path = os.path.join(LOCAL_BLOGS_DIR, fallback_image_name)
+            if os.path.exists(fallback_path):
+                image_name = fallback_image_name
+                image_path = fallback_path
+
         if os.path.exists(image_path):
             website_image_dir = os.path.join(repo_dir, "public", "blog-images")
             os.makedirs(website_image_dir, exist_ok=True)
-            dest_image_path = os.path.join(website_image_dir, image_name)
+            dest_image_path = os.path.join(website_image_dir, f"{slug}.jpg")
             shutil.copy2(image_path, dest_image_path)
-            print(f"   📸 Copied header image to website: {image_name}")
+            print(f"   📸 Copied header image to website: {image_name} -> {slug}.jpg")
 
         print(f"   ✅ Published: {output_filename}")
         published_count += 1

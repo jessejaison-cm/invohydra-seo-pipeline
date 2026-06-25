@@ -39,19 +39,35 @@ def setup_gemini():
 import random
 
 import urllib.parse
+import time
 
 def generate_image_with_pollinations(prompt: str) -> bytes:
     """Generates an image using Pollinations AI and returns the raw bytes."""
-    try:
-        print(f"🎨 Calling Pollinations AI with prompt: '{prompt}'...")
-        encoded_prompt = urllib.parse.quote(prompt)
-        url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?width=1024&height=576&nologo=true"
-        response = requests.get(url, timeout=30)
-        response.raise_for_status()
-        return response.content
-    except Exception as e:
-        print(f"⚠️ Pollinations AI Image Generation Failed: {e}")
-        return b""
+    max_retries = 3
+    timeout = 60
+    for attempt in range(1, max_retries + 1):
+        try:
+            print(f"🎨 Calling Pollinations AI (Attempt {attempt}/{max_retries}) with prompt: '{prompt}'...")
+            encoded_prompt = urllib.parse.quote(prompt)
+            # Add a random seed to each retry to avoid caching or stuck generation
+            seed = random.randint(1, 999999)
+            url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?width=1024&height=576&nologo=true&seed={seed}"
+            response = requests.get(url, timeout=timeout)
+            response.raise_for_status()
+            
+            # Make sure we got back a valid image
+            content_type = response.headers.get("content-type", "")
+            if "image" not in content_type.lower():
+                print(f"⚠️ Warning: Pollinations response content-type is '{content_type}', not an image. Retrying...")
+                time.sleep(2)
+                continue
+                
+            return response.content
+        except Exception as e:
+            print(f"⚠️ Pollinations AI Image Generation Attempt {attempt} Failed: {e}")
+            if attempt < max_retries:
+                time.sleep(3)
+    return b""
 
 
 
