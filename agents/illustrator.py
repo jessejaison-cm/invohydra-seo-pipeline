@@ -38,41 +38,30 @@ def setup_gemini():
 
 import random
 
-def fetch_unsplash_image(query: str) -> tuple:
-    """Uses the Unsplash API to fetch a relevant header image URL randomly from top results."""
-    api_key = os.getenv("UNSPLASH_API_KEY")
-    if not api_key:
-        print("⚠️ UNSPLASH_API_KEY is missing. Header images will be skipped.")
-        return "", ""
-        
-    # To prevent Unsplash from always returning pictures of "cash" or "money" for billing topics,
-    # we append modern, abstract B2B SaaS aesthetic keywords to the search query.
-    saas_modifiers = ["modern office", "laptop workspace", "startup desk", "technology", "business meeting", "digital dashboard", "professional workspace"]
-    abstract_query = f"{random.choice(saas_modifiers)}"
-    
-    # We use the abstract query to get a high-quality SaaS corporate image
-    url = f"https://api.unsplash.com/search/photos?query={abstract_query}&per_page=15&orientation=landscape"
-    headers = {
-        "Authorization": f"Client-ID {api_key}"
-    }
-    
+def generate_image_with_gemini(prompt: str) -> bytes:
+    """Generates an image using Gemini (Imagen 3) and returns the raw bytes."""
+    global client
+    if not client:
+        print("⚠️ Gemini client not initialized. Image generation skipped.")
+        return b""
     try:
-        response = requests.get(url, headers=headers, timeout=15)
-        response.raise_for_status()
-        data = response.json()
-        if data.get("results"):
-            # Pick a random image from the top 10 results so we don't get duplicates!
-            photo = random.choice(data["results"])
-            img_url = photo["urls"]["regular"]
-            alt_text = photo.get("alt_description") or query.title()
-            
-            # Format as clean markdown with a professional caption instead of attribution
-            markdown = f"![{alt_text}]({img_url})\n> *{alt_text.capitalize()}*\n\n"
-            return markdown, img_url
-        return "", ""
+        print(f"🎨 Calling Gemini Imagen 3 with prompt: '{prompt}'...")
+        response = client.models.generate_images(
+            model='imagen-3.0-generate-002',
+            prompt=prompt,
+            config=dict(
+                number_of_images=1,
+                output_mime_type="image/jpeg",
+                aspect_ratio="16:9",
+            )
+        )
+        if response.generated_images:
+            return response.generated_images[0].image.image_bytes
+        return b""
     except Exception as e:
-        print(f"   ⚠️ Unsplash API Error for query '{query}': {e}")
-        return "", ""
+        print(f"⚠️ Gemini Image Generation Failed: {e}")
+        return b""
+
 
 
 def generate_mermaid_chart(blog_title: str, blog_content: str) -> str:
@@ -138,26 +127,40 @@ def illustrate_blogs():
 
         changed = False
 
-        # 1. Unsplash Header Image
-        if "![Header Image]" not in body and "unsplash.com" not in body:
-            print(f"📸 [{idx}/{len(blog_files)}] Fetching Unsplash header image for: '{target_keyword}'...")
-            unsplash_markdown, img_url = fetch_unsplash_image(target_keyword)
-            if unsplash_markdown:
-                # Inject at the very beginning
-                body = unsplash_markdown + body
-                blog_data["image"] = img_url
-                changed = True
-                print(f"   ✅ Successfully added Unsplash image: {img_url}")
-        else:
-            print(f"⏩ [{idx}/{len(blog_files)}] Already has header image. Skipping Unsplash.")
-            # If the 'image' field is missing from blog_data, extract the existing Unsplash URL from body
-            if "image" not in blog_data or not blog_data["image"]:
+        # 1. Gemini Imagen Header Image
+        slug = blog_data.get("url_slug", filename.replace(".json", "").replace("_", "-"))
+        image_filename = f"{slug}.jpg"
+        image_path = os.path.join(BLOGS_DIR, image_filename)
+        local_image_url = f"/blog-images/{image_filename}"
+
+        if not os.path.exists(image_path):
+            print(f"📸 [{idx}/{len(blog_files)}] Generating unique Gemini Imagen 3 header image for: '{title}'...")
+            image_prompt = (
+                f"A professional, clean, modern B2B SaaS illustration representing: '{title}'. "
+                f"Vector style graphic, high-tech corporate dashboard aesthetic, suitable as a blog header image. "
+                f"Color scheme matching a modern software startup (deep blues, clean dark background, tech accents). "
+                f"Minimalistic, strictly NO text, letters, or signs in the image."
+            )
+            img_bytes = generate_image_with_gemini(image_prompt)
+            if img_bytes:
+                with open(image_path, "wb") as img_f:
+                    img_f.write(img_bytes)
+                
+                # Check if there is an existing image in body and clean it up
                 import re
-                match = re.search(r'!\[.*?\]\((https?://[^\s)]+unsplash\.com[^\s)]*)\)', body)
-                if match:
-                    blog_data["image"] = match.group(1)
-                    changed = True
-                    print(f"   🔍 Extracted existing Unsplash image URL: {blog_data['image']}")
+                body = re.sub(r'!\[.*?\]\((https?://.*?unsplash\.com.*?|/blog-images/.*?)\)\n(>\s*\*.*?\*\n\n)?', '', body)
+                # Prepend the new local image markdown
+                body = f"![Header Image]({local_image_url})\n\n" + body
+                
+                blog_data["image"] = local_image_url
+                changed = True
+                print(f"   ✅ Successfully generated and saved Gemini image to {image_filename}!")
+        else:
+            print(f"⏩ [{idx}/{len(blog_files)}] Gemini image '{image_filename}' already exists. Skipping generation.")
+            # Ensure the image field is correctly mapped to this local URL in the JSON
+            if blog_data.get("image") != local_image_url:
+                blog_data["image"] = local_image_url
+                changed = True
 
         # 2. Gemini Mermaid Chart (DISABLED for now until frontend supports it)
         # If the Next.js frontend doesn't have remark-mermaid installed, it renders as a code block.

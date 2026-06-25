@@ -248,6 +248,16 @@ def publish_blogs() -> None:
         with open(output_path, "w", encoding="utf-8") as out_f:
             json.dump(blog_data, out_f, indent=2, ensure_ascii=False)
 
+        # Check if there is a corresponding Gemini-generated image file and copy it
+        image_name = filename.replace(".json", ".jpg")
+        image_path = os.path.join(LOCAL_BLOGS_DIR, image_name)
+        if os.path.exists(image_path):
+            website_image_dir = os.path.join(repo_dir, "public", "blog-images")
+            os.makedirs(website_image_dir, exist_ok=True)
+            dest_image_path = os.path.join(website_image_dir, image_name)
+            shutil.copy2(image_path, dest_image_path)
+            print(f"   📸 Copied header image to website: {image_name}")
+
         print(f"   ✅ Published: {output_filename}")
         published_count += 1
 
@@ -267,6 +277,7 @@ def publish_blogs() -> None:
             )
 
         run_git_command(["git", "add", TARGET_BLOG_DIR], cwd=repo_dir)
+        run_git_command(["git", "add", "public/blog-images/"], cwd=repo_dir)
 
         commit_result = run_git_command(
             ["git", "commit", "-m", f"🤖 Auto-publish {published_count} SEO blogs"],
