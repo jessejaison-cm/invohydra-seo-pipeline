@@ -38,37 +38,21 @@ def setup_gemini():
 
 import random
 
-def generate_image_with_gemini(prompt: str) -> bytes:
-    """Generates an image using Gemini (Nano Banana) and returns the raw bytes."""
-    global client
-    if not client:
-        print("⚠️ Gemini client not initialized. Image generation skipped.")
-        return b""
+import urllib.parse
+
+def generate_image_with_pollinations(prompt: str) -> bytes:
+    """Generates an image using Pollinations AI and returns the raw bytes."""
     try:
-        print(f"🎨 Calling Gemini 2.5 Flash Image with prompt: '{prompt}'...")
-        from google.genai import types
-        response = client.models.generate_content(
-            model='gemini-2.5-flash-image',
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                response_modalities=["IMAGE"],
-                image_config=types.ImageConfig(
-                    aspect_ratio="16:9",
-                )
-            )
-        )
-        if response.parts:
-            for part in response.parts:
-                if part.inline_data and part.inline_data.data:
-                    return part.inline_data.data
-        elif response.candidates and response.candidates[0].content and response.candidates[0].content.parts:
-            for part in response.candidates[0].content.parts:
-                if part.inline_data and part.inline_data.data:
-                    return part.inline_data.data
-        return b""
+        print(f"🎨 Calling Pollinations AI with prompt: '{prompt}'...")
+        encoded_prompt = urllib.parse.quote(prompt)
+        url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?width=1024&height=576&nologo=true"
+        response = requests.get(url, timeout=30)
+        response.raise_for_status()
+        return response.content
     except Exception as e:
-        print(f"⚠️ Gemini Image Generation Failed: {e}")
+        print(f"⚠️ Pollinations AI Image Generation Failed: {e}")
         return b""
+
 
 
 
@@ -108,9 +92,10 @@ def generate_mermaid_chart(blog_title: str, blog_content: str) -> str:
 
 def illustrate_blogs():
     print("\n" + "═"*60)
-    print("  🎨  PHASE 4.5 — AGENT 7: THE ILLUSTRATOR (UNSPLASH + GEMINI)")
+    print("  🎨  PHASE 4.5 — AGENT 7: THE ILLUSTRATOR (POLLINATIONS.AI)")
     print("═"*60)
 
+    # Setup gemini solely for charts (if enabled)
     gemini_ready = setup_gemini()
 
     if not os.path.exists(BLOGS_DIR):
@@ -135,21 +120,21 @@ def illustrate_blogs():
 
         changed = False
 
-        # 1. Gemini Imagen Header Image
+        # 1. Pollinations AI Header Image
         slug = blog_data.get("url_slug", filename.replace(".json", "").replace("_", "-"))
         image_filename = f"{slug}.jpg"
         image_path = os.path.join(BLOGS_DIR, image_filename)
         local_image_url = f"/blog-images/{image_filename}"
 
         if not os.path.exists(image_path):
-            print(f"📸 [{idx}/{len(blog_files)}] Generating unique Gemini Imagen 3 header image for: '{title}'...")
+            print(f"📸 [{idx}/{len(blog_files)}] Generating unique Pollinations AI header image for: '{title}'...")
             image_prompt = (
                 f"A professional, clean, modern B2B SaaS illustration representing: '{title}'. "
                 f"Vector style graphic, high-tech corporate dashboard aesthetic, suitable as a blog header image. "
                 f"Color scheme matching a modern software startup (deep blues, clean dark background, tech accents). "
                 f"Minimalistic, strictly NO text, letters, or signs in the image."
             )
-            img_bytes = generate_image_with_gemini(image_prompt)
+            img_bytes = generate_image_with_pollinations(image_prompt)
             if img_bytes:
                 with open(image_path, "wb") as img_f:
                     img_f.write(img_bytes)
@@ -162,9 +147,9 @@ def illustrate_blogs():
                 
                 blog_data["image"] = local_image_url
                 changed = True
-                print(f"   ✅ Successfully generated and saved Gemini image to {image_filename}!")
+                print(f"   ✅ Successfully generated and saved Pollinations AI image to {image_filename}!")
         else:
-            print(f"⏩ [{idx}/{len(blog_files)}] Gemini image '{image_filename}' already exists. Skipping generation.")
+            print(f"⏩ [{idx}/{len(blog_files)}] Pollinations AI image '{image_filename}' already exists. Skipping generation.")
             # Ensure the image field is correctly mapped to this local URL in the JSON
             if blog_data.get("image") != local_image_url:
                 blog_data["image"] = local_image_url
