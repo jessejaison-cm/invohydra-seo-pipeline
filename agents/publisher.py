@@ -90,6 +90,57 @@ def clone_website_repo(workspace_dir: str) -> str:
     return repo_dir
 
 
+def get_existing_blog_metadata() -> list:
+    """
+    Returns a list of dictionaries containing metadata of existing blogs in the website repo.
+    Each dict contains: {'meta_title': ..., 'url_slug': ..., 'filename': ...}
+    """
+    repo_dir = None
+    if IS_CI:
+        if not WEBSITE_REPO_PAT:
+            print("⚠️ WEBSITE_REPO_PAT not set. Cannot fetch existing blogs in CI.")
+            return []
+        workspace = os.path.join(_project_root, "_publisher_workspace")
+        os.makedirs(workspace, exist_ok=True)
+        repo_dir = os.path.join(workspace, "landing-page")
+        if not os.path.exists(repo_dir):
+            try:
+                repo_dir = clone_website_repo(workspace)
+            except Exception as e:
+                print(f"⚠️ Failed to clone repo for existing blogs check: {e}")
+                return []
+    else:
+        repo_dir = LOCAL_LANDING_PAGE_REPO
+
+    if not repo_dir or not os.path.exists(repo_dir):
+        print(f"⚠️ Repo directory not found for existing blogs: {repo_dir}")
+        return []
+
+    posts_dir = os.path.join(repo_dir, TARGET_BLOG_DIR)
+    if not os.path.exists(posts_dir):
+        print(f"⚠️ Posts directory not found: {posts_dir}")
+        return []
+
+    existing_blogs = []
+    for filename in os.listdir(posts_dir):
+        if filename.endswith(".json"):
+            filepath = os.path.join(posts_dir, filename)
+            try:
+                with open(filepath, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    existing_blogs.append({
+                        "meta_title": data.get("meta_title", ""),
+                        "url_slug": data.get("url_slug", ""),
+                        "filename": filename
+                    })
+            except Exception as e:
+                print(f"⚠️ Failed to read existing blog {filename}: {e}")
+                
+    print(f"📚 Found {len(existing_blogs)} existing blogs in the website repository.")
+    return existing_blogs
+
+
+
 # ──────────────────────────────────────────────────────────────────────────────
 # HELPER: CREATE BLOG DATA FILE
 # ──────────────────────────────────────────────────────────────────────────────

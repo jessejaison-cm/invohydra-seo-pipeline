@@ -118,7 +118,7 @@ def call_llm(system_prompt: str, user_prompt: str, temperature: float, response_
     res_json = call_groq_with_retry(payload, timeout=90)
     return res_json["choices"][0]["message"]["content"]
 
-def generate_blog_post(cluster: Dict[str, Any]) -> Dict[str, Any]:
+def generate_blog_post(cluster: Dict[str, Any], existing_titles: List[str] = None) -> Dict[str, Any]:
     """
     Generates a structured, highly detailed, and SEO-friendly blog post
     using a two-step outline generation and section-by-section writing process.
@@ -248,7 +248,7 @@ def generate_blog_post(cluster: Dict[str, Any]) -> Dict[str, Any]:
         "You are an expert B2B Copywriter & SEO Specialist.\n"
         "Your task is to generate high-performing SEO metadata for the provided blog post.\n"
         "You must return ONLY a JSON object with exactly three keys:\n"
-        "- 'meta_title': A compelling, click-worthy SEO title under 60 characters.\n"
+        "- 'meta_title': A compelling, click-worthy SEO title under 60 characters. Do NOT closely mimic or duplicate any existing titles.\n"
         "- 'meta_description': A high-performing SEO meta description between 120 and 160 characters.\n"
         "- 'url_slug': A clean, lowercase URL slug (using hyphens, no spaces, letters/numbers only).\n\n"
         "Example format:\n"
@@ -259,8 +259,14 @@ def generate_blog_post(cluster: Dict[str, Any]) -> Dict[str, Any]:
         "}"
     )
     
+    avoid_titles_str = ""
+    if existing_titles:
+        avoid_titles_str = "\n".join([f"- {title}" for title in existing_titles])
+        avoid_titles_str = f"--- EXISTING BLOG TITLES TO AVOID DUPLICATING OR CLOSELY MIMICKING ---\n{avoid_titles_str}\n\n"
+        
     metadata_user = (
         f"Target Hub Topic: {hub_topic}\n\n"
+        f"{avoid_titles_str}"
         f"--- GENERATED BLOG POST CONTENT ---\n{markdown_body[:4000]}...\n\n"
         "Please generate the meta_title, meta_description, and url_slug for this article."
     )
@@ -288,11 +294,19 @@ def generate_blog_post(cluster: Dict[str, Any]) -> Dict[str, Any]:
 def generate_all_blogs(clusters_path: str, output_dir: str, limit: int = None) -> None:
     """Iterates through all clusters and generates individual JSON blog post files."""
     import time
+    from agents.publisher import get_existing_blog_metadata
+    
     clusters = load_clusters(clusters_path)
     if not clusters:
         print("⚠️ No clusters found to generate blogs for.")
         return
         
+    # Get existing blogs from website repo to prevent duplicates/overwrites
+    existing_blogs = get_existing_blog_metadata()
+    existing_titles = [b["meta_title"] for b in existing_blogs if b.get("meta_title")]
+    existing_slugs = [b["url_slug"] for b in existing_blogs if b.get("url_slug")]
+    existing_filenames = [b["filename"] for b in existing_blogs if b.get("filename")]
+
     os.makedirs(output_dir, exist_ok=True)
     print(f"✍️ Starting competitor-informed blog generation (Total clusters: {len(clusters)})...")
     if limit:
@@ -309,12 +323,19 @@ def generate_all_blogs(clusters_path: str, output_dir: str, limit: int = None) -
         filename = re.sub(r'[^a-zA-Z0-9_-]', '_', topic.lower().replace(" ", "_")) + ".json"
         filepath = os.path.join(output_dir, filename)
         
+        # Check if already exists locally
         if os.path.exists(filepath):
-            print(f"⏩ Skipping '{topic}': Blog post already exists at {filepath}")
+            print(f"⏩ Skipping '{topic}': Blog post already exists locally at {filepath}")
+            continue
+
+        # Check if already exists in the website repository
+        estimated_slug = re.sub(r'[^a-z0-9-]', '', topic.lower().replace(" ", "-"))
+        if filename in existing_filenames or estimated_slug in existing_slugs:
+            print(f"⏩ Skipping '{topic}': Blog post already exists in the website repository ({filename}).")
             continue
             
         print(f"📝 Generating blog for: '{topic}'...")
-        blog_data = generate_blog_post(cluster)
+        blog_data = generate_blog_post(cluster, existing_titles)
         
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(blog_data, f, indent=2, ensure_ascii=False)

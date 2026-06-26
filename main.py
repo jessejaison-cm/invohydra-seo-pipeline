@@ -46,9 +46,9 @@ USE_MANUAL_KEYWORDS = False
 
 def get_rotating_topic(topics_pool: list) -> str:
     """
-    Implements stateful weekly rotation of topics.
+    Implements stateful rotation of topics.
     Tracks the active topic index in a local state JSON file.
-    If 7 or more days have elapsed since the last topic change, advances to the next topic.
+    Advances to the next topic on every successful run.
     """
     if not topics_pool:
         raise ValueError("SEED_TOPICS list in config.py is empty.")
@@ -72,50 +72,25 @@ def get_rotating_topic(topics_pool: list) -> str:
         except Exception as e:
             print(f"⚠️  Could not read state file: {e}. Resetting state.")
 
-    # Parse last topic change date
-    try:
-        last_change = date.fromisoformat(state["last_topic_change_date"])
-    except Exception:
-        last_change = today
-
-    days_elapsed = (today - last_change).days
-    
-    # If 7 or more days elapsed, advance the index
-    if days_elapsed >= 7:
-        old_idx = state["current_topic_index"]
-        new_idx = (old_idx + 1) % len(topics_pool)
-        state["current_topic_index"] = new_idx
-        state["last_topic_change_date"] = today.isoformat()
-        
-        try:
-            with open(STATE_FILE_PATH, "w", encoding="utf-8") as f:
-                json.dump(state, f, indent=2)
-            print(f"🔄  Topic rotation: {days_elapsed} days elapsed since last change. Advanced topic index from {old_idx} to {new_idx}.")
-        except Exception as e:
-            print(f"⚠️  Could not write state file: {e}")
-    else:
-        # Save state in case it didn't exist initially
-        if not os.path.exists(STATE_FILE_PATH):
-            try:
-                with open(STATE_FILE_PATH, "w", encoding="utf-8") as f:
-                    json.dump(state, f, indent=2)
-            except Exception as e:
-                print(f"⚠️  Could not write initial state file: {e}")
-        print(f"📅  Topic rotation: Using current topic. {7 - days_elapsed} days left until next rotation.")
-
     # Bounds check index in case the pool size was reduced
-    idx = state["current_topic_index"]
-    if idx >= len(topics_pool):
-        idx = 0
-        state["current_topic_index"] = 0
-        try:
-            with open(STATE_FILE_PATH, "w", encoding="utf-8") as f:
-                json.dump(state, f, indent=2)
-        except Exception:
-            pass
+    old_idx = state["current_topic_index"]
+    if old_idx >= len(topics_pool):
+        old_idx = 0
 
-    selected_topic = topics_pool[idx]
-    print(f"💡  Active weekly topic selected: \"{selected_topic}\" (Index {idx} of {len(topics_pool)})")
+    # Advance the index to the next topic for the next run
+    new_idx = (old_idx + 1) % len(topics_pool)
+    state["current_topic_index"] = new_idx
+    state["last_topic_change_date"] = today.isoformat()
+    
+    try:
+        with open(STATE_FILE_PATH, "w", encoding="utf-8") as f:
+            json.dump(state, f, indent=2)
+        print(f"🔄  Topic rotation: Advanced topic index from {old_idx} to {new_idx}.")
+    except Exception as e:
+        print(f"⚠️  Could not write state file: {e}")
+
+    selected_topic = topics_pool[old_idx]
+    print(f"💡  Active topic selected: \"{selected_topic}\" (Index {old_idx} of {len(topics_pool)})")
     return selected_topic
 
 
