@@ -52,15 +52,33 @@ TEMPERATURE: float = 0.1                       # Low temp = deterministic extrac
 # ── Pipeline Seed Topics (used by Agent 1) ────────────────────────────────
 # Add, remove, or edit topics here to control what Agent 1 searches for.
 # These should be slightly broad so Agent 1 can discover the long-tail variants!
+# IMPORTANT: Topics must be DIVERSE — covering different product capabilities
+# to avoid generating repetitive blogs on the same narrow theme.
 SEED_TOPICS = [
-    "best GST billing software for Indian MSMEs",
-    "how to automate invoicing for SaaS companies India",
-    "recurring billing and subscription management India",
-    "how to generate e-way bills automatically from invoices",
-    "bulk GSTIN validation and verification API",
-    "how to reconcile GSTR-1 and GSTR-2B automatically",
-    "multi-currency invoicing software with Indian GST compliance",
-    "real time GST calculation API for Indian marketplaces"
+    # ── Invoicing & billing ───────────────────────────────────────────────
+    "best invoicing software for small businesses India",
+    "how to create professional invoices for freelancers",
+    # ── Recurring billing & subscriptions ─────────────────────────────────
+    "recurring billing and subscription management for SaaS India",
+    "how to automate recurring invoices for subscription business",
+    # ── Multi-currency & export ───────────────────────────────────────────
+    "multi-currency invoicing software for export businesses India",
+    "LUT bond export invoicing under GST for Indian exporters",
+    # ── Payment collection ────────────────────────────────────────────────
+    "online payment collection with invoice for Indian businesses",
+    "Razorpay payment link integration with invoicing software",
+    # ── Accounting & bookkeeping ──────────────────────────────────────────
+    "simple accounting software for Indian MSMEs and startups",
+    "how to manage business expenses and bookkeeping for small business India",
+    # ── Inventory management ──────────────────────────────────────────────
+    "inventory management software for small retail business India",
+    "how to track stock and inventory with billing software",
+    # ── POS billing ───────────────────────────────────────────────────────
+    "POS billing software for retail shops India",
+    "point of sale billing system for small stores",
+    # ── Tax compliance & GSTR ─────────────────────────────────────────────
+    "how to file GSTR-1 return from invoicing software",
+    "bulk GSTIN validation and verification API for businesses",
 ]
 
 import time

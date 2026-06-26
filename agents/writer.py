@@ -304,14 +304,20 @@ def generate_all_blogs(clusters_path: str, output_dir: str, limit: int = None) -
     # Get existing blogs from website repo to prevent duplicates/overwrites
     existing_blogs = get_existing_blog_metadata()
     existing_titles = [b["meta_title"] for b in existing_blogs if b.get("meta_title")]
-    existing_slugs = [b["url_slug"] for b in existing_blogs if b.get("url_slug")]
-    existing_filenames = [b["filename"] for b in existing_blogs if b.get("filename")]
+    existing_slugs = set(b["url_slug"] for b in existing_blogs if b.get("url_slug"))
+    existing_filenames = set(b["filename"] for b in existing_blogs if b.get("filename"))
 
     os.makedirs(output_dir, exist_ok=True)
     print(f"✍️ Starting competitor-informed blog generation (Total clusters: {len(clusters)})...")
     if limit:
         print(f"🎯 Limiting generation to {limit} new blog posts per run.")
     
+    # ── Within-run deduplication state ────────────────────────────────────
+    # Track titles and slugs generated in THIS run so the 2nd blog in a
+    # batch knows about the 1st blog's title and slug.
+    run_generated_titles = []
+    run_generated_slugs = set()
+
     generated_count = 0
     for i, cluster in enumerate(clusters, 1):
         if limit and generated_count >= limit:
@@ -319,23 +325,49 @@ def generate_all_blogs(clusters_path: str, output_dir: str, limit: int = None) -
             break
 
         topic = cluster.get("hub_topic", f"Topic_{i}")
-        # Sanitize filename
-        filename = re.sub(r'[^a-zA-Z0-9_-]', '_', topic.lower().replace(" ", "_")) + ".json"
-        filepath = os.path.join(output_dir, filename)
-        
-        # Check if already exists locally
-        if os.path.exists(filepath):
-            print(f"⏩ Skipping '{topic}': Blog post already exists locally at {filepath}")
+
+        # Quick pre-check: skip if hub_topic was already used to generate
+        # a blog with the exact same estimated slug in the website repo
+        estimated_slug = re.sub(r'[^a-z0-9-]', '', topic.lower().replace(" ", "-"))
+        if estimated_slug in existing_slugs:
+            print(f"⏩ Skipping '{topic}': Estimated slug '{estimated_slug}' already exists in the website repository.")
             continue
 
-        # Check if already exists in the website repository
-        estimated_slug = re.sub(r'[^a-z0-9-]', '', topic.lower().replace(" ", "-"))
-        if filename in existing_filenames or estimated_slug in existing_slugs:
-            print(f"⏩ Skipping '{topic}': Blog post already exists in the website repository ({filename}).")
-            continue
-            
         print(f"📝 Generating blog for: '{topic}'...")
-        blog_data = generate_blog_post(cluster, existing_titles)
+
+        # Pass BOTH existing website titles AND titles from this run
+        all_avoid_titles = existing_titles + run_generated_titles
+        blog_data = generate_blog_post(cluster, all_avoid_titles)
+        
+        # ── Use url_slug as filename (matches publisher behavior) ─────────
+        slug = blog_data.get("url_slug", "")
+        if not slug:
+            slug = re.sub(r'[^a-z0-9-]', '', topic.lower().replace(" ", "-"))
+        
+        # Deduplicate slug within this run AND against existing website slugs
+        original_slug = slug
+        counter = 2
+        while (slug in run_generated_slugs
+               or slug in existing_slugs
+               or f"{slug}.json" in existing_filenames):
+            slug = f"{original_slug}-{counter}"
+            counter += 1
+        
+        if slug != original_slug:
+            print(f"   ⚠️ Slug collision detected: '{original_slug}' → renamed to '{slug}'")
+            blog_data["url_slug"] = slug
+        
+        # Track for within-run deduplication
+        run_generated_slugs.add(slug)
+        run_generated_titles.append(blog_data.get("meta_title", ""))
+
+        filename = f"{slug}.json"
+        filepath = os.path.join(output_dir, filename)
+
+        # Final safety: skip if local file somehow already exists
+        if os.path.exists(filepath):
+            print(f"⏩ Skipping '{topic}': Blog file '{filename}' already exists locally.")
+            continue
         
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(blog_data, f, indent=2, ensure_ascii=False)
