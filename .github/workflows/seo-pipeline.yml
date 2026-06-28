@@ -67,13 +67,17 @@ jobs:
           echo "UNSPLASH_API_KEY=${UNSPLASH_API_KEY}" >> .env
 
       # ── 5. Restore pipeline state from previous runs ───────────────────
+      # IMPORTANT: Use actions/cache/restore (restore-only) NOT actions/cache
+      # because actions/cache auto-saves with the exact key on first run,
+      # creating an immutable cache that prevents updated state from being read.
       - name: Restore Pipeline State
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: |
             data/pipeline_state.json
-          key: pipeline-state-${{ github.ref }}
+          key: pipeline-state-${{ github.ref }}-${{ github.run_id }}
           restore-keys: |
+            pipeline-state-${{ github.ref }}-
             pipeline-state-
 
       # ── 6. Run the full SEO pipeline ───────────────────────────────────
