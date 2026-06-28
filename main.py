@@ -216,50 +216,9 @@ def main():
     parser = argparse.ArgumentParser(description="InvoHydra SEO Pipeline")
     parser.add_argument("--topic", type=str, help="Manually override the seed topic to generate keywords/blogs for.")
     parser.add_argument("--limit", type=int, default=2, help="Limit the number of blogs generated in this run (default: 2).")
-    parser.add_argument("--force", action="store_true", help="Bypass daily and weekly frequency limits.")
     args = parser.parse_args()
 
     print("\n🚀  Starting InvoHydra SEO Pipeline...")
-    
-    # Load and check scheduling/frequency constraints
-    today_str = date.today().isoformat()
-    state = {}
-    if os.path.exists(STATE_FILE_PATH):
-        try:
-            with open(STATE_FILE_PATH, "r", encoding="utf-8") as f:
-                state = json.load(f)
-        except Exception:
-            state = {}
-            
-    generation_runs = state.get("generation_runs", [])
-    
-    # Clean up dates older than 7 days
-    from datetime import timedelta
-    seven_days_ago = date.today() - timedelta(days=7)
-    valid_runs = []
-    for run_date_str in generation_runs:
-        try:
-            run_date = date.fromisoformat(run_date_str)
-            if run_date >= seven_days_ago:
-                valid_runs.append(run_date_str)
-        except ValueError:
-            pass
-            
-    # Check frequency rules (unless --force is specified)
-    if not args.force:
-        if today_str in valid_runs:
-            print(f"\n🛑 Pipeline run BLOCKED: Generation has already run today ({today_str}).")
-            print("   ↳ Max 1 generation run (2 blogs) per day.")
-            print("   ↳ Use --force to bypass this check.")
-            return
-            
-        if len(valid_runs) >= 2:
-            print(f"\n🛑 Pipeline run BLOCKED: Generation has already run twice in the last 7 days (Runs: {', '.join(valid_runs)}).")
-            print("   ↳ Max 2 runs (4 blogs) per week.")
-            print("   ↳ Use --force to bypass this check.")
-            return
-    else:
-        print("⚠️  Bypassing scheduling/frequency checks (--force active).")
 
     if args.topic:
         print(f"🎯  Manual Override: Using provided seed topic: \"{args.topic}\"")
@@ -321,17 +280,6 @@ def main():
     # ── Phase 5: Auto-Publisher (Agent 5) ────────────────────────────────
     run_agent_5()
 
-    # Record this successful generation run
-    valid_runs.append(today_str)
-    state["generation_runs"] = valid_runs
-    state["last_run_date"] = today_str
-    state["current_topic"] = topics_to_run[0]
-    
-    try:
-        with open(STATE_FILE_PATH, "w", encoding="utf-8") as f:
-            json.dump(state, f, indent=2)
-    except Exception as e:
-        print(f"⚠️ Could not update state file with run date: {e}")
 
     # ── Summary ───────────────────────────────────────────────────────────
     print("\n" + "═"*60)
