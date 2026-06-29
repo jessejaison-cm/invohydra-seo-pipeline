@@ -58,20 +58,6 @@ jobs:
           echo "📥 Cloning InvoHydra Landing Page (blog-automation branch) to read published blogs..."
           git clone --branch blog-automation "https://x-access-token:${WEBSITE_REPO_PAT}@github.com/InvoHydra/InvoHydra-Landing-Page.git" _website_repo
           
-          # Clean up stale files from old naming convention (underscores instead of hyphens)
-          STALE_FILE="_website_repo/src/app/blog/posts/gstin_validation_and_verification.json"
-          if [ -f "$STALE_FILE" ]; then
-            echo "🧹 Removing stale file: gstin_validation_and_verification.json"
-            cd _website_repo
-            git config user.name "InvoHydra SEO Bot"
-            git config user.email "seo-bot@invohydra.com"
-            git rm "src/app/blog/posts/gstin_validation_and_verification.json"
-            git commit -m "🧹 Remove stale blog file from old naming convention"
-            git push origin blog-automation
-            cd ..
-            echo "✅ Stale file removed and pushed."
-          fi
-
           # Copy published blog JSON files into data/blogs/ so the auditor can read them
           mkdir -p data/blogs
           if [ -d "_website_repo/src/app/blog/posts" ]; then
@@ -80,6 +66,17 @@ jobs:
           else
             echo "⚠️ Blog posts directory not found in website repo."
           fi
+          
+          # Remove stale files that use old underscore naming convention
+          # Current convention uses hyphens (e.g. gst-billing.json not gst_billing.json)
+          for f in data/blogs/*_*.json; do
+            if [ -f "$f" ]; then
+              echo "🧹 Removing stale file (old naming convention): $(basename $f)"
+              rm -f "$f"
+            fi
+          done
+
+          echo "📄 Final blog count for audit: $(ls data/blogs/*.json 2>/dev/null | wc -l)"
           
           # Clean up cloned repo
           rm -rf _website_repo
