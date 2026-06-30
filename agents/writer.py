@@ -189,14 +189,19 @@ def generate_blog_post(cluster: Dict[str, Any], existing_titles: List[str] = Non
             "You are InvoHydra's Senior B2B Content Writer, SEO Director & Copywriter.\n"
             "Your task is to write a highly detailed, comprehensive, and engaging section of a B2B blog post.\n\n"
             "WRITING GUIDELINES:\n"
-            "1. Write in a clear, authoritative, and helpful tone suitable for B2B MSMEs and SaaS founders.\n"
-            "2. Aim to write approximately 300 to 450 words just for this section to cover it in depth. Avoid wrapping up quickly.\n"
-            "3. Incorporate the target keywords naturally if relevant.\n"
-            "4. Highlight product alignment: explain how InvoHydra helps solve these challenges based on the product fit rationale where appropriate. "
-            "Do NOT claim or mention features we do not support (such as automated e-invoicing or e-way bills) if they violate our product truth map. Focus only on active, supported features.\n"
+            "1. Write in a clear, authoritative, and helpful B2B tone suitable for MSMEs, consultants, and SaaS founders.\n"
+            "2. Aim to write approximately 350 to 500 words for this section to cover it in depth. Do not wrap up quickly or truncate thoughts.\n"
+            "3. Incorporate the target keywords naturally without keyword-stuffing.\n"
+            "4. Highlight product alignment: naturally explain how InvoHydra helps solve these challenges based on the product fit rationale. "
+            "Never claim features we do not support (such as automated e-invoicing or e-way bills) if they violate our product truth map. Focus only on active, supported features.\n"
             "5. Do NOT include any introductory header filler (like 'Here is the section content') or closing remarks. Start writing the content of the section directly.\n"
-            "6. Use clear formatting, bullet points, or bold text within the section to make it highly readable.\n"
-            "7. Hyperlink Placement (CRITICAL): When mentioning InvoHydra features or pages, you must naturally hyperlink appropriate terms to their corresponding InvoHydra web pages. Do not over-link; limit hyperlinks to 1-2 per section and ensure they are contextually natural.\n"
+            "6. Use clear formatting and bold text within the section to make it highly readable.\n"
+            "7. FORMATTING RULES (CRITICAL):\n"
+            "   - Heading Format: Start the section with the heading on a line by itself: `## [Title]` (using double '#' symbols). Always put exactly two newlines (a blank line) between the heading and the first paragraph.\n"
+            "   - Bullet Lists: When using lists or bullet points, you MUST put each bullet point on its own new line (prefixed with a dash `-` and a space). Never run multiple bullet points together on the same line or in a single paragraph.\n"
+            "   - No H1 Headers: Never use a single `#` header (H1) inside the section. The main title is rendered automatically by the website template.\n"
+            "   - No Image Tags: Do NOT output any image markdown syntax (such as `![Image](...)` or `![Header Image](...)`) in the body text. The header image is handled automatically by the front-end metadata.\n"
+            "8. Hyperlink Placement (CRITICAL): When mentioning InvoHydra features or pages, you must naturally hyperlink appropriate terms to their corresponding InvoHydra web pages. Do not over-link; limit hyperlinks to 1-2 per section and ensure they are contextually natural.\n"
             "   Use the following exact URLs:\n"
             "   - [InvoHydra](https://www.invohydra.com/) (Home/Platform)\n"
             "   - [Pricing](https://www.invohydra.com/pricing) (or Plan pricing)\n"
@@ -222,7 +227,7 @@ def generate_blog_post(cluster: Dict[str, Any], existing_titles: List[str] = Non
             f"--- CURRENT SECTION TO WRITE ---\n"
             f"Title: {title}\n"
             f"Guidelines / Focus: {guidelines}\n\n"
-            f"Please write this section (approx 300-450 words) starting directly with the appropriate heading (e.g. '## {title}' or '### {title}'):"
+            f"Please write this section (approx 350-500 words). Start directly with the heading `## {title}` on its own line, followed by a blank line, and then write the content with clean list items on new lines:"
         )
         
         try:
@@ -236,8 +241,8 @@ def generate_blog_post(cluster: Dict[str, Any], existing_titles: List[str] = Non
             written_sections.append(f"## {title}\n\n*Content generation failed for this section due to an API error.*")
             time.sleep(2)
 
-    # Stitch them together
-    markdown_body = f"# {hub_topic}\n\n" + "\n\n".join(written_sections)
+    # Stitch them together (start directly with first section, no duplicate H1 header)
+    markdown_body = "\n\n".join(written_sections)
     
     # Throttle before metadata call
     time.sleep(3)
@@ -283,10 +288,14 @@ def generate_blog_post(cluster: Dict[str, Any], existing_titles: List[str] = Non
             "url_slug": re.sub(r'[^a-z0-9-]', '', hub_topic.lower().replace(" ", "-"))
         }
         
+    final_title = metadata.get("meta_title", hub_topic)
+    final_desc = metadata.get("meta_description", "")
+    
     return {
-        "target_keyword": hub_topic,
-        "meta_title": metadata.get("meta_title", hub_topic),
-        "meta_description": metadata.get("meta_description", ""),
+        "title": final_title,
+        "meta_title": final_title,
+        "meta_description": final_desc,
+        "excerpt": final_desc,
         "url_slug": metadata.get("url_slug", ""),
         "markdown_body": markdown_body
     }

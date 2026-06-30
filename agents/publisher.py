@@ -152,16 +152,23 @@ def create_blog_data_file(blog_data: dict) -> dict:
     """
     from datetime import date
 
+    final_title = blog_data.get("title") or blog_data.get("meta_title") or "Untitled Blog"
+    final_desc = blog_data.get("meta_description") or blog_data.get("excerpt") or ""
+
     return {
-        "meta_title": blog_data.get("meta_title", "Untitled Blog"),
-        "meta_description": blog_data.get("meta_description", ""),
+        "title": final_title,
+        "meta_title": final_title,
+        "meta_description": final_desc,
+        "excerpt": final_desc,
         "url_slug": blog_data.get("url_slug", "untitled"),
-        "target_keyword": blog_data.get("target_keyword", ""),
+        "target_keyword": blog_data.get("target_keyword") or blog_data.get("url_slug", "untitled").replace("-", " "),
         "markdown_body": blog_data.get("markdown_body", ""),
         "image": blog_data.get("image", "/meeting.png"),
-        "author": "InvoHydra AI",
+        "author": "Akhil (Admin)",
+        "authorAvatar": "https://i.pravatar.cc/30",
+        "link": "#",
         "date": date.today().isoformat(),
-        "category": "SEO Blog",
+        "category": "Invoicing Guide",
         "readTime": f"{max(1, len(blog_data.get('markdown_body', '').split()) // 200)} Mins Read"
     }
 
