@@ -11,10 +11,10 @@ from dotenv import load_dotenv
 env_path = os.path.join(os.path.dirname(__file__), ".env")
 load_dotenv(env_path)
 
-WEBSITE_REPO = os.getenv("GITHUB_REPO") or os.getenv("WEBSITE_REPO") or "InvoHydra/InvoHydra-Landing-Page"
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN") or os.getenv("WEBSITE_REPO_PAT") or ""
-PIPELINE_REPO = os.getenv("PIPELINE_REPO") or "jessejaison-cm/invohydra-seo-pipeline"
-SAFE_BRANCH_NAME = os.getenv("PUBLISH_BRANCH", "blog-automation")
+WEBSITE_REPO = "InvoHydra/InvoHydra-Landing-Page"
+GITHUB_TOKEN = "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"
+PIPELINE_REPO = "jessejaison-cm/invohydra-seo-pipeline"
+SAFE_BRANCH_NAME = "blog-automation"
 
 if "pipeline_proc" not in st.session_state:
     st.session_state["pipeline_proc"] = None
@@ -434,84 +434,41 @@ def render_gha_status(status, conclusion):
             return f'<span class="status-badge status-failed">✗ {conclusion.capitalize()}</span>'
     return f'<span class="status-badge status-pending">○ {status.capitalize()}</span>'
 
-# ─── SIDEBAR: MODE & GLOBAL CONTROLS ──────────────────────────────────────────
+# ─── SIDEBAR: GLOBAL CONTROLS ──────────────────────────────────────────
 with st.sidebar:
     st.title("InvoHydra SEO")
     st.markdown("Enterprise SEO Pipeline Control")
     st.divider()
     
-    # Mode Toggle
-    # Default to Cloud Mode if a token is already pre-configured in the server environment
-    default_index = 1 if GITHUB_TOKEN else 0
-    mode = st.radio(
-        "🖥️ Dashboard Mode",
-        ["Local Workspace Files", "Cloud (Remote GitHub Actions)"],
-        index=default_index,
-        help="Local mode runs commands on this server. Cloud mode triggers workflows on GitHub and reads published blogs from the website repository."
-    )
-    is_cloud = (mode == "Cloud (Remote GitHub Actions)")
-    
-    st.divider()
+    is_cloud = True
     
     with st.expander("⚙️ Pipeline Options", expanded=False):
         topic_override = st.text_input("Topic Override (Optional)", placeholder="e.g., Enterprise SEO")
         blog_limit = st.number_input("Blog Generation Limit", min_value=1, max_value=20, value=2)
 
-    if is_cloud:
-        if not GITHUB_TOKEN:
-            st.warning("⚠️ GitHub PAT is not set! Go to the 'Configuration' tab to configure it.")
-            
-        if st.button("Execute AI Pipeline (GHA)", type="primary", width="stretch"):
-            inputs = {"limit": str(blog_limit)}
-            if topic_override.strip():
-                inputs["topic"] = topic_override.strip()
-            
-            st.info("Triggering remote GitHub actions workflow...")
-            success = trigger_workflow_dispatch(PIPELINE_REPO, "seo-pipeline.yml", "main", inputs, GITHUB_TOKEN)
-            if success:
-                st.success("🎉 Remote SEO Pipeline triggered successfully!")
-                time.sleep(2)
-                st.rerun()
-            else:
-                st.error("Failed to trigger remote workflow dispatch. Check PAT token & repository configuration.")
-                
-        if st.button("Run SEO Rank Audit (GHA)", width="stretch"):
-            st.info("Triggering remote GitHub Actions auditor...")
-            success = trigger_workflow_dispatch(PIPELINE_REPO, "seo-auditor.yml", "main", None, GITHUB_TOKEN)
-            if success:
-                st.success("🎉 Remote Auditor triggered successfully!")
-                time.sleep(2)
-                st.rerun()
-            else:
-                st.error("Failed to trigger remote workflow dispatch. Check PAT token & repository configuration.")
-    else:
-        if st.button("Execute AI Pipeline (Local)", type="primary", width="stretch"):
-            st.info("Local Pipeline Execution Started.")
-            os.makedirs("data", exist_ok=True)
-            log_file = open("data/pipeline_run.log", "w", encoding="utf-8")
-            
-            # Build the command with optional arguments
-            cmd = ["python", "-X", "utf8", "main.py", "--limit", str(blog_limit)]
-            if topic_override.strip():
-                cmd.extend(["--topic", topic_override.strip()])
-                
-            st.session_state["pipeline_proc"] = subprocess.Popen(
-                cmd,
-                stdout=log_file,
-                stderr=subprocess.STDOUT
-            )
+    if st.button("Execute AI Pipeline", type="primary", width="stretch"):
+        inputs = {"limit": str(blog_limit)}
+        if topic_override.strip():
+            inputs["topic"] = topic_override.strip()
+        
+        st.info("Triggering remote GitHub actions workflow...")
+        success = trigger_workflow_dispatch(PIPELINE_REPO, "seo-pipeline.yml", "main", inputs, GITHUB_TOKEN)
+        if success:
+            st.success("🎉 SEO Pipeline triggered successfully!")
+            time.sleep(2)
             st.rerun()
+        else:
+            st.error("Failed to trigger pipeline workflow on GitHub Actions.")
             
-        if st.button("Run SEO Rank Audit (Local)", width="stretch"):
-            st.info("Local Audit Execution Started.")
-            os.makedirs("data", exist_ok=True)
-            log_file = open("data/audit_run.log", "w", encoding="utf-8")
-            st.session_state["audit_proc"] = subprocess.Popen(
-                ["python", "-X", "utf8", "agents/auditor.py"],
-                stdout=log_file,
-                stderr=subprocess.STDOUT
-            )
+    if st.button("Run SEO Rank Audit", width="stretch"):
+        st.info("Triggering remote GitHub Actions auditor...")
+        success = trigger_workflow_dispatch(PIPELINE_REPO, "seo-auditor.yml", "main", None, GITHUB_TOKEN)
+        if success:
+            st.success("🎉 Auditor triggered successfully!")
+            time.sleep(2)
             st.rerun()
+        else:
+            st.error("Failed to trigger auditor workflow on GitHub Actions.")
         
     st.divider()
     st.caption("System Status: Online")
@@ -559,12 +516,11 @@ pipeline_active = not is_cloud and st.session_state["pipeline_proc"] is not None
 audit_active = not is_cloud and st.session_state["audit_proc"] is not None and st.session_state["audit_proc"].poll() is None
 
 # ─── TABS ────────────────────────────────────────────────────────────
-tab_system, tab_intelligence, tab_library, tab_analytics, tab_config = st.tabs([
+tab_system, tab_intelligence, tab_library, tab_analytics = st.tabs([
     "System Overview", 
     "Keyword Intelligence", 
     "Content Management", 
-    "Ranking Analytics",
-    "Configuration"
+    "Ranking Analytics"
 ])
 
 # ─── TAB 1: SYSTEM OVERVIEW ──────────────────────────────────────────
@@ -976,52 +932,4 @@ with tab_analytics:
     else:
         st.warning("Analytics data unavailable. Execute an SEO Rank Audit from the sidebar.")
 
-# ─── TAB 5: CONFIGURATION ──────────────────────────────────────────────────
-with tab_config:
-    st.subheader("GitHub Automation Settings")
-    
-    # Check if a PAT token is pre-configured in the server environment (.env or system env)
-    # We load it at the beginning of the file.
-    is_configured_in_env = bool(GITHUB_TOKEN)
-    
-    if is_configured_in_env:
-        st.success("🛡️ System is fully configured by the Administrator.")
-        st.markdown(f"""
-        All automation settings and credentials (PAT, Repositories) are securely loaded from the server environment.
-        - **Landing Page (CMS Output)**: `{WEBSITE_REPO}`
-        - **Pipeline Repo (Actions)**: `{PIPELINE_REPO}`
-        - **Status**: Securely Connected
-        
-        Public visitors can trigger pipeline automations and view live audit reports immediately. No manual setup is required.
-        """)
-        
-        show_override = st.checkbox("Show Manual Configuration Overrides (Developer Mode)")
-    else:
-        st.warning("⚠️ Credentials missing. Configure them below to enable Cloud Mode.")
-        show_override = True
 
-    if show_override:
-        st.markdown("Configure your remote GitHub repositories to enable 100% cloud automation from the dashboard.")
-        current_repo = os.getenv("GITHUB_REPO", "") or os.getenv("WEBSITE_REPO", "")
-        current_token = os.getenv("GITHUB_TOKEN", "") or os.getenv("WEBSITE_REPO_PAT", "")
-        current_pipeline_repo = os.getenv("PIPELINE_REPO", "jessejaison-cm/invohydra-seo-pipeline")
-        
-        from dotenv import set_key
-        with st.form("github_settings"):
-            st.markdown("**1. Landing Page Repository Name (CMS Output)**")
-            repo_input = st.text_input("Format: username/repo-name (e.g., InvoHydra/InvoHydra-Landing-Page)", value=current_repo)
-            
-            st.markdown("**2. GitHub Personal Access Token (PAT)**")
-            token_input = st.text_input("Needs 'repo' and 'workflow' scope permissions.", value=current_token, type="password")
-            
-            st.markdown("**3. Pipeline Repository Name (Actions & Reports)**")
-            pipeline_repo_input = st.text_input("Format: username/repo-name (e.g., jessejaison-cm/invohydra-seo-pipeline)", value=current_pipeline_repo)
-            
-            submitted = st.form_submit_button("Save Automation Settings", type="primary")
-            if submitted:
-                if not os.path.exists(env_path):
-                    open(env_path, "a").close()
-                set_key(env_path, "GITHUB_REPO", repo_input)
-                set_key(env_path, "GITHUB_TOKEN", token_input)
-                set_key(env_path, "PIPELINE_REPO", pipeline_repo_input)
-                st.success("GitHub Settings Saved Successfully! Restart/refresh page to apply.")
