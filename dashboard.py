@@ -59,7 +59,8 @@ def get_workflow_run_logs(repo, run_id, token=None):
 
 # Helper functions for GitHub REST API Integration
 def load_json_from_github(repo, path, branch="main", token=None):
-    url = f"https://api.github.com/repos/{repo}/contents/{path}?ref={branch}"
+    # Bypass GitHub API and CDN caching by appending a unique timestamp query parameter
+    url = f"https://api.github.com/repos/{repo}/contents/{path}?ref={branch}&t={int(time.time())}"
     headers = {
         "Accept": "application/vnd.github.v3+json",
         "User-Agent": "InvoHydra-SEO-Dashboard"
@@ -69,17 +70,19 @@ def load_json_from_github(repo, path, branch="main", token=None):
     try:
         res = requests.get(url, headers=headers, timeout=10)
         if res.status_code == 200:
-            download_url = res.json().get("download_url")
-            if download_url:
-                raw_res = requests.get(download_url, headers=headers, timeout=10)
-                if raw_res.status_code == 200:
-                    return raw_res.json()
+            data = res.json()
+            if isinstance(data, dict) and "content" in data:
+                import base64
+                # GitHub returns base64 string with line breaks. b64decode parses it correctly.
+                content_bytes = base64.b64decode(data["content"])
+                content_str = content_bytes.decode("utf-8", errors="ignore")
+                return json.loads(content_str)
     except Exception as e:
         pass
     return {}
 
 def get_blogs_from_github(repo, path="src/app/blog/posts", branch="blog-automation", token=None):
-    url = f"https://api.github.com/repos/{repo}/contents/{path}?ref={branch}"
+    url = f"https://api.github.com/repos/{repo}/contents/{path}?ref={branch}&t={int(time.time())}"
     headers = {
         "Accept": "application/vnd.github.v3+json",
         "User-Agent": "InvoHydra-SEO-Dashboard"
@@ -96,7 +99,9 @@ def get_blogs_from_github(repo, path="src/app/blog/posts", branch="blog-automati
                     if f.get("name", "").endswith(".json") and f.get("type") == "file":
                         download_url = f.get("download_url")
                         if download_url:
-                            blog_res = requests.get(download_url, headers=headers, timeout=10)
+                            # Bypass raw CDN cache using a timestamp query parameter
+                            cache_bust_url = f"{download_url}?t={int(time.time())}"
+                            blog_res = requests.get(cache_bust_url, headers=headers, timeout=10)
                             if blog_res.status_code == 200:
                                 try:
                                     blogs.append((f.get("name"), blog_res.json()))
@@ -105,6 +110,7 @@ def get_blogs_from_github(repo, path="src/app/blog/posts", branch="blog-automati
     except Exception as e:
         pass
     return blogs
+
 
 def trigger_workflow_dispatch(repo, workflow_id, ref="main", inputs=None, token=None):
     url = f"https://api.github.com/repos/{repo}/actions/workflows/{workflow_id}/dispatches"
@@ -657,10 +663,17 @@ with tab_system:
                 with st.container(border=True):
                     st.markdown(f"#### ⚙️ Feature Updater Live Status Tracker (Run #{latest_num})")
                     
-                    # Fetch logs and parse them
+                    # Always load logs for active runs, and cache them for completed runs to avoid rate limits
                     run_logs = ""
-                    if is_running or st.checkbox("Load run summary (Features & Seed Topics)", value=is_running, key=f"load_sum_{latest_id}"):
+                    if is_running:
                         run_logs = get_workflow_run_logs(PIPELINE_REPO, latest_id, GITHUB_TOKEN)
+                    else:
+                        cache_key = f"summary_logs_{latest_id}"
+                        if cache_key not in st.session_state:
+                            run_logs = get_workflow_run_logs(PIPELINE_REPO, latest_id, GITHUB_TOKEN)
+                            st.session_state[cache_key] = run_logs
+                        else:
+                            run_logs = st.session_state[cache_key]
                     
                     parsed = parse_updater_logs(run_logs)
                     
