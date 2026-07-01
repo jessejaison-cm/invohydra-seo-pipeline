@@ -22,7 +22,6 @@
   "mobile_app_access": true,
   "cloud_backup": true,
   "secure_data_storage": true,
-<<<<<<< HEAD
   "qr_code_generation": true,
   "credit_debit_notes": true,
   "recurring_expenses": true,
@@ -35,8 +34,7 @@
   "product_pricing_management": true,
   "sales_analytics": true,
   "inventory_management": true,
-  "multi_payment_methods": true
-=======
+  "multi_payment_methods": true,
   "gst_compliance": true,
   "hsn_sac_code_suggestions": true,
   "one_click_gstr_reports": true,
@@ -47,11 +45,7 @@
   "automated_recurring_invoices": true,
   "automated_payment_reminders": true,
   "real_time_business_dashboard": true,
-  "inventory_management": true,
-  "sales_analytics": true,
-  "customer_loyalty_management": true,
   "product_and_pricing_management": true,
-  "barcode_scanning": true,
   "smart_billing_automation": true,
   "inventory_synchronization": true,
   "multi_payment_support": true,
@@ -63,7 +57,6 @@
   "expense_management": true,
   "gst_invoice_generation": true,
   "payment_link_sharing": true,
-  "whatsapp_sharing": true,
   "auto_reminders": true,
   "billing_history": true,
   "versioning": true,
@@ -77,11 +70,5 @@
   "instant_sharing": true,
   "real_time_approval_updates": true,
   "direct_pdf_downloads": true,
-  "play_store": true,
-  "qr_code_generation": true,
-  "credit_debit_notes": true,
-  "advanced_filters": true,
-  "active_session_control": true,
-  "api_access": true
->>>>>>> 6ec13f0bfff305812d832b653733d8684d46945a
+  "play_store": true
 }
