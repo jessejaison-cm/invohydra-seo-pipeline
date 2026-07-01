@@ -1,296 +1,74 @@
 {
   "surviving_keywords": [
-    "best billing software for small business",
-    "how to choose small business invoice software",
-    "invoicing software for startups and small businesses",
-    "gst invoicing software for small businesses",
-    "best invoicing software for small business owners",
-    "free gst invoicing software for small businesses",
-    "gst compliant invoicing for small business",
-    "best free invoicing software in india",
-    "invoicing software for small businesses in india",
-    "gst billing software for small businesses india",
-    "best invoice software for small businesses india",
-    "best gst billing software for small businesses india",
-    "best free invoice software for small business india",
-    "small business invoicing software india",
-    "best gst compliant invoicing software india"
+    "online payment collection for indian businesses",
+    "how to collect payments in retail business",
+    "online payment gateways for indian businesses",
+    "how to pay international invoices online in india",
+    "recurring payments in india for global companies",
+    "accepting international payments in india",
+    "gst compliant invoicing for indian businesses",
+    "online invoice payment collection software",
+    "how to select right payment solution for business",
+    "payment collection and invoice management software",
+    "online payment systems for e-commerce businesses india",
+    "best invoicing software for small business india",
+    "best billing software for retail shops in india",
+    "invoice management for modern businesses india",
+    "how to choose right invoicing software for business"
   ],
   "passed": [
-    "best billing software for small business",
-    "how to choose small business invoice software",
-    "invoicing software for startups and small businesses",
-    "gst invoicing software for small businesses",
-    "best invoicing software for small business owners"
+    "online payment collection for indian businesses",
+    "how to collect payments in retail business",
+    "online payment gateways for indian businesses",
+    "how to pay international invoices online in india",
+    "recurring payments in india for global companies",
+    "accepting international payments in india",
+    "gst compliant invoicing for indian businesses",
+    "online invoice payment collection software",
+    "how to select right payment solution for business",
+    "payment collection and invoice management software",
+    "online payment systems for e-commerce businesses india"
   ],
   "maybe": [
-    "free gst invoicing software for small businesses",
-    "gst compliant invoicing for small business",
-    "best free invoicing software in india",
-    "invoicing software for small businesses in india",
-    "gst billing software for small businesses india",
-    "best invoice software for small businesses india",
-    "best gst billing software for small businesses india",
-    "best free invoice software for small business india",
-    "small business invoicing software india",
-    "best gst compliant invoicing software india"
+    "best invoicing software for small business india",
+    "best billing software for retail shops in india",
+    "invoice management for modern businesses india",
+    "how to choose right invoicing software for business"
   ],
-  "failed": [
-    "best invoicing software for small businesses india"
-  ],
+  "failed": [],
   "full_report": [
     {
-      "keyword": "best invoicing software for small businesses india",
-      "verdict": "FAIL",
-      "score": 9,
-      "tier1_hits": [
-        "zoho.com",
-        "tallysolutions.com",
-        "cleartax.in"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "zoho.com",
-        "accountune.com",
-        "raseedapp.com",
-        "linkedin.com",
-        "tallysolutions.com"
-      ],
-      "reason": "Too competitive (score=9). Tier 1 giants: zoho.com, tallysolutions.com, cleartax.in. Unlikely to rank page 1."
-    },
-    {
-      "keyword": "free gst invoicing software for small businesses",
-      "verdict": "MAYBE",
-      "score": 6,
-      "tier1_hits": [
-        "zoho.com",
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "zoho.com",
-        "khatabilling.com",
-        "invoicefree.in",
-        "tutorial.gst.gov.in",
-        "play.google.com"
-      ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, tallysolutions.com. Winnable with strong content."
-    },
-    {
-      "keyword": "best billing software for small business",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "salesforce.com",
-        "tallysolutions.com",
-        "mybillbook.in",
-        "mercury.com",
-        "raseedapp.com"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "gst compliant invoicing for small business",
-      "verdict": "MAYBE",
-      "score": 6,
-      "tier1_hits": [
-        "zoho.com",
-        "cleartax.in"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "zoho.com",
-        "vasyerp.com",
-        "gogstbill.com",
-        "cleartax.in",
-        "play.google.com"
-      ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, cleartax.in. Winnable with strong content."
-    },
-    {
-      "keyword": "best free invoicing software in india",
-      "verdict": "MAYBE",
-      "score": 4,
-      "tier1_hits": [
-        "zoho.com"
-      ],
-      "tier2_hits": [
-        "profitbooks.net"
-      ],
-      "top_5_domains": [
-        "zoho.com",
-        "refrens.com",
-        "zapier.com",
-        "play.google.com",
-        "profitbooks.net"
-      ],
-      "reason": "Moderate competition (score=4). Tier 1 domains present: zoho.com | Tier 2 domains present: profitbooks.net. Winnable with strong content."
-    },
-    {
-      "keyword": "invoicing software for small businesses in india",
-      "verdict": "MAYBE",
-      "score": 6,
-      "tier1_hits": [
-        "zoho.com",
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "accountune.com",
-        "mybillbook.in",
-        "raseedapp.com",
-        "zoho.com",
-        "linkedin.com"
-      ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, tallysolutions.com. Winnable with strong content."
-    },
-    {
-      "keyword": "gst billing software for small businesses india",
-      "verdict": "MAYBE",
-      "score": 4,
-      "tier1_hits": [
-        "zoho.com"
-      ],
-      "tier2_hits": [
-        "profitbooks.net"
-      ],
-      "top_5_domains": [
-        "mybillbook.in",
-        "gogstbill.com",
-        "zoho.com",
-        "khatabilling.com",
-        "gstn.org.in"
-      ],
-      "reason": "Moderate competition (score=4). Tier 1 domains present: zoho.com | Tier 2 domains present: profitbooks.net. Winnable with strong content."
-    },
-    {
-      "keyword": "best invoice software for small businesses india",
-      "verdict": "MAYBE",
-      "score": 6,
-      "tier1_hits": [
-        "zoho.com",
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "accountune.com",
-        "zoho.com",
-        "tallysolutions.com",
-        "raseedapp.com",
-        "linkedin.com"
-      ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, tallysolutions.com. Winnable with strong content."
-    },
-    {
-      "keyword": "how to choose small business invoice software",
+      "keyword": "online payment collection for indian businesses",
       "verdict": "PASS",
       "score": 0,
       "tier1_hits": [],
       "tier2_hits": [],
       "top_5_domains": [
-        "mercury.com",
-        "salesforce.com",
-        "quadient.com",
-        "youtube.com",
-        "waveapps.com"
+        "business.paytm.com",
+        "paytmpayments.com",
+        "unlimit.com",
+        "razorpay.com",
+        "payoneer.com"
       ],
       "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
     },
     {
-      "keyword": "best gst billing software for small businesses india",
-      "verdict": "MAYBE",
-      "score": 4,
-      "tier1_hits": [
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [
-        "profitbooks.net"
-      ],
-      "top_5_domains": [
-        "mybillbook.in",
-        "accountune.com",
-        "gogstbill.com",
-        "khatabilling.com",
-        "gimbooks.com"
-      ],
-      "reason": "Moderate competition (score=4). Tier 1 domains present: tallysolutions.com | Tier 2 domains present: profitbooks.net. Winnable with strong content."
-    },
-    {
-      "keyword": "invoicing software for startups and small businesses",
+      "keyword": "how to collect payments in retail business",
       "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "zoho.com"
-      ],
+      "score": 0,
+      "tier1_hits": [],
       "tier2_hits": [],
       "top_5_domains": [
-        "mercury.com",
-        "zoho.com",
-        "invoicely.com",
-        "salesforce.com",
-        "raseedapp.com"
+        "lyra.com",
+        "stripe.com",
+        "nibusinessinfo.co.uk",
+        "adyen.com",
+        "pxp.io"
       ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
     },
     {
-      "keyword": "best free invoice software for small business india",
-      "verdict": "MAYBE",
-      "score": 4,
-      "tier1_hits": [
-        "zoho.com"
-      ],
-      "tier2_hits": [
-        "profitbooks.net"
-      ],
-      "top_5_domains": [
-        "zoho.com",
-        "refrens.com",
-        "profitbooks.net",
-        "play.google.com",
-        "paymoapp.com"
-      ],
-      "reason": "Moderate competition (score=4). Tier 1 domains present: zoho.com | Tier 2 domains present: profitbooks.net. Winnable with strong content."
-    },
-    {
-      "keyword": "gst invoicing software for small businesses",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "zoho.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "zoho.com",
-        "mybillbook.in",
-        "play.google.com",
-        "khatabilling.com",
-        "vasyerp.com"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "best invoicing software for small business owners",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "zoho.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "zoho.com",
-        "reddit.com",
-        "mercury.com",
-        "cnbc.com",
-        "raseedapp.com"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "small business invoicing software india",
+      "keyword": "best invoicing software for small business india",
       "verdict": "MAYBE",
       "score": 6,
       "tier1_hits": [
@@ -299,33 +77,210 @@
       ],
       "tier2_hits": [],
       "top_5_domains": [
-        "mybillbook.in",
-        "accountune.com",
-        "raseedapp.com",
         "zoho.com",
+        "accountune.com",
+        "mybillbook.in",
+        "raseedapp.com",
         "linkedin.com"
       ],
       "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, tallysolutions.com. Winnable with strong content."
     },
     {
-      "keyword": "best gst compliant invoicing software india",
-      "verdict": "MAYBE",
-      "score": 7,
+      "keyword": "online payment gateways for indian businesses",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "razorpay.com",
+        "payu.in",
+        "payoneer.com",
+        "paytmpayments.com",
+        "reddit.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "how to pay international invoices online in india",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "karboncard.com",
+        "razorpay.com",
+        "worldline.com",
+        "skydo.com",
+        "flywire.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "recurring payments in india for global companies",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "payu.in",
+        "worldline.com",
+        "transactbridge.com",
+        "docs.stripe.com",
+        "business.paytm.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "accepting international payments in india",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "razorpay.com",
+        "reddit.com",
+        "docs.stripe.com",
+        "worldline.com",
+        "wise.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "gst compliant invoicing for indian businesses",
+      "verdict": "PASS",
+      "score": 3,
       "tier1_hits": [
+        "zoho.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "ecosio.com",
+        "base.com",
         "zoho.com",
+        "vasyerp.com",
+        "gimbooks.com"
+      ],
+      "reason": "Low authority presence (score=3). Winnable with quality content."
+    },
+    {
+      "keyword": "online invoice payment collection software",
+      "verdict": "PASS",
+      "score": 3,
+      "tier1_hits": [
+        "zoho.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "zoho.com",
+        "refrens.com",
+        "salesforce.com",
+        "squareup.com",
+        "mybillbook.in"
+      ],
+      "reason": "Low authority presence (score=3). Winnable with quality content."
+    },
+    {
+      "keyword": "how to select right payment solution for business",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "worldline.com",
+        "razorpay.com",
+        "oropay.com",
+        "monext.com",
+        "salesforce.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "best billing software for retail shops in india",
+      "verdict": "MAYBE",
+      "score": 4,
+      "tier1_hits": [
         "tallysolutions.com"
+      ],
+      "tier2_hits": [
+        "techjockey.com"
+      ],
+      "top_5_domains": [
+        "mybillbook.in",
+        "tallysolutions.com",
+        "softhealer.com",
+        "vasyerp.com",
+        "reddit.com"
+      ],
+      "reason": "Moderate competition (score=4). Tier 1 domains present: tallysolutions.com | Tier 2 domains present: techjockey.com. Winnable with strong content."
+    },
+    {
+      "keyword": "invoice management for modern businesses india",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "cleartax.in",
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "cleartax.in",
+        "refrens.com",
+        "vasyerp.com",
+        "tyasuite.com",
+        "business.amazon.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: cleartax.in, tallysolutions.com. Winnable with strong content."
+    },
+    {
+      "keyword": "payment collection and invoice management software",
+      "verdict": "PASS",
+      "score": 1,
+      "tier1_hits": [],
+      "tier2_hits": [
+        "g2.com"
+      ],
+      "top_5_domains": [
+        "billingplatform.com",
+        "salesforce.com",
+        "squareup.com",
+        "upflow.io",
+        "mybillbook.in"
+      ],
+      "reason": "Low authority presence (score=1). Winnable with quality content."
+    },
+    {
+      "keyword": "how to choose right invoicing software for business",
+      "verdict": "MAYBE",
+      "score": 4,
+      "tier1_hits": [
+        "zoho.com"
       ],
       "tier2_hits": [
         "profitbooks.net"
       ],
       "top_5_domains": [
-        "gogstbill.com",
-        "profitbooks.net",
-        "sleekbill.in",
-        "gimbooks.com",
-        "billingsoftwareindia.in"
+        "stripe.com",
+        "mooninvoice.com",
+        "salesforce.com",
+        "zoho.com",
+        "profitbooks.net"
       ],
-      "reason": "Moderate competition (score=7). Tier 1 domains present: zoho.com, tallysolutions.com | Tier 2 domains present: profitbooks.net. Winnable with strong content."
+      "reason": "Moderate competition (score=4). Tier 1 domains present: zoho.com | Tier 2 domains present: profitbooks.net. Winnable with strong content."
+    },
+    {
+      "keyword": "online payment systems for e-commerce businesses india",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "razorpay.com",
+        "payoneer.com",
+        "cashfree.com",
+        "payu.in",
+        "wise.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
     }
   ]
 }
