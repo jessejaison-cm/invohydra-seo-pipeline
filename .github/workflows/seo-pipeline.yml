@@ -26,7 +26,7 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   run-seo-pipeline:
@@ -130,3 +130,16 @@ jobs:
             data/clustered_keywords.json
             data/discovered_keywords.json
           retention-days: 14
+
+      # ── 10. Commit and Push Changes ─────────────────────────────────────
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/difficulty_report.json data/clustered_keywords.json data/discovered_keywords.json data/pipeline_state.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: auto-update SEO pipeline reports [skip ci]"
+            git push
+          else
+            echo "No changes detected."
+          fi
