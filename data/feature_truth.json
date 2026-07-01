@@ -62,5 +62,10 @@
   "instant_sharing": true,
   "real_time_approval_updates": true,
   "direct_pdf_downloads": true,
-  "play_store": true
+  "play_store": true,
+  "qr_code_generation": true,
+  "credit_debit_notes": true,
+  "advanced_filters": true,
+  "active_session_control": true,
+  "api_access": true
 }
