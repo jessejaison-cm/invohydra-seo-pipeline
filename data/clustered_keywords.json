@@ -1,52 +1,34 @@
 {
   "clusters": [
     {
-      "hub_topic": "Small Business Invoicing Software",
-      "demand": "High",
-      "intent": "Informational",
-      "product_fit_rationale": "Our product supports GST invoicing and billing, making it a great fit for small businesses in India looking for compliant invoicing solutions.",
-      "keywords": [
-        "best billing software for small business",
-        "gst invoicing software for small businesses",
-        "best invoicing software for small business owners",
-        "gst compliant invoicing for small business",
-        "gst billing software for small businesses india",
-        "best gst billing software for small businesses india",
-        "small business invoicing software india"
-      ]
-    },
-    {
-      "hub_topic": "Choosing Invoicing Software for Startups and Small Businesses",
-      "demand": "Medium",
-      "intent": "Informational",
-      "product_fit_rationale": "Our product offers features like auto GST calculation and recurring invoice profiles, which are useful for startups and small businesses choosing an invoicing software.",
-      "keywords": [
-        "how to choose small business invoice software",
-        "invoicing software for startups and small businesses"
-      ]
-    },
-    {
-      "hub_topic": "Free and Best Invoicing Software in India",
+      "hub_topic": "Razorpay Payment Integration",
       "demand": "High",
       "intent": "Transactional",
-      "product_fit_rationale": "Our product offers free GST invoicing software for small businesses, making it a great option for those looking for the best free invoicing software in India.",
+      "product_fit_rationale": "Our product supports razorpay payment integration, which allows for secure and efficient payment processing. This feature is explicitly mentioned in the capability truth map as 'razorpay_payment_integration': true.",
       "keywords": [
-        "free gst invoicing software for small businesses",
-        "best free invoicing software in india",
-        "best free invoice software for small business india"
-      ]
-    },
-    {
-      "hub_topic": "Invoicing Software for Small Businesses in India",
-      "demand": "Medium",
-      "intent": "Navigational",
-      "product_fit_rationale": "Our product supports GST billing and invoicing for small businesses in India, making it a great fit for those looking for invoicing software specifically designed for the Indian market.",
-      "keywords": [
-        "invoicing software for small businesses in india",
-        "best invoice software for small businesses india",
-        "best gst compliant invoicing software india"
+        "razorpay payment link integration",
+        "razorpay payment links for invoices",
+        "razorpay payment gateway for small business",
+        "create payment links with razorpay",
+        "razorpay invoice payment integration",
+        "integrate razorpay with existing billing",
+        "razorpay payment solutions for msme",
+        "razorpay payment link for recurring payments",
+        "secure payment integration with razorpay",
+        "invoicing apps with razorpay payment gateway",
+        "invoicing software with payment gateway",
+        "how to integrate razorpay with invoicing"
       ]
     }
   ],
-  "rejected_keywords": []
+  "rejected_keywords": [
+    {
+      "original": "payment link integration with invoicing",
+      "reason": "This keyword is too generic and does not explicitly mention Razorpay, which is the specific payment gateway our product supports."
+    },
+    {
+      "original": "razorpay payment links for business owners",
+      "reason": "This keyword is too broad and does not specifically relate to our product's invoicing and payment integration features."
+    }
+  ]
 }

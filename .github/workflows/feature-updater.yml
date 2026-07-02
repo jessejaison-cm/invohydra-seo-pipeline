@@ -1,6 +1,12 @@
 name: InvoHydra Feature Updater
 
 on:
+  # Scheduled to run every 10 days at 3:00 AM IST
+  # IST is UTC+5:30, so 3:00 AM IST = 9:30 PM UTC (previous day)
+  # Runs on the 1st, 11th, 21st, and 31st of every month
+  schedule:
+    - cron: '30 21 */10 * *'
+
   workflow_dispatch:
 
 permissions:

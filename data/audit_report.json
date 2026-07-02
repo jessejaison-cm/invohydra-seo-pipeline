@@ -1,16 +1,95 @@
 {
-  "top_10": [],
+  "top_10": [
+    {
+      "keyword": "Confused About Invoices? Here's How Invoicing Software for Small Businesses Helps",
+      "filename": "confused-about-invoices.json",
+      "rank": 6,
+      "url": "https://www.invohydra.com/blog"
+    }
+  ],
   "page_2_refresh": [],
   "not_found_or_deep": [
     {
-      "keyword": "GST Billing Software",
-      "filename": "gst_billing_software_comparison.json",
+      "keyword": "gst compliant invoicing software for small businesses",
+      "filename": "gst-compliant-invoicing-software-for-small-businesses.json",
       "rank": -1,
       "url": null
     },
     {
-      "keyword": "GST Billing Software",
-      "filename": "gst_billing_software_for_msme.json",
+      "keyword": "invoicing software for small businesses in india",
+      "filename": "invoicing-software-for-small-businesses-in-india.json",
+      "rank": -1,
+      "url": null
+    },
+    {
+      "keyword": "recurring billing for saas",
+      "filename": "recurring-billing-for-saas.json",
+      "rank": -1,
+      "url": null
+    },
+    {
+      "keyword": "Multi Currency Invoicing for Export Businesses",
+      "filename": "multi-currency-invoicing-for-export-businesses.json",
+      "rank": -1,
+      "url": null
+    },
+    {
+      "keyword": "AI Billing Software",
+      "filename": "ai-billing-software-for-business.json",
+      "rank": -1,
+      "url": null
+    },
+    {
+      "keyword": "online payment collection invoicing for indian businesses",
+      "filename": "online-payment-collection-invoicing-for-indian-businesses.json",
+      "rank": -1,
+      "url": null
+    },
+    {
+      "keyword": "Global Billing and Invoicing Solutions",
+      "filename": "global-billing-and-invoicing-solutions.json",
+      "rank": -1,
+      "url": null
+    },
+    {
+      "keyword": "Recurring Billing Best Practices and Setup",
+      "filename": "recurring-billing-best-practices.json",
+      "rank": -1,
+      "url": null
+    },
+    {
+      "keyword": "freelance invoicing best practices",
+      "filename": "freelance-invoicing-best-practices.json",
+      "rank": -1,
+      "url": null
+    },
+    {
+      "keyword": "AI Invoicing Software for Professionals",
+      "filename": "ai-invoicing-for-professionals.json",
+      "rank": -1,
+      "url": null
+    },
+    {
+      "keyword": "streamlining retail payments",
+      "filename": "streamlining-retail-payments.json",
+      "rank": -1,
+      "url": null
+    },
+    {
+      "keyword": "razorpay payment integration benefits",
+      "filename": "razorpay-payment-integration-benefits.json",
+      "rank": -1,
+      "url": null
+    },
+    {
+      "keyword": "saas subscription management solutions",
+      "filename": "saas-subscription-management-solutions.json",
+      "rank": -1,
+      "url": null
+    },
+    {
+      "keyword": "Recurring Invoicing and Billing Automation",
+      "filename": "recurring-invoicing-and-billing-automation.json",
       "rank": -1,
       "url": null
     }
