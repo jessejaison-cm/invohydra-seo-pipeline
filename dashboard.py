@@ -146,6 +146,8 @@ def get_blogs_from_github(repo, path="src/app/blog/posts", branch="blog-automati
                                     pass
     except Exception as e:
         pass
+    return blogs
+
 def resolve_image_url(image_path, repo="InvoHydra/InvoHydra-Landing-Page", branch="blog-automation"):
     if not image_path:
         return None
@@ -653,7 +655,7 @@ if is_cloud:
     state = load_json_from_github(PIPELINE_REPO, "data/pipeline_state.json", "main", GITHUB_TOKEN)
     
     # 2. Fetch published blogs from website repo blog-automation branch
-    remote_blogs = get_blogs_from_github(WEBSITE_REPO, "src/app/blog/posts", "blog-automation", GITHUB_TOKEN)
+    remote_blogs = get_blogs_from_github(WEBSITE_REPO, "src/app/blog/posts", "blog-automation", GITHUB_TOKEN) or []
     total_blogs = len(remote_blogs)
 else:
     # Local Mode: load from local files
