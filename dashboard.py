@@ -9,12 +9,49 @@ import zipfile
 import io
 from dotenv import load_dotenv
 
+# Set page config as early as possible
+st.set_page_config(page_title="InvoHydra Enterprise SEO Dashboard", page_icon="🚀", layout="wide")
+
 # Load configuration at start
 env_path = os.path.join(os.path.dirname(__file__), ".env")
 load_dotenv(env_path)
 
+def check_password():
+    """Returns `True` if the user has entered the correct password."""
+    # Priority: Streamlit secrets -> Environment variable -> Default fallback
+    admin_password = os.getenv("DASHBOARD_PASSWORD")
+    if not admin_password:
+        try:
+            admin_password = st.secrets["DASHBOARD_PASSWORD"]
+        except Exception:
+            admin_password = "invohydra2026"  # Default fallback password
+
+    def password_entered():
+        if st.session_state.get("password_input") == admin_password:
+            st.session_state["password_correct"] = True
+            if "password_input" in st.session_state:
+                del st.session_state["password_input"]
+        else:
+            st.session_state["password_correct"] = False
+
+    if "password_correct" not in st.session_state:
+        st.title("🔐 InvoHydra SEO Dashboard Login")
+        st.markdown("Enter the administrator password to access the enterprise control panel.")
+        st.text_input("Admin Password", type="password", on_change=password_entered, key="password_input")
+        return False
+    elif not st.session_state["password_correct"]:
+        st.title("🔐 InvoHydra SEO Dashboard Login")
+        st.markdown("Enter the administrator password to access the enterprise control panel.")
+        st.text_input("Admin Password", type="password", on_change=password_entered, key="password_input")
+        st.error("❌ Incorrect password. Please try again.")
+        return False
+    return True
+
+if not check_password():
+    st.stop()
+
 WEBSITE_REPO = "InvoHydra/InvoHydra-Landing-Page"
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "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")
 PIPELINE_REPO = "jessejaison-cm/invohydra-seo-pipeline"
 SAFE_BRANCH_NAME = "blog-automation"
 
@@ -586,6 +623,9 @@ with st.sidebar:
     st.divider()
     st.caption("System Status: Online")
     st.caption("Version: 2.1.0 (Enterprise)")
+    if st.button("🔒 Log Out", width="stretch"):
+        st.session_state["password_correct"] = False
+        st.rerun()
 
 # ─── HEADER & GLOBAL METRICS ───────────────────────────────────────────
 st.title("Search Engine Operations")
