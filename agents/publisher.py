@@ -152,8 +152,11 @@ def create_blog_data_file(blog_data: dict) -> dict:
     """
     from datetime import date
 
+    import re
     final_title = blog_data.get("title") or blog_data.get("meta_title") or "Untitled Blog"
     final_desc = blog_data.get("meta_description") or blog_data.get("excerpt") or ""
+    raw_body = blog_data.get("markdown_body", "")
+    clean_body = re.sub(r'!\[.*?\]\(.*?\)\s*', '', raw_body).strip()
 
     return {
         "title": final_title,
@@ -162,14 +165,14 @@ def create_blog_data_file(blog_data: dict) -> dict:
         "excerpt": final_desc,
         "url_slug": blog_data.get("url_slug", "untitled"),
         "target_keyword": blog_data.get("target_keyword") or blog_data.get("url_slug", "untitled").replace("-", " "),
-        "markdown_body": blog_data.get("markdown_body", ""),
+        "markdown_body": clean_body,
         "image": blog_data.get("image", "/meeting.png"),
         "author": "InvoHydra",
         "authorAvatar": "https://i.pravatar.cc/30",
         "link": "#",
         "date": date.today().isoformat(),
         "category": "Invoicing Guide",
-        "readTime": f"{max(1, len(blog_data.get('markdown_body', '').split()) // 200)} Mins Read"
+        "readTime": f"{max(1, len(clean_body.split()) // 200)} Mins Read"
     }
 
 

@@ -184,11 +184,9 @@ def illustrate_blogs():
                 with open(image_path, "wb") as img_f:
                     img_f.write(img_bytes)
                 
-                # Check if there is an existing image in body and clean it up
+                # Clean up any existing image tags from body text (header image is handled by front-end metadata)
                 import re
-                body = re.sub(r'!\[.*?\]\((https?://.*?unsplash\.com.*?|/blog-images/.*?)\)\n(>\s*\*.*?\*\n\n)?', '', body)
-                # Prepend the new local image markdown
-                body = f"![Header Image]({local_image_url})\n\n" + body
+                body = re.sub(r'!\[.*?\]\(.*?\)\s*', '', body).strip()
                 
                 blog_data["image"] = local_image_url
                 changed = True
