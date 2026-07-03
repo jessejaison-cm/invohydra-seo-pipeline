@@ -1,125 +1,166 @@
 {
   "surviving_keywords": [
-    "simple accounting software for indian msme",
-    "cloud based accounting services for msme",
-    "how to choose accounting software for msme",
-    "best accounting software for msme in india",
-    "accounting software for indian startups",
-    "best accounting software for startups in india",
-    "free accounting and billing software for msme",
-    "simple accounting software for small business",
-    "accounting software for startups india",
-    "simple small business accounting software free",
-    "simple accounting software for freelancers"
+    "manage business expenses india",
+    "small business accounting best practices",
+    "small business expense management india",
+    "small business financial management tips",
+    "how to manage small business finances",
+    "efficient expense management for small business",
+    "track small business expenses easily",
+    "importance of bookkeeping for small business",
+    "cash accounting tips for indian small business",
+    "automated accounting tools for small business",
+    "small business expense tracking software",
+    "bookkeeping and accounting for small business",
+    "small business accounting and bookkeeping guide"
   ],
   "passed": [
-    "simple accounting software for indian msme",
-    "cloud based accounting services for msme",
-    "how to choose accounting software for msme",
-    "best accounting software for msme in india",
-    "accounting software for indian startups"
+    "manage business expenses india",
+    "small business accounting best practices",
+    "small business expense management india",
+    "small business financial management tips",
+    "how to manage small business finances",
+    "efficient expense management for small business"
   ],
   "maybe": [
-    "best accounting software for startups in india",
-    "free accounting and billing software for msme",
-    "simple accounting software for small business",
-    "accounting software for startups india",
-    "simple small business accounting software free",
-    "simple accounting software for freelancers"
+    "track small business expenses easily",
+    "importance of bookkeeping for small business",
+    "cash accounting tips for indian small business",
+    "automated accounting tools for small business",
+    "small business expense tracking software",
+    "bookkeeping and accounting for small business",
+    "small business accounting and bookkeeping guide"
   ],
   "failed": [
-    "best online accounting software for small business india",
-    "gst compliant accounting software for msme",
-    "cloud based accounting software for startups"
+    "small business bookkeeping tips india",
+    "gst compliant bookkeeping for small business"
   ],
   "full_report": [
     {
-      "keyword": "simple accounting software for indian msme",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "mybillbook.in",
-        "mykhataexpert.com",
-        "tutorial.gst.gov.in",
-        "themunim.com",
-        "elitemindz.co"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "best accounting software for startups in india",
-      "verdict": "MAYBE",
-      "score": 6,
+      "keyword": "small business bookkeeping tips india",
+      "verdict": "FAIL",
+      "score": 12,
       "tier1_hits": [
         "tallysolutions.com",
-        "zoho.com"
+        "forbes.com",
+        "quickbooks.intuit.com",
+        "cleartax.in"
       ],
       "tier2_hits": [],
       "top_5_domains": [
-        "giddh.com",
+        "coursera.org",
+        "linkedin.com",
         "tallysolutions.com",
-        "kruzeconsulting.com",
-        "taxone.vyapar.com",
-        "flickai.in"
+        "forbes.com",
+        "quickbooks.intuit.com"
       ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: tallysolutions.com, zoho.com. Winnable with strong content."
+      "reason": "Too competitive (score=12). Tier 1 giants: tallysolutions.com, forbes.com, quickbooks.intuit.com, cleartax.in. Unlikely to rank page 1."
     },
     {
-      "keyword": "cloud based accounting services for msme",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "forbes.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "link4solution.com",
-        "eisneramper.com",
-        "realbooks.in",
-        "chapter1.finance",
-        "bentleys.com.au"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "free accounting and billing software for msme",
-      "verdict": "MAYBE",
-      "score": 6,
-      "tier1_hits": [
-        "zoho.com",
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "tutorial.gst.gov.in",
-        "gstn.org.in",
-        "youtube.com",
-        "gogstbill.com",
-        "billingsoftwareindia.in"
-      ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, tallysolutions.com. Winnable with strong content."
-    },
-    {
-      "keyword": "how to choose accounting software for msme",
+      "keyword": "manage business expenses india",
       "verdict": "PASS",
       "score": 0,
       "tier1_hits": [],
       "tier2_hits": [],
       "top_5_domains": [
-        "mybillbook.in",
-        "mykhataexpert.com",
-        "tutorial.gst.gov.in",
-        "masllp.com",
-        "themunim.com"
+        "apps365.com",
+        "cashbook.in",
+        "happay.com",
+        "enaviya.com",
+        "elitemindz.co"
       ],
       "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
     },
     {
-      "keyword": "simple accounting software for small business",
+      "keyword": "small business accounting best practices",
+      "verdict": "PASS",
+      "score": 3,
+      "tier1_hits": [
+        "quickbooks.intuit.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "indeed.com",
+        "uschamber.com",
+        "quickbooks.intuit.com",
+        "coursera.org",
+        "giddh.com"
+      ],
+      "reason": "Low authority presence (score=3). Winnable with quality content."
+    },
+    {
+      "keyword": "track small business expenses easily",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "zoho.com",
+        "quickbooks.intuit.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "stripe.com",
+        "zoho.com",
+        "youtube.com",
+        "reddit.com",
+        "rippling.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, quickbooks.intuit.com. Winnable with strong content."
+    },
+    {
+      "keyword": "importance of bookkeeping for small business",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "zoho.com",
+        "cleartax.in"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "newoon.com",
+        "patriotsoftware.com",
+        "volopay.com",
+        "zoho.com",
+        "coursera.org"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, cleartax.in. Winnable with strong content."
+    },
+    {
+      "keyword": "cash accounting tips for indian small business",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "quickbooks.intuit.com",
+        "cleartax.in"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "cashbook.in",
+        "coursera.org",
+        "linkedin.com",
+        "quickbooks.intuit.com",
+        "cleartax.in"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: quickbooks.intuit.com, cleartax.in. Winnable with strong content."
+    },
+    {
+      "keyword": "small business expense management india",
+      "verdict": "PASS",
+      "score": 3,
+      "tier1_hits": [
+        "zoho.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "expensify.com",
+        "zoho.com",
+        "happay.com",
+        "cashbook.in",
+        "gartner.com"
+      ],
+      "reason": "Low authority presence (score=3). Winnable with quality content."
+    },
+    {
+      "keyword": "automated accounting tools for small business",
       "verdict": "MAYBE",
       "score": 6,
       "tier1_hits": [
@@ -129,158 +170,134 @@
       "tier2_hits": [],
       "top_5_domains": [
         "quickbooks.intuit.com",
-        "xero.com",
+        "akaunting.com",
         "youtube.com",
-        "aiaccountant.com",
-        "play.google.com"
+        "digits.com",
+        "odoo.com"
       ],
       "reason": "Moderate competition (score=6). Tier 1 domains present: quickbooks.intuit.com, investopedia.com. Winnable with strong content."
     },
     {
-      "keyword": "best online accounting software for small business india",
-      "verdict": "FAIL",
-      "score": 9,
-      "tier1_hits": [
-        "tallysolutions.com",
-        "quickbooks.intuit.com",
-        "zoho.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "tallysolutions.com",
-        "quickbooks.intuit.com",
-        "youtube.com",
-        "mybillbook.in",
-        "ebizfiling.com"
-      ],
-      "reason": "Too competitive (score=9). Tier 1 giants: tallysolutions.com, quickbooks.intuit.com, zoho.com. Unlikely to rank page 1."
-    },
-    {
-      "keyword": "accounting software for startups india",
+      "keyword": "small business expense tracking software",
       "verdict": "MAYBE",
       "score": 6,
       "tier1_hits": [
+        "zoho.com",
+        "quickbooks.intuit.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "zoho.com",
+        "mercury.com",
+        "expensify.com",
+        "indeed.com",
+        "rippling.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, quickbooks.intuit.com. Winnable with strong content."
+    },
+    {
+      "keyword": "gst compliant bookkeeping for small business",
+      "verdict": "FAIL",
+      "score": 9,
+      "tier1_hits": [
+        "cleartax.in",
         "tallysolutions.com",
         "zoho.com"
       ],
       "tier2_hits": [],
       "top_5_domains": [
+        "cleartax.in",
+        "linkedin.com",
         "tallysolutions.com",
-        "giddh.com",
-        "zoho.com",
-        "taxone.vyapar.com",
-        "aiaccountant.com"
-      ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: tallysolutions.com, zoho.com. Winnable with strong content."
-    },
-    {
-      "keyword": "gst compliant accounting software for msme",
-      "verdict": "FAIL",
-      "score": 9,
-      "tier1_hits": [
-        "zoho.com",
-        "cleartax.in",
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "tutorial.gst.gov.in",
-        "gstn.org.in",
-        "zoho.com",
-        "cleartax.in",
+        "pkcindia.com",
         "bigsunworld.com"
       ],
-      "reason": "Too competitive (score=9). Tier 1 giants: zoho.com, cleartax.in, tallysolutions.com. Unlikely to rank page 1."
+      "reason": "Too competitive (score=9). Tier 1 giants: cleartax.in, tallysolutions.com, zoho.com. Unlikely to rank page 1."
     },
     {
-      "keyword": "simple small business accounting software free",
-      "verdict": "MAYBE",
-      "score": 4,
-      "tier1_hits": [
-        "quickbooks.intuit.com"
-      ],
+      "keyword": "small business financial management tips",
+      "verdict": "PASS",
+      "score": 1,
+      "tier1_hits": [],
       "tier2_hits": [
-        "profitbooks.net"
+        "bajajfinserv.in"
       ],
       "top_5_domains": [
-        "akaunting.com",
-        "waveapps.com",
-        "technologyadvice.com",
-        "quickbooks.intuit.com",
-        "play.google.com"
+        "netsuite.com",
+        "sba.gov",
+        "businessnewsdaily.com",
+        "bannerbank.com",
+        "youtube.com"
       ],
-      "reason": "Moderate competition (score=4). Tier 1 domains present: quickbooks.intuit.com | Tier 2 domains present: profitbooks.net. Winnable with strong content."
+      "reason": "Low authority presence (score=1). Winnable with quality content."
     },
     {
-      "keyword": "best accounting software for msme in india",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "webledger.in",
-        "mykhataexpert.com",
-        "mybillbook.in",
-        "digitaldocsys.in",
-        "tallysolutions.com"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "cloud based accounting software for startups",
-      "verdict": "FAIL",
-      "score": 9,
-      "tier1_hits": [
-        "tallysolutions.com",
-        "forbes.com",
-        "quickbooks.intuit.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "tallysolutions.com",
-        "waveapps.com",
-        "forbes.com",
-        "giddh.com",
-        "netsuite.com"
-      ],
-      "reason": "Too competitive (score=9). Tier 1 giants: tallysolutions.com, forbes.com, quickbooks.intuit.com. Unlikely to rank page 1."
-    },
-    {
-      "keyword": "accounting software for indian startups",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "tallysolutions.com",
-        "giddh.com",
-        "flickai.in",
-        "chapter1.finance",
-        "startupkhata.com"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "simple accounting software for freelancers",
+      "keyword": "bookkeeping and accounting for small business",
       "verdict": "MAYBE",
       "score": 6,
       "tier1_hits": [
         "quickbooks.intuit.com",
-        "nerdwallet.com"
+        "forbes.com"
       ],
       "tier2_hits": [],
       "top_5_domains": [
         "quickbooks.intuit.com",
-        "nerdwallet.com",
-        "uschamber.com",
+        "coursera.org",
+        "rippling.com",
         "reddit.com",
-        "technologyadvice.com"
+        "aoneoutsourcing.com"
       ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: quickbooks.intuit.com, nerdwallet.com. Winnable with strong content."
+      "reason": "Moderate competition (score=6). Tier 1 domains present: quickbooks.intuit.com, forbes.com. Winnable with strong content."
+    },
+    {
+      "keyword": "how to manage small business finances",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "rippling.com",
+        "sba.gov",
+        "businessnewsdaily.com",
+        "reddit.com",
+        "youtube.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "small business accounting and bookkeeping guide",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "forbes.com",
+        "quickbooks.intuit.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "coursera.org",
+        "forbes.com",
+        "aoneoutsourcing.com",
+        "quickbooks.intuit.com",
+        "finaloop.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: forbes.com, quickbooks.intuit.com. Winnable with strong content."
+    },
+    {
+      "keyword": "efficient expense management for small business",
+      "verdict": "PASS",
+      "score": 3,
+      "tier1_hits": [
+        "zoho.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "mercury.com",
+        "rippling.com",
+        "stripe.com",
+        "alaan.com",
+        "youtube.com"
+      ],
+      "reason": "Low authority presence (score=3). Winnable with quality content."
     }
   ]
 }

@@ -1,38 +1,32 @@
 {
   "clusters": [
     {
-      "hub_topic": "Accounting Software for MSME and Startups",
+      "hub_topic": "Small Business Expense Management",
       "demand": "High",
       "intent": "Informational",
-      "product_fit_rationale": "Our product supports features like smart invoice management, automated tax calculations, and real-time payment tracking, which are essential for MSMEs and startups. The capability truth map highlights features such as gst_compliance, automatic_tax_calculations, and multi_payment_methods, which align with the needs of these businesses.",
+      "product_fit_rationale": "Our product supports expense tracking and management through features like expense_tracking and automated_tax_calculations, making it a suitable fit for small businesses looking to manage their expenses efficiently.",
       "keywords": [
-        "simple accounting software for indian msme",
-        "cloud based accounting services for msme",
-        "best accounting software for msme in india",
-        "accounting software for indian startups",
-        "best accounting software for startups in india",
-        "accounting software for startups india"
+        "manage business expenses india",
+        "small business expense management india",
+        "efficient expense management for small business",
+        "track small business expenses easily",
+        "small business expense tracking software"
       ]
     },
     {
-      "hub_topic": "Free and Simple Accounting Software",
+      "hub_topic": "Small Business Accounting and Bookkeeping",
       "demand": "Medium",
-      "intent": "Transactional",
-      "product_fit_rationale": "Our product offers features like free trials, secure data storage, and multi-device access, making it an attractive option for small businesses and freelancers looking for simple and affordable accounting solutions. The capability truth map supports features such as cloud_backup, secure_data_storage, and mobile_app_access, which cater to the needs of these users.",
-      "keywords": [
-        "free accounting and billing software for msme",
-        "simple accounting software for small business",
-        "simple small business accounting software free",
-        "simple accounting software for freelancers"
-      ]
-    },
-    {
-      "hub_topic": "Choosing the Right Accounting Software",
-      "demand": "Low",
       "intent": "Informational",
-      "product_fit_rationale": "Our product's features like smart billing automation, inventory management, and sales analytics can help businesses make informed decisions when choosing an accounting software. The capability truth map highlights features such as smart_invoice_management, inventory_management, and sales_analytics, which support this cluster.",
+      "product_fit_rationale": "Our product offers features like automated_accounting_tools, bookkeeping, and accounting, which align with the needs of small businesses for accounting and bookkeeping.",
       "keywords": [
-        "how to choose accounting software for msme"
+        "small business accounting best practices",
+        "small business financial management tips",
+        "how to manage small business finances",
+        "importance of bookkeeping for small business",
+        "cash accounting tips for indian small business",
+        "automated accounting tools for small business",
+        "bookkeeping and accounting for small business",
+        "small business accounting and bookkeeping guide"
       ]
     }
   ],
