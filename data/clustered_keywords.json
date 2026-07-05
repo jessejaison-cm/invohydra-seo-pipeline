@@ -1,32 +1,57 @@
 {
   "clusters": [
     {
-      "hub_topic": "Small Business Expense Management",
+      "hub_topic": "Inventory Management Software for Small Businesses in India",
       "demand": "High",
       "intent": "Informational",
-      "product_fit_rationale": "Our product supports expense tracking and management through features like expense_tracking and automated_tax_calculations, making it a suitable fit for small businesses looking to manage their expenses efficiently.",
+      "product_fit_rationale": "Our product supports inventory management, which is a key feature for small businesses in India. Additionally, our product has features like gst compliance, barcode scanning, and low stock alerts that are relevant to this cluster.",
       "keywords": [
-        "manage business expenses india",
-        "small business expense management india",
-        "efficient expense management for small business",
-        "track small business expenses easily",
-        "small business expense tracking software"
+        "best inventory management software for small businesses india",
+        "inventory management software for small retail business india",
+        "best inventory software for small business in india",
+        "inventory management software for indian smb"
       ]
     },
     {
-      "hub_topic": "Small Business Accounting and Bookkeeping",
+      "hub_topic": "Inventory Management Software with GST Compliance",
+      "demand": "Medium",
+      "intent": "Transactional",
+      "product_fit_rationale": "Our product supports gst compliance and inventory management, making it a good fit for this cluster.",
+      "keywords": [
+        "inventory management software with gst compliance"
+      ]
+    },
+    {
+      "hub_topic": "Choosing Inventory Management Software in India",
       "demand": "Medium",
       "intent": "Informational",
-      "product_fit_rationale": "Our product offers features like automated_accounting_tools, bookkeeping, and accounting, which align with the needs of small businesses for accounting and bookkeeping.",
+      "product_fit_rationale": "Our product has features like real-time stock syncing, multi-warehouse management, and barcode scanning that are relevant to this cluster.",
       "keywords": [
-        "small business accounting best practices",
-        "small business financial management tips",
-        "how to manage small business finances",
-        "importance of bookkeeping for small business",
-        "cash accounting tips for indian small business",
-        "automated accounting tools for small business",
-        "bookkeeping and accounting for small business",
-        "small business accounting and bookkeeping guide"
+        "how to choose inventory management software in india",
+        "features of inventory management software",
+        "benefits of inventory management software for business"
+      ]
+    },
+    {
+      "hub_topic": "Advanced Inventory Management Features",
+      "demand": "Low",
+      "intent": "Informational",
+      "product_fit_rationale": "Our product supports features like real-time stock syncing, low stock alerts, and barcode scanning that are relevant to this cluster.",
+      "keywords": [
+        "real time stock syncing inventory software",
+        "inventory software with low stock alerts",
+        "inventory management software with barcode scanning"
+      ]
+    },
+    {
+      "hub_topic": "Inventory Management for Multi-Location Stores and Wholesale Business",
+      "demand": "Low",
+      "intent": "Informational",
+      "product_fit_rationale": "Our product supports multi-warehouse inventory management and gst compliance, making it a good fit for this cluster.",
+      "keywords": [
+        "inventory management software for multi location stores",
+        "inventory management software for wholesale business india",
+        "multi warehouse inventory management software india"
       ]
     }
   ],

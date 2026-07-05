@@ -1,289 +1,256 @@
 {
   "surviving_keywords": [
-    "manage business expenses india",
-    "small business accounting best practices",
-    "small business expense management india",
-    "small business financial management tips",
-    "how to manage small business finances",
-    "efficient expense management for small business",
-    "track small business expenses easily",
-    "importance of bookkeeping for small business",
-    "cash accounting tips for indian small business",
-    "automated accounting tools for small business",
-    "small business expense tracking software",
-    "bookkeeping and accounting for small business",
-    "small business accounting and bookkeeping guide"
+    "best inventory management software for small businesses india",
+    "inventory management software with gst compliance",
+    "how to choose inventory management software in india",
+    "features of inventory management software",
+    "benefits of inventory management software for business",
+    "real time stock syncing inventory software",
+    "inventory management software for multi location stores",
+    "inventory software with low stock alerts",
+    "inventory management system for indian retail industry",
+    "best inventory management software for indian smb 2026",
+    "inventory management software for small retail business india",
+    "inventory management system for indian smb",
+    "inventory management software for wholesale business india",
+    "best inventory software for small business in india",
+    "inventory management software with barcode scanning",
+    "multi warehouse inventory management software india"
   ],
   "passed": [
-    "manage business expenses india",
-    "small business accounting best practices",
-    "small business expense management india",
-    "small business financial management tips",
-    "how to manage small business finances",
-    "efficient expense management for small business"
+    "best inventory management software for small businesses india",
+    "inventory management software with gst compliance",
+    "how to choose inventory management software in india",
+    "features of inventory management software",
+    "benefits of inventory management software for business",
+    "real time stock syncing inventory software",
+    "inventory management software for multi location stores",
+    "inventory software with low stock alerts",
+    "inventory management system for indian retail industry",
+    "best inventory management software for indian smb 2026"
   ],
   "maybe": [
-    "track small business expenses easily",
-    "importance of bookkeeping for small business",
-    "cash accounting tips for indian small business",
-    "automated accounting tools for small business",
-    "small business expense tracking software",
-    "bookkeeping and accounting for small business",
-    "small business accounting and bookkeeping guide"
+    "inventory management software for small retail business india",
+    "inventory management system for indian smb",
+    "inventory management software for wholesale business india",
+    "best inventory software for small business in india",
+    "inventory management software with barcode scanning",
+    "multi warehouse inventory management software india"
   ],
   "failed": [
-    "small business bookkeeping tips india",
-    "gst compliant bookkeeping for small business"
+    "top inventory management software in india"
   ],
   "full_report": [
     {
-      "keyword": "small business bookkeeping tips india",
-      "verdict": "FAIL",
-      "score": 12,
+      "keyword": "inventory management software for small retail business india",
+      "verdict": "MAYBE",
+      "score": 6,
       "tier1_hits": [
-        "tallysolutions.com",
-        "forbes.com",
-        "quickbooks.intuit.com",
-        "cleartax.in"
+        "zoho.com",
+        "tallysolutions.com"
       ],
       "tier2_hits": [],
       "top_5_domains": [
-        "coursera.org",
-        "linkedin.com",
+        "zoho.com",
+        "margbooks.com",
         "tallysolutions.com",
-        "forbes.com",
-        "quickbooks.intuit.com"
+        "pactsoft.in",
+        "vyaparapp.in"
       ],
-      "reason": "Too competitive (score=12). Tier 1 giants: tallysolutions.com, forbes.com, quickbooks.intuit.com, cleartax.in. Unlikely to rank page 1."
+      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, tallysolutions.com. Winnable with strong content."
     },
     {
-      "keyword": "manage business expenses india",
-      "verdict": "PASS",
-      "score": 0,
-      "tier1_hits": [],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "apps365.com",
-        "cashbook.in",
-        "happay.com",
-        "enaviya.com",
-        "elitemindz.co"
-      ],
-      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
-    },
-    {
-      "keyword": "small business accounting best practices",
+      "keyword": "best inventory management software for small businesses india",
       "verdict": "PASS",
       "score": 3,
       "tier1_hits": [
-        "quickbooks.intuit.com"
+        "tallysolutions.com"
       ],
       "tier2_hits": [],
       "top_5_domains": [
-        "indeed.com",
-        "uschamber.com",
-        "quickbooks.intuit.com",
-        "coursera.org",
-        "giddh.com"
+        "tallysolutions.com",
+        "margbooks.com",
+        "youtube.com",
+        "pactsoft.in",
+        "mybillbook.in"
       ],
       "reason": "Low authority presence (score=3). Winnable with quality content."
     },
     {
-      "keyword": "track small business expenses easily",
+      "keyword": "inventory management system for indian smb",
       "verdict": "MAYBE",
       "score": 6,
       "tier1_hits": [
         "zoho.com",
-        "quickbooks.intuit.com"
+        "tallysolutions.com"
       ],
       "tier2_hits": [],
       "top_5_domains": [
-        "stripe.com",
+        "unicommerce.com",
+        "salesbabu.com",
         "zoho.com",
-        "youtube.com",
-        "reddit.com",
-        "rippling.com"
+        "pactsoft.in",
+        "tallysolutions.com"
       ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, quickbooks.intuit.com. Winnable with strong content."
+      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, tallysolutions.com. Winnable with strong content."
     },
     {
-      "keyword": "importance of bookkeeping for small business",
-      "verdict": "MAYBE",
-      "score": 6,
-      "tier1_hits": [
-        "zoho.com",
-        "cleartax.in"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "newoon.com",
-        "patriotsoftware.com",
-        "volopay.com",
-        "zoho.com",
-        "coursera.org"
-      ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, cleartax.in. Winnable with strong content."
-    },
-    {
-      "keyword": "cash accounting tips for indian small business",
-      "verdict": "MAYBE",
-      "score": 6,
-      "tier1_hits": [
-        "quickbooks.intuit.com",
-        "cleartax.in"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "cashbook.in",
-        "coursera.org",
-        "linkedin.com",
-        "quickbooks.intuit.com",
-        "cleartax.in"
-      ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: quickbooks.intuit.com, cleartax.in. Winnable with strong content."
-    },
-    {
-      "keyword": "small business expense management india",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "zoho.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "expensify.com",
-        "zoho.com",
-        "happay.com",
-        "cashbook.in",
-        "gartner.com"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "automated accounting tools for small business",
-      "verdict": "MAYBE",
-      "score": 6,
-      "tier1_hits": [
-        "quickbooks.intuit.com",
-        "investopedia.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "quickbooks.intuit.com",
-        "akaunting.com",
-        "youtube.com",
-        "digits.com",
-        "odoo.com"
-      ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: quickbooks.intuit.com, investopedia.com. Winnable with strong content."
-    },
-    {
-      "keyword": "small business expense tracking software",
-      "verdict": "MAYBE",
-      "score": 6,
-      "tier1_hits": [
-        "zoho.com",
-        "quickbooks.intuit.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "zoho.com",
-        "mercury.com",
-        "expensify.com",
-        "indeed.com",
-        "rippling.com"
-      ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, quickbooks.intuit.com. Winnable with strong content."
-    },
-    {
-      "keyword": "gst compliant bookkeeping for small business",
+      "keyword": "top inventory management software in india",
       "verdict": "FAIL",
       "score": 9,
       "tier1_hits": [
-        "cleartax.in",
-        "tallysolutions.com",
-        "zoho.com"
+        "zoho.com",
+        "forbes.com",
+        "tallysolutions.com"
       ],
       "tier2_hits": [],
       "top_5_domains": [
-        "cleartax.in",
-        "linkedin.com",
+        "zoho.com",
+        "youtube.com",
+        "forbes.com",
         "tallysolutions.com",
-        "pkcindia.com",
-        "bigsunworld.com"
-      ],
-      "reason": "Too competitive (score=9). Tier 1 giants: cleartax.in, tallysolutions.com, zoho.com. Unlikely to rank page 1."
-    },
-    {
-      "keyword": "small business financial management tips",
-      "verdict": "PASS",
-      "score": 1,
-      "tier1_hits": [],
-      "tier2_hits": [
-        "bajajfinserv.in"
-      ],
-      "top_5_domains": [
-        "netsuite.com",
-        "sba.gov",
-        "businessnewsdaily.com",
-        "bannerbank.com",
         "youtube.com"
       ],
-      "reason": "Low authority presence (score=1). Winnable with quality content."
+      "reason": "Too competitive (score=9). Tier 1 giants: zoho.com, forbes.com, tallysolutions.com. Unlikely to rank page 1."
     },
     {
-      "keyword": "bookkeeping and accounting for small business",
-      "verdict": "MAYBE",
-      "score": 6,
+      "keyword": "inventory management software with gst compliance",
+      "verdict": "PASS",
+      "score": 3,
       "tier1_hits": [
-        "quickbooks.intuit.com",
-        "forbes.com"
+        "tallysolutions.com"
       ],
       "tier2_hits": [],
       "top_5_domains": [
-        "quickbooks.intuit.com",
-        "coursera.org",
-        "rippling.com",
-        "reddit.com",
-        "aoneoutsourcing.com"
+        "tallysolutions.com",
+        "refrens.com",
+        "innoventrysoftware.com",
+        "tallyatcloud.com",
+        "margbooks.com"
       ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: quickbooks.intuit.com, forbes.com. Winnable with strong content."
+      "reason": "Low authority presence (score=3). Winnable with quality content."
     },
     {
-      "keyword": "how to manage small business finances",
+      "keyword": "how to choose inventory management software in india",
+      "verdict": "PASS",
+      "score": 3,
+      "tier1_hits": [
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "shivit.com",
+        "barcodeindia.com",
+        "cognilix.com",
+        "sagesoftware.co.in",
+        "matiyas.com"
+      ],
+      "reason": "Low authority presence (score=3). Winnable with quality content."
+    },
+    {
+      "keyword": "features of inventory management software",
       "verdict": "PASS",
       "score": 0,
       "tier1_hits": [],
       "tier2_hits": [],
       "top_5_domains": [
-        "rippling.com",
-        "sba.gov",
-        "businessnewsdaily.com",
-        "reddit.com",
-        "youtube.com"
+        "netsuite.com",
+        "acctivate.com",
+        "rfgen.com",
+        "matiyas.com",
+        "unicommerce.com"
       ],
       "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
     },
     {
-      "keyword": "small business accounting and bookkeeping guide",
+      "keyword": "benefits of inventory management software for business",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "netsuite.com",
+        "winman.com",
+        "netstock.com",
+        "alicepos.com",
+        "au.indeed.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "inventory management software for wholesale business india",
       "verdict": "MAYBE",
       "score": 6,
       "tier1_hits": [
-        "forbes.com",
+        "zoho.com",
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "zoho.com",
+        "gofrugal.com",
+        "pactsoft.in",
+        "tallysolutions.com",
+        "reddit.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, tallysolutions.com. Winnable with strong content."
+    },
+    {
+      "keyword": "best inventory software for small business in india",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "zoho.com",
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "zoho.com",
+        "tallysolutions.com",
+        "unicommerce.com",
+        "stockregister.in",
+        "pactsoft.in"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, tallysolutions.com. Winnable with strong content."
+    },
+    {
+      "keyword": "inventory management software with barcode scanning",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "zoho.com",
         "quickbooks.intuit.com"
       ],
       "tier2_hits": [],
       "top_5_domains": [
-        "coursera.org",
-        "forbes.com",
-        "aoneoutsourcing.com",
-        "quickbooks.intuit.com",
-        "finaloop.com"
+        "scandit.com",
+        "msdynamicsworld.com",
+        "zoho.com",
+        "reddit.com",
+        "youtube.com"
       ],
-      "reason": "Moderate competition (score=6). Tier 1 domains present: forbes.com, quickbooks.intuit.com. Winnable with strong content."
+      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, quickbooks.intuit.com. Winnable with strong content."
     },
     {
-      "keyword": "efficient expense management for small business",
+      "keyword": "multi warehouse inventory management software india",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "zoho.com",
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "zoho.com",
+        "unicommerce.com",
+        "pactsoft.in",
+        "barcodeindia.com",
+        "dir.indiamart.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: zoho.com, tallysolutions.com. Winnable with strong content."
+    },
+    {
+      "keyword": "real time stock syncing inventory software",
       "verdict": "PASS",
       "score": 3,
       "tier1_hits": [
@@ -291,11 +258,73 @@
       ],
       "tier2_hits": [],
       "top_5_domains": [
-        "mercury.com",
-        "rippling.com",
-        "stripe.com",
-        "alaan.com",
-        "youtube.com"
+        "zoho.com",
+        "syncx.com",
+        "unicommerce.com",
+        "cogsy.com",
+        "trunkinventory.com"
+      ],
+      "reason": "Low authority presence (score=3). Winnable with quality content."
+    },
+    {
+      "keyword": "inventory management software for multi location stores",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "gofrugal.com",
+        "netstock.com",
+        "eazystock.com",
+        "airwallex.com",
+        "inflowinventory.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "inventory software with low stock alerts",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "dynamicinventory.net",
+        "help.shopline.com",
+        "frenzinsoftwares.com",
+        "genie.io",
+        "sumtracker.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "inventory management system for indian retail industry",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "salesforce.com",
+        "netsuite.com",
+        "pactsoft.in",
+        "mybillbook.in",
+        "vasyerp.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "best inventory management software for indian smb 2026",
+      "verdict": "PASS",
+      "score": 3,
+      "tier1_hits": [
+        "tallysolutions.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "shivit.com",
+        "pactsoft.in",
+        "tallysolutions.com",
+        "youtube.com",
+        "unicommerce.com"
       ],
       "reason": "Low authority presence (score=3). Winnable with quality content."
     }
