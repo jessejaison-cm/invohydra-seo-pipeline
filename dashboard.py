@@ -192,21 +192,26 @@ def fetch_github_image(image_path, repo="InvoHydra/InvoHydra-Landing-Page", bran
         except: pass
 
     # 2. Try Github API
-    url = f"https://api.github.com/repos/{repo}/contents/{clean_path}?ref={branch}"
-    headers = {"Accept": "application/vnd.github.v3+json"}
+    file_path = clean_path if clean_path.startswith("public/") else f"public/{clean_path}"
+    url = f"https://api.github.com/repos/{repo}/contents/{file_path}?ref={branch}"
+    
+    headers = {
+        "Accept": "application/vnd.github.v3+json",
+        "User-Agent": "InvoHydra-SEO-Dashboard"
+    }
     if token:
-        headers["Authorization"] = f"token {token}"
+        headers["Authorization"] = f"Bearer {token}"
         
     try:
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            data = response.json()
-            if data.get("encoding") == "base64" and data.get("content"):
+        res = requests.get(url, headers=headers, timeout=10)
+        if res.status_code == 200:
+            data = res.json()
+            if isinstance(data, dict) and "content" in data and data.get("encoding") == "base64":
                 import base64
                 return base64.b64decode(data["content"])
-            elif data.get("download_url"):
+            elif isinstance(data, dict) and data.get("download_url"):
                 return data["download_url"]
-    except Exception as e:
+    except Exception:
         pass
     return None
 
