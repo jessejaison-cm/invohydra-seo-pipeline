@@ -165,6 +165,8 @@ def get_blogs_from_github(repo, path="src/app/blog/posts", branch="main", token=
         pass
     return blogs
 
+LOCAL_LANDING_PAGE_REPO = os.getenv("LANDING_PAGE_REPO", r"C:\Repo\InvoHydra-Landing-Page")
+
 def fetch_github_image(image_path, repo="InvoHydra/InvoHydra-Landing-Page", branch="main", token=None):
     if not image_path:
         return None
@@ -172,24 +174,39 @@ def fetch_github_image(image_path, repo="InvoHydra/InvoHydra-Landing-Page", bran
         return image_path
     
     clean_path = image_path.lstrip("/")
-    file_path = clean_path if clean_path.startswith("public/") else f"public/{clean_path}"
     
-    url = f"https://api.github.com/repos/{repo}/contents/{file_path}?ref={branch}"
-    headers = {
-        "Accept": "application/vnd.github.v3+json",
-        "User-Agent": "InvoHydra-SEO-Dashboard"
-    }
+    # 1. Always try to read from the local landing page repo or data/blogs first
+    search_path = clean_path if clean_path.startswith("public/") else f"public/{clean_path}"
+    local_full_path = os.path.join(LOCAL_LANDING_PAGE_REPO, search_path.replace("/", os.sep))
+    local_pipeline_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "blogs", os.path.basename(clean_path))
+    
+    if os.path.exists(local_full_path):
+        try:
+            with open(local_full_path, "rb") as f:
+                return f.read()
+        except: pass
+    elif os.path.exists(local_pipeline_path):
+        try:
+            with open(local_pipeline_path, "rb") as f:
+                return f.read()
+        except: pass
+
+    # 2. Try Github API
+    url = f"https://api.github.com/repos/{repo}/contents/{clean_path}?ref={branch}"
+    headers = {"Accept": "application/vnd.github.v3+json"}
     if token:
-        headers["Authorization"] = f"Bearer {token}"
+        headers["Authorization"] = f"token {token}"
         
     try:
-        res = requests.get(url, headers=headers, timeout=10)
-        if res.status_code == 200:
-            data = res.json()
-            if isinstance(data, dict) and "content" in data:
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get("encoding") == "base64" and data.get("content"):
                 import base64
                 return base64.b64decode(data["content"])
-    except Exception:
+            elif data.get("download_url"):
+                return data["download_url"]
+    except Exception as e:
         pass
     return None
 
