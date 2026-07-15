@@ -1,61 +1,106 @@
 {
   "surviving_keywords": [
-    "best pos billing software for retail shops india",
-    "cloud pos billing software for small retail shops",
-    "retail shop billing software with gst",
-    "pos billing software for indian retail stores",
-    "retail pos billing software with inventory management",
-    "gst compliant pos billing software for retail",
-    "best pos software for retail stores in india",
-    "pos billing software for retail business india",
-    "top cloud pos billing solutions in india",
-    "retail pos billing software for small businesses",
-    "best cloud pos for small retail shops in india",
-    "fast and accurate billing pos software",
-    "automatic gst compliant invoicing pos software",
-    "best retail billing software for shops in india",
-    "cloud based retail pos billing software",
-    "retail billing software with free trial"
+    "pos billing software for small businesses",
+    "retail pos software for billing and inventory",
+    "point of sale system for small stores",
+    "best pos billing software in india",
+    "pos system for retail shops and restaurants",
+    "features of pos billing software",
+    "gst compliant pos billing software",
+    "pos software for small business management",
+    "retail billing and inventory management",
+    "best pos system for small retailers",
+    "pos billing and invoicing app",
+    "point of sale billing system for small stores",
+    "pos system for small business growth",
+    "easy to use pos billing software",
+    "pos software with inventory management",
+    "how to choose the best pos system"
   ],
   "passed": [
-    "best pos billing software for retail shops india",
-    "cloud pos billing software for small retail shops",
-    "retail shop billing software with gst",
-    "pos billing software for indian retail stores",
-    "retail pos billing software with inventory management",
-    "gst compliant pos billing software for retail",
-    "best pos software for retail stores in india",
-    "pos billing software for retail business india",
-    "top cloud pos billing solutions in india",
-    "retail pos billing software for small businesses",
-    "best cloud pos for small retail shops in india",
-    "fast and accurate billing pos software",
-    "automatic gst compliant invoicing pos software"
+    "pos billing software for small businesses",
+    "retail pos software for billing and inventory",
+    "point of sale system for small stores",
+    "best pos billing software in india",
+    "pos system for retail shops and restaurants",
+    "features of pos billing software",
+    "gst compliant pos billing software",
+    "pos software for small business management",
+    "retail billing and inventory management",
+    "best pos system for small retailers",
+    "pos billing and invoicing app",
+    "point of sale billing system for small stores",
+    "pos system for small business growth",
+    "easy to use pos billing software",
+    "pos software with inventory management"
   ],
   "maybe": [
-    "best retail billing software for shops in india",
-    "cloud based retail pos billing software",
-    "retail billing software with free trial"
+    "how to choose the best pos system"
   ],
   "failed": [],
   "full_report": [
     {
-      "keyword": "best pos billing software for retail shops india",
+      "keyword": "pos billing software for small businesses",
       "verdict": "PASS",
       "score": 0,
       "tier1_hits": [],
       "tier2_hits": [],
       "top_5_domains": [
-        "vasyerp.com",
-        "gofrugal.com",
-        "logicerp.com",
         "mybillbook.in",
-        "youtube.com"
+        "softhealer.com",
+        "vasyerp.com",
+        "play.google.com",
+        "justbilling.in"
       ],
       "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
     },
     {
-      "keyword": "cloud pos billing software for small retail shops",
+      "keyword": "retail pos software for billing and inventory",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "retailpos.co.in",
+        "vasyerp.com",
+        "mybillbook.in",
+        "gofrugal.com",
+        "logicerp.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "point of sale system for small stores",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "odoo.com",
+        "squareup.com",
+        "euvic.com",
+        "en.wikipedia.org",
+        "logicerp.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "best pos billing software in india",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "gofrugal.com",
+        "vasyerp.com",
+        "rednote.in",
+        "dir.indiamart.com",
+        "invoicefree.in"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "pos system for retail shops and restaurants",
       "verdict": "PASS",
       "score": 1,
       "tier1_hits": [],
@@ -63,16 +108,34 @@
         "techjockey.com"
       ],
       "top_5_domains": [
-        "vasyerp.com",
-        "timdtech.com",
-        "mybillbook.in",
-        "retailpos.co.in",
-        "logicerp.com"
+        "squareup.com",
+        "gofrugal.com",
+        "uschamber.com",
+        "techjockey.com",
+        "retailpos.co.in"
       ],
       "reason": "Low authority presence (score=1). Winnable with quality content."
     },
     {
-      "keyword": "retail shop billing software with gst",
+      "keyword": "how to choose the best pos system",
+      "verdict": "MAYBE",
+      "score": 6,
+      "tier1_hits": [
+        "forbes.com",
+        "nerdwallet.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "merchants.fiserv.com",
+        "forbes.com",
+        "youtube.com",
+        "uschamber.com",
+        "nerdwallet.com"
+      ],
+      "reason": "Moderate competition (score=6). Tier 1 domains present: forbes.com, nerdwallet.com. Winnable with strong content."
+    },
+    {
+      "keyword": "features of pos billing software",
       "verdict": "PASS",
       "score": 3,
       "tier1_hits": [
@@ -80,136 +143,127 @@
       ],
       "tier2_hits": [],
       "top_5_domains": [
-        "refrens.com",
-        "youtube.com",
-        "reddit.com",
-        "mybillbook.in",
-        "accountune.com"
+        "vasyerp.com",
+        "justbilling.in",
+        "logicerp.com",
+        "vyaparapp.in",
+        "retailpos.co.in"
       ],
       "reason": "Low authority presence (score=3). Winnable with quality content."
     },
     {
-      "keyword": "pos billing software for indian retail stores",
+      "keyword": "gst compliant pos billing software",
       "verdict": "PASS",
       "score": 0,
       "tier1_hits": [],
       "tier2_hits": [],
       "top_5_domains": [
-        "reddit.com",
-        "queuebuster.co",
+        "vasyerp.com",
         "mybillbook.in",
-        "rednote.in",
+        "billingsoftwareindia.in",
+        "vyaparapp.in",
         "hyperdrivesolutions.com"
       ],
       "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
     },
     {
-      "keyword": "best retail billing software for shops in india",
-      "verdict": "MAYBE",
-      "score": 4,
+      "keyword": "pos software for small business management",
+      "verdict": "PASS",
+      "score": 3,
+      "tier1_hits": [
+        "forbes.com"
+      ],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "odoo.com",
+        "retailpos.co.in",
+        "euvic.com",
+        "logicerp.com",
+        "gofrugal.com"
+      ],
+      "reason": "Low authority presence (score=3). Winnable with quality content."
+    },
+    {
+      "keyword": "retail billing and inventory management",
+      "verdict": "PASS",
+      "score": 3,
       "tier1_hits": [
         "tallysolutions.com"
       ],
-      "tier2_hits": [
-        "techjockey.com"
-      ],
+      "tier2_hits": [],
       "top_5_domains": [
         "mybillbook.in",
         "vasyerp.com",
         "tallysolutions.com",
         "youtube.com",
-        "amazon.in"
+        "logicerp.com"
       ],
-      "reason": "Moderate competition (score=4). Tier 1 domains present: tallysolutions.com | Tier 2 domains present: techjockey.com. Winnable with strong content."
+      "reason": "Low authority presence (score=3). Winnable with quality content."
     },
     {
-      "keyword": "cloud based retail pos billing software",
-      "verdict": "MAYBE",
-      "score": 4,
+      "keyword": "best pos system for small retailers",
+      "verdict": "PASS",
+      "score": 3,
       "tier1_hits": [
         "forbes.com"
       ],
-      "tier2_hits": [
-        "techjockey.com"
+      "tier2_hits": [],
+      "top_5_domains": [
+        "retailpos.co.in",
+        "reddit.com",
+        "vasyerp.com",
+        "logicerp.com",
+        "gofrugal.com"
       ],
+      "reason": "Low authority presence (score=3). Winnable with quality content."
+    },
+    {
+      "keyword": "pos billing and invoicing app",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "play.google.com",
+        "mybillbook.in",
+        "invoicefree.in",
+        "business.paytm.com",
+        "squareup.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "point of sale billing system for small stores",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
+      "top_5_domains": [
+        "mybillbook.in",
+        "softhealer.com",
+        "retailpos.co.in",
+        "amazon.in",
+        "gofrugal.com"
+      ],
+      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
+    },
+    {
+      "keyword": "pos system for small business growth",
+      "verdict": "PASS",
+      "score": 0,
+      "tier1_hits": [],
+      "tier2_hits": [],
       "top_5_domains": [
         "salesforce.com",
-        "vasyerp.com",
-        "gofrugal.com",
-        "margbooks.com",
-        "forbes.com"
-      ],
-      "reason": "Moderate competition (score=4). Tier 1 domains present: forbes.com | Tier 2 domains present: techjockey.com. Winnable with strong content."
-    },
-    {
-      "keyword": "retail pos billing software with inventory management",
-      "verdict": "PASS",
-      "score": 0,
-      "tier1_hits": [],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "retailpos.co.in",
-        "vasyerp.com",
-        "inventoryplus.in",
-        "retailerspos.com",
-        "mybillbook.in"
+        "ruddersoft.com",
+        "uschamber.com",
+        "euvic.com",
+        "celerant.com"
       ],
       "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
     },
     {
-      "keyword": "gst compliant pos billing software for retail",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "tallysolutions.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "vasyerp.com",
-        "logicerp.com",
-        "accountune.com",
-        "mybillbook.in",
-        "business.paytm.com"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "best pos software for retail stores in india",
-      "verdict": "PASS",
-      "score": 0,
-      "tier1_hits": [],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "vasyerp.com",
-        "retailpos.co.in",
-        "logicerp.com",
-        "gofrugal.com",
-        "dir.indiamart.com"
-      ],
-      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
-    },
-    {
-      "keyword": "retail billing software with free trial",
-      "verdict": "MAYBE",
-      "score": 7,
-      "tier1_hits": [
-        "tallysolutions.com",
-        "zoho.com"
-      ],
-      "tier2_hits": [
-        "techjockey.com"
-      ],
-      "top_5_domains": [
-        "tallysolutions.com",
-        "khatabilling.com",
-        "gofrugal.com",
-        "billingsoftwareindia.in",
-        "dir.indiamart.com"
-      ],
-      "reason": "Moderate competition (score=7). Tier 1 domains present: tallysolutions.com, zoho.com | Tier 2 domains present: techjockey.com. Winnable with strong content."
-    },
-    {
-      "keyword": "pos billing software for retail business india",
+      "keyword": "easy to use pos billing software",
       "verdict": "PASS",
       "score": 0,
       "tier1_hits": [],
@@ -217,86 +271,24 @@
       "top_5_domains": [
         "vasyerp.com",
         "mybillbook.in",
-        "business.paytm.com",
-        "rednote.in",
-        "youtube.com"
-      ],
-      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
-    },
-    {
-      "keyword": "top cloud pos billing solutions in india",
-      "verdict": "PASS",
-      "score": 0,
-      "tier1_hits": [],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "vasyerp.com",
-        "timdtech.com",
-        "gofrugal.com",
-        "dir.indiamart.com",
-        "margbooks.com"
-      ],
-      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
-    },
-    {
-      "keyword": "retail pos billing software for small businesses",
-      "verdict": "PASS",
-      "score": 0,
-      "tier1_hits": [],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "vasyerp.com",
-        "amazon.in",
-        "mybillbook.in",
-        "logicerp.com",
-        "softhealer.com"
-      ],
-      "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
-    },
-    {
-      "keyword": "best cloud pos for small retail shops in india",
-      "verdict": "PASS",
-      "score": 3,
-      "tier1_hits": [
-        "forbes.com"
-      ],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "vasyerp.com",
-        "logicerp.com",
-        "gofrugal.com",
-        "retailpos.co.in",
-        "dir.indiamart.com"
-      ],
-      "reason": "Low authority presence (score=3). Winnable with quality content."
-    },
-    {
-      "keyword": "fast and accurate billing pos software",
-      "verdict": "PASS",
-      "score": 0,
-      "tier1_hits": [],
-      "tier2_hits": [],
-      "top_5_domains": [
-        "vasyerp.com",
+        "play.google.com",
         "softhealer.com",
-        "youtube.com",
-        "focussoftnet.com",
-        "fastsoftwaretechnology.com"
+        "justbilling.in"
       ],
       "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
     },
     {
-      "keyword": "automatic gst compliant invoicing pos software",
+      "keyword": "pos software with inventory management",
       "verdict": "PASS",
       "score": 0,
       "tier1_hits": [],
       "tier2_hits": [],
       "top_5_domains": [
-        "gogstbill.com",
-        "billingsoftwareindia.in",
-        "er4u.in",
-        "khatabilling.com",
-        "hyperdrivesolutions.com"
+        "codecanyon.net",
+        "retailpos.co.in",
+        "vasyerp.com",
+        "loyverse.com",
+        "odoo.com"
       ],
       "reason": "No major authority domains in top 10. High opportunity for InvoHydra."
     }

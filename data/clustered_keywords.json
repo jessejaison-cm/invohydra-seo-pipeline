@@ -1,52 +1,60 @@
 {
   "clusters": [
     {
-      "hub_topic": "POS Billing Software for Retail",
+      "hub_topic": "POS Billing Software for Small Businesses",
       "demand": "High",
       "intent": "Transactional",
-      "product_fit_rationale": "Our product supports pos_billing, gst_compliance, and inventory_management, making it a strong fit for retail shops in India.",
+      "product_fit_rationale": "Our product supports pos_billing, inventory_management, and gst_compliance, which are all essential features for POS billing software for small businesses.",
       "keywords": [
-        "best pos billing software for retail shops india",
-        "cloud pos billing software for small retail shops",
-        "retail shop billing software with gst",
-        "pos billing software for indian retail stores",
-        "retail pos billing software with inventory management",
-        "gst compliant pos billing software for retail",
-        "best pos software for retail stores in india",
-        "pos billing software for retail business india",
-        "retail pos billing software for small businesses",
-        "best cloud pos for small retail shops in india",
-        "cloud based retail pos billing software",
-        "retail billing software with free trial"
+        "pos billing software for small businesses",
+        "retail pos software for billing and inventory",
+        "point of sale system for small stores",
+        "best pos billing software in india",
+        "pos system for retail shops and restaurants",
+        "gst compliant pos billing software",
+        "pos software for small business management",
+        "retail billing and inventory management",
+        "best pos system for small retailers",
+        "pos software with inventory management"
       ]
     },
     {
-      "hub_topic": "Efficient and Accurate Billing",
+      "hub_topic": "Choosing the Best POS System",
       "demand": "Medium",
       "intent": "Informational",
-      "product_fit_rationale": "Our product offers automatic_tax_calculations and smart_invoice_management, which align with the need for fast and accurate billing.",
+      "product_fit_rationale": "Our product supports features like pos_billing, inventory_management, and gst_compliance, making it a suitable option for those looking to choose the best POS system.",
       "keywords": [
-        "fast and accurate billing pos software"
+        "features of pos billing software",
+        "how to choose the best pos system"
       ]
     },
     {
-      "hub_topic": "GST Compliant Invoicing",
+      "hub_topic": "Easy to Use POS Billing Software",
       "demand": "Medium",
       "intent": "Informational",
-      "product_fit_rationale": "Our product supports gst_compliance and automated_tax_calculations, making it suitable for automatic GST compliant invoicing.",
+      "product_fit_rationale": "Our product supports pos_billing and is designed to be user-friendly, making it an easy to use POS billing software.",
       "keywords": [
-        "automatic gst compliant invoicing pos software"
+        "easy to use pos billing software"
+      ]
+    },
+    {
+      "hub_topic": "POS System for Business Growth",
+      "demand": "Low",
+      "intent": "Informational",
+      "product_fit_rationale": "Our product supports pos_billing and inventory_management, which can contribute to small business growth.",
+      "keywords": [
+        "pos system for small business growth"
       ]
     }
   ],
   "rejected_keywords": [
     {
-      "original": "top cloud pos billing solutions in india",
-      "reason": "Too broad and does not specifically imply a feature we support."
+      "original": "pos billing and invoicing app",
+      "reason": "The keyword mentions 'invoicing app' which could imply e-invoicing, a feature not explicitly supported by our product capability truth map, but we do support 'pos_billing' and 'invoice_template_customization'. However, to avoid any confusion, this keyword is rejected."
     },
     {
-      "original": "best retail billing software for shops in india",
-      "reason": "Already covered by the 'POS Billing Software for Retail' cluster."
+      "original": "point of sale billing system for small stores",
+      "reason": "This keyword is already covered by other keywords in the 'POS Billing Software for Small Businesses' cluster."
     }
   ]
 }
